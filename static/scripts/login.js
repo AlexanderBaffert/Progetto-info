@@ -1,5 +1,5 @@
-// Attach form listener only on the login page
-if (window.location.pathname === '/login') {
+var menuButton = document.getElementById("menu-button");
+if (menuButton) {
     document.getElementById("login-form").addEventListener("submit", function(event) {
         event.preventDefault(); // Prevent default only for login
         const email = document.getElementById("email").value;
