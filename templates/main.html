@@ -1,0 +1,136 @@
+<html>
+<head>
+    <title>Your Garage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/main.css">
+    <style>
+      /* Additional styling for the user dropdown */
+      #user-dropdown {
+          display: none;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          background: #fff;
+          border: 1px solid #ccc;
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          z-index: 100;
+      }
+      #user-dropdown ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+      }
+      #user-dropdown li {
+          margin: 5px 0;
+      }
+      #user-dropdown li a {
+          text-decoration: none;
+          color: #333;
+      }
+    </style>
+</head>
+<body>
+    <!-- Conditional login image: if logged in show dropdown toggle; if not, link to /login -->
+    <div style="position: absolute; top: 10px; right: 10px;">
+      {% if session.logged_in %}
+        <img src="static/favicon/log_in.jpg" alt="User" style="height: 50px; cursor: pointer;" onclick="toggleUserDropdown()">
+        <div id="user-dropdown">
+            <ul>
+                <li><a href="/account">Account</a></li>
+                <li><a href="javascript:void(0)" onclick="logoutUser()">Log out</a></li>
+                <li><a href="/delete">Delete</a></li>
+            </ul>
+        </div>
+      {% else %}
+        <a href="/login">
+          <img src="static/favicon/log_in.jpg" alt="Login" style="height: 50px; cursor: pointer;">
+        </a>
+      {% endif %}
+    </div>
+    
+    <div class="animated-text" style="margin-top: -10px; font-size: 80px; line-height: 90px;">All your models</div>
+
+    <div class="menu">
+        <button id="menu-button" class="menu-button">Home</button>
+    </div>
+
+    <!-- Bottone per mostrare/nascondere il filtro -->
+    <div class="filter-container">
+        <div class="filter-toggle" onclick="toggleFilter()">
+            <span>Modelli compatibili 40</span> +
+        </div>
+
+        <div class="filter-panel" id="filterPanel">
+            <h2>Filtra in base alle tue esigenze</h2>
+            
+            <div class="filter-section">
+                <!-- Sezione Motore -->
+                <div class="filter-column">
+                    <h3>Motore</h3>
+                    <div class="checkbox-list">
+                        <label><input type="checkbox"> Single-Cylinder </label>
+                        <label><input type="checkbox"> Parallel-Twin </label>
+                        <label><input type="checkbox"> V-Twin </label>
+                        <label><input type="checkbox"> L-Twin </label>
+                        <label><input type="checkbox"> Inline </label>
+                        <label><input type="checkbox"> V4 (Rarely V5) </label>
+                        <label><input type="checkbox"> Flat-Twin </label>
+                        <label><input type="checkbox"> Rotary </label>
+                        <label><input type="checkbox"> Electric </label>
+                    </div>
+                </div>
+
+                <!-- Sezione Potenza (modified) -->
+                <div class="filter-column">
+                    <h3>Potenza</h3>
+                    <div class="slider-container">
+                        <label>Min kw: <input type="number" name="power-min" value="4" min="4" max="160"></label>
+                        <label>Max kw: <input type="number" name="power-max" value="160" min="4" max="160"></label>
+                    </div>
+                </div>
+
+                <!-- Sezione Altezza Sella (modified) -->
+                <div class="filter-column">
+                    <h3>Altezza sella</h3>
+                    <div class="slider-container">
+                        <label>Min mm: <input type="number" name="seat-min" value="690" min="690" max="910"></label>
+                        <label>Max mm: <input type="number" name="seat-max" value="910" min="690" max="910"></label>
+                    </div>
+                </div>
+
+                <!-- Sezione Prezzo (modified) -->
+                <div class="filter-column">
+                    <h3>Prezzo</h3>
+                    <div class="slider-container">
+                        <label>Min €: <input type="number" name="price-min" value="0" min="0" max="38500"></label>
+                        <label>Max €: <input type="number" name="price-max" value="38500" min="0" max="38500"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/scripts/script.js"></script>
+    <script>
+        function toggleUserDropdown() {
+            var dropdown = document.getElementById("user-dropdown");
+            dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
+        }
+        function toggleFilter() {
+            var panel = document.getElementById("filterPanel");
+            panel.classList.toggle("active");
+        }
+        function logoutUser() {
+            fetch("/logout", { method: "POST" })
+              .then(response => response.json())
+              .then(data => {
+                  if(data.status === "ok") {
+                      // After logout, refresh the page to update UI
+                      window.location.reload();
+                  }
+              });
+        }
+    </script>
+</body>
+</html>

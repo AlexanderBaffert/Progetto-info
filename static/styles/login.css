@@ -1,0 +1,132 @@
+/* Importa un font elegante */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* Contenitore principale che divide la pagina */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sezione sinistra con il form */
+.login-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(200, 220, 240, 0.5); /* Colore più freddo */
+}
+
+/* Box di login con sfondo più chiaro */
+.login-box {
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    background: rgba(240, 248, 255, 0.7); /* Un azzurro chiaro (AliceBlue) per un effetto freddo */
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 50, 0.2); /* Ombra leggermente più fredda */
+    color: black;
+}
+
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 14px;
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Opzioni di login */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.options label {
+    font-size: 14px;
+}
+
+.forgot-password {
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Pulsante login */
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-button:hover {
+    background: #e6b800;
+}
+
+.register-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-text a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+/* Sezione destra con immagine */
+.image-container {
+    width: 50%;
+    background: url("../favicon/log_background.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.flash-message {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.flash-message.success {
+    color: green;
+    background: rgba(0, 255, 0, 0.2);
+}
+
+.flash-message.error {
+    color: red;
+    background: rgba(255, 0, 0, 0.2);
+}

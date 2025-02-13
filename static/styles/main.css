@@ -1,0 +1,207 @@
+/* ===================================================
+   ANIMATION KEYFRAMES
+   =================================================== */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animated Text */
+.animated-text {
+    position: absolute;
+    top: 16%;
+    left: 19%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 100px;
+    color: rgb(0, 0, 0);
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: slideDown 2s ease-out forwards;
+}
+
+/* ===================================================
+   HEADER & MENU
+   =================================================== */
+.menu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin-bottom: 20px; /* Additional margin for spacing */
+}
+
+.menu-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===================================================
+   MOTOR SECTION
+   =================================================== */
+/* Motor Control Bar */
+#motor-bar {
+    position: fixed;
+    top: 20%; /* adjust vertical placement as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 900;
+}
+
+/* Motor Panel (hidden by default) */
+#motor-panel {
+    position: fixed;
+    top: calc(20% + 60px); /* positioned just below the motor bar */
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top;
+    width: 90%;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    z-index: 900;
+}
+#motor-panel.visible {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Motor Options Styling */
+#motor-options {
+    display: flex;
+    flex-direction: column;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.motor-option {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 16px;
+}
+.motor-option:last-child {
+    border-bottom: none;
+}
+.motor-option.selected {
+    background-color: #ccc;
+}
+
+/* ===================================================
+   GLOBAL STYLES
+   =================================================== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* ===================================================
+   FILTER SECTION
+   =================================================== */
+/* Filter Toggle Button */
+.filter-toggle {
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.filter-toggle span {
+    margin-right: 8px;
+}
+
+/* Filter Container */
+.filter-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+/* Filter Panel (hidden by default) */
+.filter-panel {
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    z-index: 100;
+}
+.filter-panel.active {
+    display: block;
+}
+
+/* Filter Panel Header */
+.filter-panel h2 {
+    margin: 0 0 15px;
+}
+
+/* Filter Sections & Columns */
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter-column {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+}
+
+/* Checkbox List Styling */
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #444;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Slider Container for Range Inputs */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Range Input Styling */
+input[type="range"] {
+    width: 100%;
+}
