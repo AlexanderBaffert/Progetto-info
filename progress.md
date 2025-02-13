@@ -3,8 +3,8 @@
 ## Main page:
 
 #### Log button: 100%
-#### Main motorcicly page: 0%
-#### Select of the bikes: 25%
+#### Main motorcycle page: 0%
+#### Select of the specifics: 50%
 #### Menu button: 0%
 #### Bikes choice: 0%
 #### Bikes images: 0%
@@ -14,7 +14,7 @@
 ## Bikes page:
 
 #### Main description: 0%
-#### Images: 0%
+#### Images: 2%
 #### Price and estimate of fees and costs: 0%
 #### Data container: 0%
 
