@@ -51,15 +51,16 @@ document.addEventListener("DOMContentLoaded", function() {
         sport: [
             { name: "S 1000 RR", year: "2025", img: "static/favicon/bikes/liter_bikes/s1000rr.avif" },
             { name: "R1", year: "2025", img: "static/favicon/bikes/liter_bikes/r1.avif" },
-            { name: "ZX-10R", year: "2024", img: "static/favicon/bikes/liter_bikes/zx10r.jpg" },
+            { name: "ZX-10R", year: "2025", img: "static/favicon/bikes/liter_bikes/zx10r.jpg" },
             { name: "Panigale V4", year: "2025", img: "static/favicon/bikes/liter_bikes/v4.jpg" },
             { name: "GSX-R1000", year: "2025", img: "static/favicon/bikes/liter_bikes/GSX-R1000.jpg" },
             { name: "CBR1000RR-R", year: "2025", img: "static/favicon/bikes/liter_bikes/cbr1000rr.jpeg" },
         ],
         premium: [
             { name: "R1-M", year: "2025", img: "static/favicon/bikes/liter_bikes/r1m.jpg" },
-            { name: "F4 1000", year: "2025", img: "static/favicon/bikes/liter_bikes/f4_1000.webp" },
+            { name: "F4 1000", year: "2005", img: "static/favicon/bikes/liter_bikes/f4_1000.webp" },
             { name: "M 1000 RR", year: "2025", img: "static/favicon/bikes/liter_bikes/m1000rr.jpg" },
+            { name: "H2R", year: "2025", img: "static/favicon/bikes/super_sport/h2r.webp" },
         ],
         naked: [],
         race: [],
@@ -86,9 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
         modelsData[category].forEach(model => {
             const modelCard = document.createElement("div");
             modelCard.classList.add("model-card");
-
+            // Create a slug from the model name (lowercase, spaces replaced by hyphen)
+            const slug = model.name.toLowerCase().replace(/\s+/g, '-');
             modelCard.innerHTML = `
-                <img src="${model.img}" alt="${model.name}" style="width:100%; height:150px; object-fit:cover;">
+                <a href="/model/${slug}">
+                    <img src="${model.img}" alt="${model.name}" style="width:100%; height:150px; object-fit:cover;">
+                </a>
                 <p class="model-year">${model.year}</p>
                 <p class="model-name">${model.name}</p>
             `;

@@ -14,7 +14,7 @@
 ## Bikes page:
 
 #### Main description: 0%
-#### Images: 2%
+#### Images: 5%
 #### Price and estimate of fees and costs: 0%
 #### Data container: 0%
 

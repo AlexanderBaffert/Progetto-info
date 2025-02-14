@@ -80,5 +80,33 @@ def logout():
     session.pop("user_email", None)
     return {"status": "ok"}
 
+@app.route("/model/<model_slug>")
+def model_detail(model_slug):
+    # Dictionary mapping slugs to model details
+    model_details = {
+        "s-1000-rr": {
+            "name": "S 1000 RR",
+            "year": "2025",
+            "image": "static/favicon/bikes/liter_bikes/s1000rr_2.png",
+            "description": "Starting from €21,450. Discover the financial offers dedicated to this model in the BMW Financial Services section."
+        },
+        "r1": {
+            "name": "R1",
+            "year": "2025",
+            "image": "static/favicon/bikes/liter_bikes/r1_2.jpg",
+            "description": "Starting from €20.699,00. Discover the financial offers dedicated to this model in the Yamaha Financial Services section."
+        },
+        "zx-10r": {
+            "name": "ZX-10R",
+            "year": "2025",
+            "image": "static/favicon/bikes/liter_bikes/zx10r_2.png",
+            "description": "Starting from €29.990,00. Discover the financial offers dedicated to this model in the Kawasaki Financial Services section."
+        },
+    }
+    model = model_details.get(model_slug)
+    if not model:
+        return "Model not found", 404
+    return render_template("model.html", model=model)
+
 if __name__ == "__main__":
     app.run(debug=True)

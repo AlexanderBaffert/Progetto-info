@@ -1,0 +1,57 @@
+/* Override body to avoid main.css centering styles */
+body {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set container relative so children can be absolutely positioned */
+.model-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Left side: bike image */
+.model-left {
+    flex: 3;  /* increased ratio for image */
+    overflow: hidden;
+}
+.model-left img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Overlay text container positioned on the right covering 1/4 of the page */
+.model-right {
+    position: absolute;
+    top: 0;          /* adjust vertical position as needed */
+    bottom: 0;
+    right: 0;        /* move container to the right side */
+    width: 15vw;     /* covers 25% of the viewport width */
+    background-color: rgba(0, 0, 0, 0.8); /* dark background for text contrast */
+    padding: 20px;
+    border-radius: 10px;
+    color: #fff;
+    z-index: 2;
+    display: flex;               /* enable flexbox */
+    flex-direction: column;      /* stack items vertically */
+    justify-content: center;     /* center vertically */
+    align-items: center;         /* center horizontally */
+}
+
+/* Model info styling */
+.model-info {
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;  /* increased text size */
+}
+
+.model-info h1 {
+    font-size: 36px;  /* larger header text */
+}
