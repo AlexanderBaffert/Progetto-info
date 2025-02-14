@@ -12,7 +12,9 @@
     }
 }
 
-/* Animated Text */
+/* ===================================================
+   ANIMATED TEXT
+   =================================================== */
 .animated-text {
     position: absolute;
     top: 16%;
@@ -20,7 +22,21 @@
     transform: translate(-50%, -50%);
     text-align: center;
     font-size: 100px;
-    color: rgb(0, 0, 0);
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: slideDown 2s ease-out forwards;
+}
+
+.second-animation {
+    animation-delay: 0.5s;
+    position: absolute;
+    top: 28%; /* posizionato sotto l'animated-text */
+    left: 22%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 80px; /* leggermente più piccolo */
     background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
     -webkit-background-clip: text;
     background-clip: text;
@@ -35,13 +51,233 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    margin-bottom: 20px; /* Additional margin for spacing */
+    margin-bottom: 20px; /* margine aggiuntivo per spaziatura */
 }
 
+/* Bottone menu */
 .menu-button {
-    padding: 8px 16px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
     font-size: 16px;
+    background-color: black;
+    color: white;
+    border: none;
     cursor: pointer;
+}
+
+/* User Dropdown */
+#user-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+#user-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#user-dropdown li {
+    margin: 5px 0;
+}
+#user-dropdown li a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Dropdown Menu Panel */
+#menu-panel {
+    display: none;
+    position: absolute;
+    top: 50px; /* posizionato sotto il bottone menu */
+    left: 10px;
+    right: 10px; /* si estende fino al bordo destro */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    z-index: 200;
+}
+#menu-panel.visible {
+    display: block;
+}
+
+/* Layout dei testi nella Dropdown panel */
+#menu-panel nav.menu-links,
+#menu-panel .sub-menu,
+#menu-panel .quick-links {
+    display: block;
+    margin-bottom: 15px;
+}
+#menu-panel nav.menu-links a,
+#menu-panel .sub-menu a,
+#menu-panel .quick-links a {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    color: #333;
+}
+#menu-panel nav.menu-links a:last-child,
+#menu-panel .sub-menu a:last-child,
+#menu-panel .quick-links a:last-child {
+    border-bottom: none;
+}
+#menu-panel .sub-menu p {
+    margin: 0 0 8px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sub-menu {
+    display: flex;
+    flex-direction: row; /* Mantiene la disposizione orizzontale */
+    justify-content: center; /* Centra gli elementi orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+    text-align: center;
+    gap: 40px; /* Aumenta la distanza tra i link */
+    margin-top: 30px;
+    flex-wrap: wrap; /* Permette di andare a capo se serve */
+}
+
+.sub-menu p {
+    font-size: 28px; /* Aumenta la dimensione del titolo */
+    font-weight: bold;
+}
+
+.sub-menu a {
+    font-size: 20px; /* Dimensione del testo */
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px; /* Aggiunge spazio intorno ai link */
+    transition: color 0.3s ease;
+}
+
+.sub-menu a:hover {
+    color: #007bff; /* Cambia colore al passaggio del mouse */
+}
+
+.models-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.model-card {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 200px;
+}
+
+.model-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.model-card p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.model-year {
+    font-size: 14px;
+    color: gray;
+}
+
+.model-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: black;  /* added to ensure visibility */
+}
+
+
+/* ===================================================
+   MENU OVERLAY (INTEGRATO)
+   =================================================== */
+#menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+    padding: 20px;
+}
+#menu-overlay.visible {
+    display: block;
+}
+.menu-content {
+    max-width: 1200px;
+    margin: auto;
+    text-align: left;
+}
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.menu-links,
+.sub-menu,
+.quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+.menu-links a,
+.sub-menu a {
+    margin-bottom: 10px;
+}
+.quick-links a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+.quick-links a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.sub-menu p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 0;    /* rimuove lo spostamento eccessivo */
+    margin-right: 15px; /* aggiunge spazio dopo il titolo */
+}
+
+/* Se necessario, aggiungi ulteriore margine sui link */
+.sub-menu a {
+    margin-bottom: 10px;
 }
 
 /* ===================================================
@@ -50,7 +286,7 @@
 /* Motor Control Bar */
 #motor-bar {
     position: fixed;
-    top: 20%; /* adjust vertical placement as needed */
+    top: 20%; /* posizionamento verticale regolabile */
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
@@ -63,10 +299,10 @@
     z-index: 900;
 }
 
-/* Motor Panel (hidden by default) */
+/* Motor Panel (nascosto per default) */
 #motor-panel {
     position: fixed;
-    top: calc(20% + 60px); /* positioned just below the motor bar */
+    top: calc(20% + 60px); /* subito sotto il motor bar */
     left: 50%;
     transform: translateX(-50%) scaleY(0);
     transform-origin: top;
@@ -121,6 +357,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
 }
 
 /* ===================================================
@@ -149,7 +386,7 @@ body {
     text-align: center;
 }
 
-/* Filter Panel (hidden by default) */
+/* Filter Panel (nascosto per default) */
 .filter-panel {
     display: none;
     background: rgba(0, 0, 0, 0.8);
@@ -176,7 +413,6 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
 .filter-column {
     flex: 1;
     min-width: 250px;

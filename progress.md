@@ -5,7 +5,7 @@
 #### Log button: 100%
 #### Main motorcycle page: 0%
 #### Select of the specifics: 50%
-#### Menu button: 0%
+#### Menu button: 15%
 #### Bikes choice: 0%
 #### Bikes images: 0%
 #### Bikes brands: 0%

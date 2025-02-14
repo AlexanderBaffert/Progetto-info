@@ -1,34 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Garage</title>
     <link rel="stylesheet" type="text/css" href="static/styles/main.css">
-    <style>
-      /* Additional styling for the user dropdown */
-      #user-dropdown {
-          display: none;
-          position: absolute;
-          top: 60px;
-          right: 0;
-          background: #fff;
-          border: 1px solid #ccc;
-          padding: 10px;
-          border-radius: 5px;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-          z-index: 100;
-      }
-      #user-dropdown ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-      }
-      #user-dropdown li {
-          margin: 5px 0;
-      }
-      #user-dropdown li a {
-          text-decoration: none;
-          color: #333;
-      }
-    </style>
+    <!-- Removed inline style, now in main.css -->
 </head>
 <body>
     <!-- Conditional login image: if logged in show dropdown toggle; if not, link to /login -->
@@ -49,20 +26,49 @@
       {% endif %}
     </div>
     
-    <div class="animated-text" style="margin-top: -10px; font-size: 80px; line-height: 90px;">All your models</div>
+    <!-- Animated texts -->
+    <div class="animated-text" style="margin-top: -10px; font-size: 80px; line-height: 90px;">All models</div>
+    <div class="second-animation" style="margin-top: -10px; font-size: 80px; line-height: 90px;">Find yours</div>
 
+    <!-- Menu button -->
     <div class="menu">
-        <button id="menu-button" class="menu-button">Home</button>
+        <button id="menu-button" class="menu-button">Menu</button>
     </div>
 
-    <!-- Bottone per mostrare/nascondere il filtro -->
+    <!-- Updated main menu panel without sub-menu -->
+    <div id="menu-panel">
+        <nav class="menu-links">
+            <a href="/">Home</a>
+            <a href="#" id="models-link">Models</a>
+            <a href="#">Buy</a>
+            <a href="#">Service</a>
+        </nav>
+    </div>
+
+    <!-- New models panel (hidden by default) -->
+    <div id="models-panel" style="display:none; position:absolute; top:50px; left:10px; right:10px; background:#fff; border:1px solid #ddd; border-radius:5px; padding:20px; box-shadow:0 2px 5px rgba(0,0,0,0.3); z-index:200">
+        <button id="back-to-menu" class="menu-button" style="margin-bottom:15px;">Back</button>
+        <div class="sub-menu">
+            <p><strong>All models</strong></p>
+            <a href="#" class="category" data-category="sport">Sport</a>
+            <a href="#" class="category" data-category="premium">M</a>
+            <a href="#" class="category" data-category="naked">Naked</a>
+            <a href="#" class="category" data-category="race">Race</a>
+            <a href="#" class="category" data-category="a2">A2 License Bikes</a>
+        </div>
+        <!-- Contenitore per i modelli -->
+        <div id="models-container" class="models-container"></div>
+    </div>
+    
+
+    <!-- Resto del contenuto -->
     <div class="filter-container">
         <div class="filter-toggle" onclick="toggleFilter()">
-            <span>Modelli compatibili 40</span> +
+            <span>Models compatible: </span> +
         </div>
 
         <div class="filter-panel" id="filterPanel">
-            <h2>Filtra in base alle tue esigenze</h2>
+            <h2>Filter according to your needs</h2>
             
             <div class="filter-section">
                 <!-- Sezione Motore -->
@@ -81,7 +87,7 @@
                     </div>
                 </div>
 
-                <!-- Sezione Potenza (modified) -->
+                <!-- Sezione Potenza -->
                 <div class="filter-column">
                     <h3>Potenza</h3>
                     <div class="slider-container">
@@ -90,7 +96,7 @@
                     </div>
                 </div>
 
-                <!-- Sezione Altezza Sella (modified) -->
+                <!-- Sezione Altezza Sella -->
                 <div class="filter-column">
                     <h3>Altezza sella</h3>
                     <div class="slider-container">
@@ -99,7 +105,7 @@
                     </div>
                 </div>
 
-                <!-- Sezione Prezzo (modified) -->
+                <!-- Sezione Prezzo -->
                 <div class="filter-column">
                     <h3>Prezzo</h3>
                     <div class="slider-container">
@@ -111,26 +117,6 @@
         </div>
     </div>
 
-    <script src="static/scripts/script.js"></script>
-    <script>
-        function toggleUserDropdown() {
-            var dropdown = document.getElementById("user-dropdown");
-            dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
-        }
-        function toggleFilter() {
-            var panel = document.getElementById("filterPanel");
-            panel.classList.toggle("active");
-        }
-        function logoutUser() {
-            fetch("/logout", { method: "POST" })
-              .then(response => response.json())
-              .then(data => {
-                  if(data.status === "ok") {
-                      // After logout, refresh the page to update UI
-                      window.location.reload();
-                  }
-              });
-        }
-    </script>
+    <script src="static/scripts/main.js"></script>
 </body>
 </html>
