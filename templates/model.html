@@ -10,13 +10,28 @@
 <body>
     <!-- Updated home button: sits on top of the image, transparent background -->
     <a href="/" class="home-button" style="position: absolute; top: 10px; left: 10px; padding: 10px 15px; background: rgba(0,0,0,0.3); color: #fff; text-decoration: none; border: none; border-radius: 5px; z-index: 3;">Home</a>
-    <div class="menu">
+    <!-- Conditionally display video background -->
+    {% if model.image.endswith('.mp4') %}
+    <video class="bg-video" autoplay loop muted>
+        <source src="/{{ model.image }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% else %}
+    <video class="bg-video" autoplay loop muted>
+        <source src="/static/videos/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% endif %}
+    <!-- Removed menu button block -->
+    <!-- <div class="menu">
         <button id="menu-button" class="menu-button">Menu</button>
-    </div>
+    </div> -->
     <div class="model-container">
+        {% if not model.image.endswith('.mp4') %}
         <div class="model-left">
             <img src="/{{ model.image }}" alt="{{ model.name }}">
         </div>
+        {% endif %}
         <div class="model-right">
             <div class="model-info">
                 <h1>Model: {{ model.name }}</h1>
@@ -25,6 +40,25 @@
                 <button onclick="window.location.href='/request-quote'" class="action-button" style="margin:10px; padding:15px 20px; font-size:20px; width:220px; background:#fff; color:#000; border:none; border-radius:5px; cursor:pointer;">Request a quote</button>
                 <button onclick="window.location.href='/configure'" class="action-button" style="margin:10px; padding:15px 20px; font-size:20px; width:220px; background:#fff; color:#000; border:none; border-radius:5px; cursor:pointer;">Configure</button>
             </div>
+        </div>
+    </div>
+    <!-- New extra content section for additional items -->
+    <div class="extra-content" style="padding:40px; background:#fff; color:#000;">
+        <h2 class="desc-2">{{ model.description_2 }}</h2>
+        {% if model.description_3 %}
+        <p class="desc-3">{{ model.description_3 }}</p>
+        {% endif %}
+        <div class="gallery" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+            <img src="/{{ model.image_2 }}" style="width:1500px;">
+            <p class="desc-4">{{ model.description_4 }}</p>
+            {% if model.image_3.endswith('.mp4') %}
+                <video autoplay loop muted style="width:1050px;">
+                    <source src="/{{ model.image_3 }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% else %}
+                <img src="/{{ model.image_3 }}" style="width:2000px;">
+            {% endif %}
         </div>
     </div>
 </body>

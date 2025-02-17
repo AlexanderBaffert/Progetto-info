@@ -3,13 +3,15 @@ body {
     display: block;
     margin: 0;
     padding: 0;
+    background-color: hsl(0, 0%, 98%);
 }
 
 /* Set container relative so children can be absolutely positioned */
 .model-container {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
+    z-index: 1;
 }
 
 /* Left side: bike image */
@@ -37,7 +39,7 @@ body {
     background-color: rgba(0, 0, 0, 0.8); /* dark background for text contrast */
     padding: 20px;
     border-radius: 10px;
-    color: #fff;
+    color: hsl(0, 0%, 98%);
     z-index: 2;
     display: flex;               /* enable flexbox */
     flex-direction: column;      /* stack items vertically */
@@ -55,3 +57,54 @@ body {
 .model-info h1 {
     font-size: 36px;  /* larger header text */
 }
+
+/* New video background styling */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* Stile per la descrizione principale (titolo) */
+.extra-content .desc-2 {
+    text-align: left;  
+    background: hsl(0, 0%, 98%);
+    font-size: 3.0rem; /* Dimensione grande per risaltare */
+    font-weight: bold; /* Testo in grassetto */
+    color: #111; /* Colore scuro per migliorare la leggibilità */
+    margin-bottom: 10px; 
+}
+
+/* Stile per la seconda descrizione (paragrafo) */
+.extra-content .desc-3 {
+    text-align: left; 
+    font-size: 1.5rem; /* Testo più piccolo rispetto al titolo */
+    background: hsl(0, 0%, 98%);
+    line-height: 1.6; /* Spaziatura tra le righe per leggibilità */
+    color: #333; /* Un grigio più chiaro per meno contrasto */
+    max-width: 800px; /* Larghezza massima per evitare linee troppo lunghe */
+}
+
+.extra-content .desc-4 {
+    text-align: left; 
+    font-size: 1.5rem; /* Testo più piccolo rispetto al titolo */
+    background: hsl(0, 0%, 98%);
+    line-height: 1.6; /* Spaziatura tra le righe per leggibilità */
+    color: #333; /* Un grigio più chiaro per meno contrasto */
+    max-width: 800px; /* Larghezza massima per evitare linee troppo lunghe */
+}
+
+/* Contenitore per migliorare la disposizione del testo */
+.extra-content {
+    padding: 40px; /* Spazio attorno per respirare */
+    background: hsl(0, 0%, 98%); /* Sfondo bianco */
+    color: #000; /* Testo nero */
+    max-width: 800px; /* Larghezza simile allo screenshot */
+    margin: auto; /* Centrato orizzontalmente */
+}
+
+
