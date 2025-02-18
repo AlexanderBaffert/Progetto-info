@@ -73,38 +73,105 @@ body {
 .extra-content .desc-2 {
     text-align: left;  
     background: hsl(0, 0%, 98%);
-    font-size: 3.0rem; /* Dimensione grande per risaltare */
-    font-weight: bold; /* Testo in grassetto */
-    color: #111; /* Colore scuro per migliorare la leggibilità */
+    font-size: 3.0rem; 
+    font-weight: bold; 
+    color: #111; 
     margin-bottom: 10px; 
 }
 
 /* Stile per la seconda descrizione (paragrafo) */
 .extra-content .desc-3 {
     text-align: left; 
-    font-size: 1.5rem; /* Testo più piccolo rispetto al titolo */
+    font-size: 1.5rem; 
     background: hsl(0, 0%, 98%);
-    line-height: 1.6; /* Spaziatura tra le righe per leggibilità */
-    color: #333; /* Un grigio più chiaro per meno contrasto */
-    max-width: 800px; /* Larghezza massima per evitare linee troppo lunghe */
+    line-height: 1.6; 
+    color: #333; 
+    max-width: 800px; 
 }
 
 .extra-content .desc-4 {
     text-align: left; 
-    font-size: 1.5rem; /* Testo più piccolo rispetto al titolo */
+    font-size: 1.5rem; 
     background: hsl(0, 0%, 98%);
-    line-height: 1.6; /* Spaziatura tra le righe per leggibilità */
-    color: #333; /* Un grigio più chiaro per meno contrasto */
-    max-width: 800px; /* Larghezza massima per evitare linee troppo lunghe */
+    line-height: 1.6; 
+    color: #333; 
+    max-width: 800px;
+}
+
+.extra-content .desc-5 {
+    text-align: left; 
+    font-size: 1.5rem; 
+    background: hsl(0, 0%, 98%);
+    line-height: 1.6; 
+    color: #333; 
+    max-width: 800px; 
 }
 
 /* Contenitore per migliorare la disposizione del testo */
 .extra-content {
-    padding: 40px; /* Spazio attorno per respirare */
-    background: hsl(0, 0%, 98%); /* Sfondo bianco */
-    color: #000; /* Testo nero */
-    max-width: 800px; /* Larghezza simile allo screenshot */
-    margin: auto; /* Centrato orizzontalmente */
+    padding: 40px; 
+    background: hsl(0, 0%, 98%);
+    color: #000; 
+    max-width: 800px; 
+    margin: auto; 
 }
 
+/* =================================================== */
+/*    SWIPER SLIDER */
+/*    =================================================== */
+/* Swiper slider container */
+.swiper-container {
+    width: 80%;
+    max-width: 1200px;
+    height: auto;
+    margin: 60px auto 40px;  /* add sufficient vertical margins */
+    padding-top: 20px;
+}
+
+/* Slide */
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Immagini nello slider */
+.swiper-slide img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Testo sotto l'immagine */
+.slide-text {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+/* Pulsanti di navigazione */
+.swiper-button-next, .swiper-button-prev {
+    top: auto !important;
+    bottom: -400px !important;  /* adjust this value as needed */
+    color: #000;
+}
+
+/* New rules to better space gallery images */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px; /* Increased spacing between items */
+}
+
+.gallery img {
+    max-width: 100%;
+    object-fit: cover;
+    margin: 0; /* remove default margin if any */
+}
 

@@ -99,13 +99,23 @@ def model_detail(model_slug):
             "name": "R1",
             "year": "2025",
             "image": "static/favicon/bikes/liter_bikes/r1_2.jpg",
-            "description": "Starting from €20.699,00. Discover the financial offers dedicated to this model in the Yamaha Financial Services section."
+            "image_2": "static/favicon/bikes/liter_bikes/r1_4.png",
+            "image_3": "static/favicon/bikes/liter_bikes/r1_3.jpg",
+            "description": "Starting from €20.699,00.",
+            "description_2": "1000cc Sports Motorcycle",
+            "description_3": "The R1 has consistently pushed the limits of Supersport technology since the original model changed the world of motorcycling over 25 years ago. Crafted without compromise, this exceptional competition machine is the most exciting Supersport of our time.",
+            "description_4": "Every advanced technological component of the R1 has been developed based on the knowledge Yamaha has gathered from competing at the highest levels. The stunning 998cc Euro 5 4-cylinder crossplane engine is a direct descendant of the M1, while the aerodynamic bodywork takes inspiration from track designs.",
+            "description_5": "But above all it is the incredible intelligent electronics of the R1 that make this bike so special. Equipped with everything possible, from ride-by-wire throttle to Launch Control System (LCS), Engine Brake Management (EBM), Brake Control (BC) and much more, the R1 is the definitive Yamaha Supersport, built to dominate the road and track. Available in a new generation of Icon Blue and Yamaha Black colors."
         },
         "zx-10r": {
             "name": "ZX-10R",
             "year": "2025",
             "image": "static/favicon/bikes/liter_bikes/zx10r_2.png",
-            "description": "Starting from €29.990,00. Discover the financial offers dedicated to this model in the Kawasaki Financial Services section."
+            "image_2": "static/favicon/bikes/liter_bikes/zx10r_3.png",
+            "description": "Starting from €29.990,00.",
+            "description_2": "You can beat all your opponents, but there is still a race to face, the one against you same.",
+            "description_3": "For those like you who accept any challenge, we have developed the bike it deserves a true champion. The new Ninja ZX-10R and Ninja ZX-10RR have what it takes to win: completely new aerodynamic fairing with integrated fins, small and light LED headlights, TFT color instruments and smartphone connectivity, as well as updates derived from experience World Superbike of the Kawasaki Racing Team.",
+            "description_4": "Now that you have in hand the new Ninja you can face anyone, Face Yourself!",  
         },
 
         "panigale-v4": {
@@ -120,11 +130,30 @@ def model_detail(model_slug):
             "description_4": "The new Panigale V4 is the seventh generation of an incredible saga: that of the Ducati superbikes and sports bikes that have made the history of modern and contemporary high-performance motorcycles."
         },
 
+        "gsx-r1000": {
+            "name": "GSX-R1000",
+            "year": "2025",
+            "image": "static/favicon/bikes/liter_bikes/GSX-R1000.jpg",
+            "image_2": "static/favicon/bikes/liter_bikes/GSX-R1000_3.png",
+            "description": "Starting from €17.990,00.",
+            "description_2": "2025 GSX-R1000",
+            "description_3": "The 2025 GSX-R1000’s versatile engine provides class-leading power delivered smoothly and controllably across a broad rpm range. Like the original 2001 GSX-R1000, the 2025’s compact chassis delivers nimble handling with excellent suspension feel and braking control, ready to conquer a racetrack or cruise a country road. Advanced electronic rider aids such as traction control and a bi-directional quick shifter enhance the riding experience while the distinctive, aerodynamic GSX-R bodywork slices through the wind.",
+            "description_4": "Equipped with a Showa® Big-piston Fork plus Brembo® T-drive rotors and Monobloc brake calipers the GSX-R1000 is ready for a ride through the twisties, on the street or through chicanes on a track day. And that is the point, as the GSX-R1000 is poised to Own the Racetrack, imagine how it performs on the street."
+        },
+
         "cbr1000rr-r": {
             "name": "CBR1000RR-R",
             "year": "2025",
             "image": "static/favicon/bikes/liter_bikes/fire.webp",
-            "description": "Starting from €31.490,00. Discover the financial offers dedicated to this model in the Honda Financial Services section."
+            "image_4": "static/favicon/bikes/liter_bikes/cb_1.jpg",
+            "image_5": "static/favicon/bikes/liter_bikes/cb_2.jpg",
+            "image_6": "static/favicon/bikes/liter_bikes/cb_3.jpg",
+            "image_7": "static/favicon/bikes/liter_bikes/cb_4.jpg",
+            "description": "Starting from €31.490,00.",
+            "description_6": "1000cc DOHC 4-cylinder in-line engine",
+            "description_7": "Throttle By Wire with 2 actuators",
+            "description_8": "New Aerodynamics Winglets",
+            "description_9": "Inertial Power IMU with 6 axes",
         
         }
     }
