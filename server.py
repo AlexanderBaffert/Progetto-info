@@ -154,6 +154,8 @@ def model_detail(model_slug):
             "description_7": "Throttle By Wire with 2 actuators",
             "description_8": "New Aerodynamics Winglets",
             "description_9": "Inertial Power IMU with 6 axes",
+            "description_10": "Aluminum swingarm derived from RC213V-S",
+            "description_11": "Titanium Exhaust Terminal, Akrapovic",
         
         }
     }

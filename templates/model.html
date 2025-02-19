@@ -4,37 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Model Detail</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
     <link rel="stylesheet" type="text/css" href="/static/styles/model.css">
-    <!-- Swiper.js CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 </head>
 <body>
     <!-- Updated home button: sits on top of the image, transparent background -->
     <a href="/" class="home-button" style="position: absolute; top: 10px; left: 10px; padding: 10px 15px; background: rgba(0,0,0,0.3); color: #fff; text-decoration: none; border: none; border-radius: 5px; z-index: 3;">Home</a>
-    <!-- Conditionally display video background -->
-    {% if model.image.endswith('.mp4') %}
-    <video class="bg-video" autoplay loop muted>
-        <source src="/{{ model.image }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    {% else %}
-    <video class="bg-video" autoplay loop muted>
-        <source src="/static/videos/background.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    {% endif %}
-    <!-- Removed menu button block -->
-    <!-- <div class="menu">
+    <div class="menu">
         <button id="menu-button" class="menu-button">Menu</button>
-    </div> -->
+    </div>
     <div class="model-container">
-        {% if not model.image.endswith('.mp4') %}
         <div class="model-left">
             <img src="/{{ model.image }}" alt="{{ model.name }}">
         </div>
-        {% endif %}
         <div class="model-right">
             <div class="model-info">
                 <h1>Model: {{ model.name }}</h1>
@@ -45,77 +27,5 @@
             </div>
         </div>
     </div>
-    <!-- New extra content section for additional items -->
-    <div class="extra-content" style="padding:40px; background:#fff; color:#000;">
-        <h2 class="desc-2">{{ model.description_2 }}</h2>
-        {% if model.description_3 %}
-        <p class="desc-3">{{ model.description_3 }}</p>
-        {% endif %}
-        <div class="gallery" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
-            <img src="/{{ model.image_2 }}" style="width:1500px;">
-            <p class="desc-4">{{ model.description_4 }}</p>
-            <p class="desc-5">{{ model.description_5 }}</p>
-            {% if model.image_3 is defined and model.image_3 %}
-                {% if model.image_3.endswith('.mp4') %}
-                    <video autoplay loop muted style="width:1050px;">
-                        <source src="/{{ model.image_3 }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                {% else %}
-                    <img src="/{{ model.image_3 }}" style="width:2000px;">
-                {% endif %}
-            {% endif %}
-        </div>
-        <!-- Integrated Swiper slider block -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                {% if model.image_4 %}
-                    <div class="swiper-slide">
-                        <img src="/{{ model.image_4 }}" alt="Immagine 4" style="width: 500px;">
-                        <p class="slide-text">{{ model.description_6 }}</p>
-                    </div>
-                {% endif %}
-                {% if model.image_5 %}
-                    <div class="swiper-slide">
-                        <img src="/{{ model.image_5 }}" alt="Immagine 5" style="width: 500px;">
-                        <p class="slide-text">{{ model.description_7 }}</p>
-                    </div>
-                {% endif %}
-                {% if model.image_6 %}
-                    <div class="swiper-slide">
-                        <img src="/{{ model.image_6 }}" alt="Immagine 6" style="width: 500px;">
-                        <p class="slide-text">{{ model.description_8 }}</p>
-                    </div>
-                {% endif %}
-                {% if model.image_7 %}
-                    <div class="swiper-slide">
-                        <img src="/{{ model.image_7 }}" alt="Immagine 7" style="width: 500px;">
-                        <p class="slide-text">{{ model.description_9 }}</p>
-                    </div>
-                {% endif %}
-            </div>
-            <!-- Paginazione (pallini) -->
-            <div class="swiper-pagination"></div>
-            <!-- Pulsanti avanti/indietro -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 2,
-            slidesPerGroup: 1,
-            spaceBetween: 20,
-            loop: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-    </script>
 </body>
 </html>
