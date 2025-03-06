@@ -21,8 +21,8 @@
     left: 19%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 100px;
-    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
+    font-size: 50px !important;  /* Lower value */
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(205, 91, 91));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -36,8 +36,8 @@
     left: 22%;
     transform: translate(-50%, -50%);
     text-align: center;
-    font-size: 80px; /* leggermente più piccolo */
-    background: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));
+    font-size: 70px !important;  /* Lower value */
+    background: linear-gradient(to right, rgb(0, 0, 0), rgb(205, 91, 91));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -371,7 +371,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    display: flex;
+    display: absolute;
     align-items: center;
 }
 .filter-toggle span {
@@ -380,7 +380,7 @@ body {
 
 /* Filter Container */
 .filter-container {
-    position: relative;
+    position: absolute;
     width: 90%;
     max-width: 1200px;
     text-align: center;
@@ -389,14 +389,14 @@ body {
 /* Filter Panel (nascosto per default) */
 .filter-panel {
     display: none;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0,0,0,0.8);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    position: absolute;  /* changed from absolute or fixed */
+    margin-top: 20px;
     width: 100%;
-    z-index: 100;
+    z-index: 10;
 }
 .filter-panel.active {
     display: block;
@@ -441,3 +441,4 @@ body {
 input[type="range"] {
     width: 100%;
 }
+

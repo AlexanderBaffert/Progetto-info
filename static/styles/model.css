@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: hsl(0, 0%, 98%);
+    overflow-x: hidden;
 }
 
 /* Set container relative so children can be absolutely positioned */
@@ -71,31 +72,36 @@ body {
 
 /* Stile per la descrizione principale (titolo) */
 .extra-content .desc-2 {
-    text-align: left;  
+    text-align: center;  /* changed from left to center */
     background: hsl(0, 0%, 98%);
-    font-size: 3.0rem; 
+    font-size: 2.5rem; 
     font-weight: bold; 
     color: #111; 
     margin-bottom: 10px; 
+    margin: 0 auto; /* Centers the block element */
 }
 
 /* Stile per la seconda descrizione (paragrafo) */
 .extra-content .desc-3 {
-    text-align: left; 
+    text-align: left;  /* changed from left to center */
+    display: block;
+    margin: 0 auto; /* Centers the block element */
     font-size: 1.5rem; 
     background: hsl(0, 0%, 98%);
     line-height: 1.6; 
     color: #333; 
     max-width: 800px; 
+    margin-bottom: 40px; 
 }
 
 .extra-content .desc-4 {
-    text-align: left; 
-    font-size: 1.5rem; 
+    text-align: center;  /* changed from left to center */
     background: hsl(0, 0%, 98%);
-    line-height: 1.6; 
-    color: #333; 
-    max-width: 800px;
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #111; 
+    margin-bottom: 10px; 
+    margin: 0 auto; /* Centers the block element */
 }
 
 .extra-content .desc-5 {
@@ -104,6 +110,26 @@ body {
     background: hsl(0, 0%, 98%);
     line-height: 1.6; 
     color: #333; 
+    max-width: 800px; 
+    margin-bottom: 50px; 
+}
+
+.extra-content .desc-im {
+    text-align: center;  /* changed from left to center */
+    background: hsl(0, 0%, 98%);
+    font-size: 2rem; 
+    font-weight: bold; 
+    color: #111; 
+    margin-bottom: 10px; 
+    margin: 0 auto; /* Centers the block element */
+}
+
+.extra-content .desc-i {
+    text-align: left; 
+    font-size: 1.2rem; 
+    background: hsl(0, 0%, 98%);
+    line-height: 1.6; 
+    color: #000000; 
     max-width: 800px; 
 }
 
@@ -161,7 +187,7 @@ body {
 
 /* Pulsanti di navigazione */
 .swiper-button-next, .swiper-button-prev {
-    color: black;
+    color: #000;  /* replace #000 with your desired color */
 }
 
 /* Paginazione (pallini) */
@@ -174,7 +200,7 @@ body {
 /* Pulsanti di navigazione */
 .swiper-button-next, .swiper-button-prev {
     top: auto !important;
-    bottom: -400px !important;  /* adjust this value as needed */
+    bottom: -1300px !important;  /* adjust this value as needed */
     color: #000;
 }
 

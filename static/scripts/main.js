@@ -6,6 +6,16 @@ function toggleUserDropdown() {
 function toggleFilter() {
     var panel = document.getElementById("filterPanel");
     panel.classList.toggle("active");
+
+    // Adjust the display container's margin-top based on panel height
+    var displayContainer = document.querySelector(".display-container");
+    if (panel.classList.contains("active")) {
+        // Increase margin-top by panel's height plus some extra spacing
+        displayContainer.style.marginTop = (panel.offsetHeight + 20) + "px";
+    } else {
+        // Revert to default margin-top
+        displayContainer.style.marginTop = "20px";
+    }
 }
 
 function logoutUser() {
@@ -55,16 +65,21 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "Panigale V4", year: "2025", img: "static/favicon/bikes/liter_bikes/v4.jpg" },
             { name: "GSX-R1000", year: "2025", img: "static/favicon/bikes/liter_bikes/GSX-R1000.jpg" },
             { name: "CBR1000RR-R", year: "2025", img: "static/favicon/bikes/liter_bikes/cbr1000rr.jpeg" },
+            { name: "RSV4", year: "2025", img: "static/favicon/bikes/liter_bikes/rsv4.avif" },
         ],
         premium: [
-            { name: "R1-M", year: "2025", img: "static/favicon/bikes/liter_bikes/r1m.jpg" },
-            { name: "F4 1000", year: "2005", img: "static/favicon/bikes/liter_bikes/f4_1000.webp" },
-            { name: "M 1000 RR", year: "2025", img: "static/favicon/bikes/liter_bikes/m1000rr.jpg" },
+            { name: "R1-M", year: "2025", img: "static/favicon/bikes/super_sport/r1m.jpg" },
+            { name: "F4 1000", year: "2005", img: "static/favicon/bikes/super_sport/f4_1000.webp" },
+            { name: "M 1000 RR", year: "2025", img: "static/favicon/bikes/super_sport/m1000rr.jpg" },
             { name: "H2R", year: "2025", img: "static/favicon/bikes/super_sport/h2r.webp" },
+            { name: "Superleggera V4", year: "2024", img: "static/favicon/bikes/super_sport/superleggera.jpg" },
+            { name: "Tricolore", year: "2025", img: "static/favicon/bikes/super_sport/tricolore.avif" },
         ],
         naked: [],
         race: [],
-        a2: []
+        a2: [
+            { name: "RS457", year: "2024", img: "static/favicon/bikes/A2/457.avif" },
+        ]
     };
 
     document.querySelectorAll(".category").forEach(category => {

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Garage</title>
+    <title>Dream Bikes</title>
     <link rel="stylesheet" type="text/css" href="static/styles/main.css">
     <!-- Removed inline style, now in main.css -->
 </head>
-<body>
+<body class="no-flex">
     <!-- Conditional login image: if logged in show dropdown toggle; if not, link to /login -->
     <div style="position: absolute; top: 10px; right: 10px;">
       {% if session.logged_in %}
@@ -27,8 +27,8 @@
     </div>
     
     <!-- Animated texts -->
-    <div class="animated-text" style="margin-top: -10px; font-size: 80px; line-height: 90px;">All models</div>
-    <div class="second-animation" style="margin-top: -10px; font-size: 80px; line-height: 90px;">Find yours</div>
+    <div class="animated-text" style="margin-top: -10px; font-size: 80px; line-height: 90px;">The place where you can find your dream</div>
+    <div class="second-animation" style="margin-top: -10px; font-size: 80px; line-height: 90px;">Make It Real</div>
 
     <!-- Menu button -->
     <div class="menu">
@@ -91,8 +91,8 @@
                 <div class="filter-column">
                     <h3>Potenza</h3>
                     <div class="slider-container">
-                        <label>Min kw: <input type="number" name="power-min" value="4" min="4" max="160"></label>
-                        <label>Max kw: <input type="number" name="power-max" value="160" min="4" max="160"></label>
+                        <label>Min kw: <input type="number" name="power-min" value="4" min="4" max="228"></label>
+                        <label>Max kw: <input type="number" name="power-max" value="228" min="4" max="228"></label>
                     </div>
                 </div>
 
@@ -109,13 +109,15 @@
                 <div class="filter-column">
                     <h3>Prezzo</h3>
                     <div class="slider-container">
-                        <label>Min €: <input type="number" name="price-min" value="0" min="0" max="38500"></label>
-                        <label>Max €: <input type="number" name="price-max" value="38500" min="0" max="38500"></label>
+                        <label>Min €: <input type="number" name="price-min" value="0" min="0" max="200500"></label>
+                        <label>Max €: <input type="number" name="price-max" value="200500" min="0" max="200500"></label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    
 
     <script src="static/scripts/main.js"></script>
 </body>

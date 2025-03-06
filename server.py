@@ -113,7 +113,7 @@ def model_detail(model_slug):
             "image": "static/favicon/bikes/liter_bikes/zx10r_2.png",
             "image_2": "static/favicon/bikes/liter_bikes/zx10r_3.png",
             "description": "Starting from €29.990,00.",
-            "description_2": "You can beat all your opponents, but there is still a race to face, the one against you same.",
+            "description_2": "The new Ninja ZX-10R",
             "description_3": "For those like you who accept any challenge, we have developed the bike it deserves a true champion. The new Ninja ZX-10R and Ninja ZX-10RR have what it takes to win: completely new aerodynamic fairing with integrated fins, small and light LED headlights, TFT color instruments and smartphone connectivity, as well as updates derived from experience World Superbike of the Kawasaki Racing Team.",
             "description_4": "Now that you have in hand the new Ninja you can face anyone, Face Yourself!",  
         },
@@ -127,7 +127,7 @@ def model_detail(model_slug):
             "description": "The new Panigale v4, starting from €27.790,00. ",
             "description_2": "Wonder. Engineered. ",
             "description_3": "The new Panigale V4 is the seventh generation in the Ducati supersport saga: a synthesis of design and technology. A motorcycle that is at the heart of Ducati's mission: “to enrich people's lives thanks to a combination of technologically advanced products from a sensual.",
-            "description_4": "The new Panigale V4 is the seventh generation of an incredible saga: that of the Ducati superbikes and sports bikes that have made the history of modern and contemporary high-performance motorcycles."
+            "description_5": "The new Panigale V4 is the seventh generation of an incredible saga: that of the Ducati superbikes and sports bikes that have made the history of modern and contemporary high-performance motorcycles."
         },
 
         "gsx-r1000": {
@@ -142,14 +142,20 @@ def model_detail(model_slug):
         },
 
         "cbr1000rr-r": {
-            "name": "CBR1000RR-R",
+            "name": "CBR1000RR-R Fireblade",
             "year": "2025",
             "image": "static/favicon/bikes/liter_bikes/fire.webp",
+            "image_2": "static/favicon/bikes/liter_bikes/cb_7.PNG",
             "image_4": "static/favicon/bikes/liter_bikes/cb_1.jpg",
             "image_5": "static/favicon/bikes/liter_bikes/cb_2.jpg",
             "image_6": "static/favicon/bikes/liter_bikes/cb_3.jpg",
             "image_7": "static/favicon/bikes/liter_bikes/cb_4.jpg",
+            "image_8": "static/favicon/bikes/liter_bikes/cb_5.jpg",
+            "image_9": "static/favicon/bikes/liter_bikes/cb_6.jpg",
             "description": "Starting from €31.490,00.",
+            "description_2": "CBR1000RR-R Fireblade, Born to race",
+            "description_3": "Crafted for those who strive for greatness, the CBR1000RR-R Fireblade brings MotoGP-proven technology to a street near you. And this year's new 2025 model has it all: more midrange power, sleeker aerodynamics, a responsive engine, Akrapovič titanium muffler, and Öhlins electronic suspension. So, hop on and rule the roads.",           
+            "description_4": "The Fireblade is equipped with the most advanced electronic systems, including a 6-axis Inertial Measurement Unit (IMU), Throttle By Wire, and Honda Selectable Torque Control (HSTC). The result? A bike that's as responsive as it is powerful. And with the new aerodynamic winglets, you'll be cutting through the wind like never before.",
             "description_6": "1000cc DOHC 4-cylinder in-line engine",
             "description_7": "Throttle By Wire with 2 actuators",
             "description_8": "New Aerodynamics Winglets",
@@ -157,6 +163,32 @@ def model_detail(model_slug):
             "description_10": "Aluminum swingarm derived from RC213V-S",
             "description_11": "Titanium Exhaust Terminal, Akrapovic",
         
+        },
+
+        "rsv4": {
+            "name": "RSV4",
+            "year": "2025",
+            "image": "static/favicon/bikes/liter_bikes/rsv4_2.avif",
+            "image_2": "static/favicon/bikes/liter_bikes/rsv4_3.avif",
+            "description": "Starting from €20.999,00.",
+            "description_2": "THE ULTIMATE SUPERBIKE",
+            "description_3": "RSV4 is much more than two wheels between a powerful engine. It is the culmination of an ambitious project born from the Aprilia Racing Department. It is the result of the best technology available, now with integrated aerodynamic appendages and improved aerodynamic efficiency. It is a masterpiece created to leave you breathless from the first glance and to make your adrenaline rise every time you touch the accelerator.",
+            "description_4": "LE REGINE CHE SFIDANO OGNI LIMITE ",
+            "description_5": "Aprilia RSV4 si rinnova per il 2025 con aerodonamica con winglets di derivazione MotoGP, nuove pinze anteriori Brembo Hypure, inedito sistema predittivo di gestione dei controlli elettronici e motore V4 E5+ potenziato a 220 CV di potenza, che la incorona superbike di serie omologata più potente del mondo. Aprilia RSV4 Factory si conferma al top assoluto grazie a sospensioni semiattive Öhlins Smart EC 2.0 con funzione corner by corner, Track Pack, Comfort Pack e Race Pack di serie."
+        },
+
+        # A2 bikes
+
+        "rs457": {
+            "name": "RS 457",
+            "year": "2024",
+            "image": "static/favicon/bikes/A2/457.mp4",
+            "image_2": "static/favicon/bikes/A2/457_4.png",
+            "description": "Starting from €7.199,00.",
+            "description_2": "WELCOME TO THE RACING SQUAD ",
+            "description_3": "Lightness, ease of riding and technological equipment are the strengths of the Aprilia RS 457, capable of exalting every motorcyclist both on the road and between the curbs of the track. The grit of the RS 457 is in fact that of the legendary RS range: the super sports bikes that made the history of motorcycling.",
+            "description_image_1": "Such a unique design, it seems designed",
+            "description_image_2": "Revolutionary and sophisticated, the style of the RS 457 communicates elegance and aggression, thanks to unmistakably racing elements, such as the double front fairing and the 2-in-1 exhaust. The distinctive liveries celebrate the bold essence of the Racing Squad, thanks to the combination of bright shades and refined materials, offering an experience that evokes speed and prestige. Are you ready to get into the mood?",
         }
     }
     model = model_details.get(model_slug)
