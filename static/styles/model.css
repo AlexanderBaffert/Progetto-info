@@ -74,7 +74,7 @@ body {
 .extra-content .desc-2 {
     text-align: center;  /* changed from left to center */
     background: hsl(0, 0%, 98%);
-    font-size: 2.5rem; 
+    font-size: 3.0rem; 
     font-weight: bold; 
     color: #111; 
     margin-bottom: 10px; 
@@ -91,17 +91,15 @@ body {
     line-height: 1.6; 
     color: #333; 
     max-width: 800px; 
-    margin-bottom: 40px; 
 }
 
 .extra-content .desc-4 {
-    text-align: center;  /* changed from left to center */
-    background: hsl(0, 0%, 98%);
+    text-align: left; 
     font-size: 2.5rem; 
-    font-weight: bold; 
-    color: #111; 
-    margin-bottom: 10px; 
-    margin: 0 auto; /* Centers the block element */
+    background: hsl(0, 0%, 98%);
+    line-height: 1.6; 
+    color: #333; 
+    max-width: 800px;
 }
 
 .extra-content .desc-5 {
@@ -111,26 +109,34 @@ body {
     line-height: 1.6; 
     color: #333; 
     max-width: 800px; 
-    margin-bottom: 50px; 
 }
 
-.extra-content .desc-im {
-    text-align: center;  /* changed from left to center */
-    background: hsl(0, 0%, 98%);
-    font-size: 2rem; 
-    font-weight: bold; 
-    color: #111; 
-    margin-bottom: 10px; 
-    margin: 0 auto; /* Centers the block element */
+/* Force descriptions to stack vertically */
+.desc-4, .desc-5 {
+    display: block !important;
+    width: 100% !important;
+    max-width: 800px !important;
+    margin: 20px auto !important;
+    clear: both !important;
+    float: none !important;
+    position: relative !important;
 }
 
-.extra-content .desc-i {
-    text-align: left; 
-    font-size: 1.2rem; 
-    background: hsl(0, 0%, 98%);
-    line-height: 1.6; 
-    color: #000000; 
-    max-width: 800px; 
+.desc-4 {
+    text-align: left !important;
+    font-size: 2.5rem !important;
+    font-weight: bold;
+    line-height: 1.6 !important;
+    color: #111 !important;
+    margin-bottom: 30px !important;
+}
+
+.desc-5 {
+    text-align: left !important;
+    font-size: 1.5rem !important;
+    line-height: 1.6 !important;
+    color: #333 !important;
+    margin-top: 30px !important;
 }
 
 /* Contenitore per migliorare la disposizione del testo */
@@ -216,5 +222,87 @@ body {
     width: 100%;
     height: auto;
     margin: 0; /* remove default margin if any */
+}
+
+/* Remove all image description related styles and keep only core image styles */
+.image-container {
+    width: 100% !important;
+    display: block !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+.image-container img {
+    width: 800px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column !important;  /* Force vertical stacking */
+    align-items: center !important;
+    gap: 20px;
+}
+
+/* New styles for color display section */
+.color-display {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.color-instruction {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.color-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.color-option {
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    border: 2px solid #ddd;
+    transition: transform 0.2s ease;
+}
+
+.color-option:hover .color-swatch {
+    transform: scale(1.1);
+    border-color: #999;
+}
+
+.color-option p {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+.color-preview {
+    position: relative;
+    display: inline-block;
+}
+
+.color-preview img {
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Remove the overlay */
+.overlay {
+    display: none;
 }
 

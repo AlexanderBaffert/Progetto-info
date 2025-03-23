@@ -173,8 +173,8 @@ def model_detail(model_slug):
             "description": "Starting from €20.999,00.",
             "description_2": "THE ULTIMATE SUPERBIKE",
             "description_3": "RSV4 is much more than two wheels between a powerful engine. It is the culmination of an ambitious project born from the Aprilia Racing Department. It is the result of the best technology available, now with integrated aerodynamic appendages and improved aerodynamic efficiency. It is a masterpiece created to leave you breathless from the first glance and to make your adrenaline rise every time you touch the accelerator.",
-            "description_4": "LE REGINE CHE SFIDANO OGNI LIMITE ",
-            "description_5": "Aprilia RSV4 si rinnova per il 2025 con aerodonamica con winglets di derivazione MotoGP, nuove pinze anteriori Brembo Hypure, inedito sistema predittivo di gestione dei controlli elettronici e motore V4 E5+ potenziato a 220 CV di potenza, che la incorona superbike di serie omologata più potente del mondo. Aprilia RSV4 Factory si conferma al top assoluto grazie a sospensioni semiattive Öhlins Smart EC 2.0 con funzione corner by corner, Track Pack, Comfort Pack e Race Pack di serie."
+            "description_4": "THE QUEENS WHO DEFY ALL LIMITS",
+            "description_5": "Aprilia RSV4 is updated for 2025 with aerodynamics with MotoGP-derived winglets, new Brembo Hypure front calipers, a brand new predictive electronic control management system and a V4 E5+ engine boosted to 220 HP, which crowns it as the most powerful homologated production superbike in the world. Aprilia RSV4 Factory confirms itself at the absolute top thanks to semi-active Öhlins Smart EC 2.0 suspension with corner by corner function, Track Pack, Comfort Pack and Race Pack as standard."
         },
 
         # A2 bikes
@@ -187,9 +187,31 @@ def model_detail(model_slug):
             "description": "Starting from €7.199,00.",
             "description_2": "WELCOME TO THE RACING SQUAD ",
             "description_3": "Lightness, ease of riding and technological equipment are the strengths of the Aprilia RS 457, capable of exalting every motorcyclist both on the road and between the curbs of the track. The grit of the RS 457 is in fact that of the legendary RS range: the super sports bikes that made the history of motorcycling.",
-            "description_image_1": "Such a unique design, it seems designed",
-            "description_image_2": "Revolutionary and sophisticated, the style of the RS 457 communicates elegance and aggression, thanks to unmistakably racing elements, such as the double front fairing and the 2-in-1 exhaust. The distinctive liveries celebrate the bold essence of the Racing Squad, thanks to the combination of bright shades and refined materials, offering an experience that evokes speed and prestige. Are you ready to get into the mood?",
-        }
+            "description_4": "Such a unique design, it seems designed",
+            "description_5": "Revolutionary and sophisticated, the style of the RS 457 communicates elegance and aggression, thanks to unmistakably racing elements, such as the double front fairing and the 2-in-1 exhaust. The distinctive liveries celebrate the bold essence of the Racing Squad, thanks to the combination of bright shades and refined materials, offering an experience that evokes speed and prestige. Are you ready to get into the mood?",
+        },
+
+        "ninja-400": {
+            "name": "Ninja 400",
+            "year": "2023",
+            "image": "static/favicon/bikes/A2/ninja400.mp4",
+            "image_2": "static/favicon/bikes/A2/ninja400.jpg",
+            "description": "Starting from €6.999,00.",
+            "description_2": "Ninja 400, the perfect balance",
+            "description_3": "The Ninja 400, equipped with a 399 cm3 twin, offers respectable performance thanks to an even lighter frame. High-quality design, easy and undemanding riding, high stability and extraordinary handling make the Ninja 400 an extremely fun bike",
+            "colors": [
+                {
+                    "name": "Lime Green / Ebony (KRT Edition)",
+                    "swatch": "limegreen",
+                    "image": "static/favicon/bikes/A2/ninja400_color.png"
+                },
+                {
+                    "name": "Metallic Carbon Gray / Metallic Flat Spark Black",
+                    "swatch": "#404040",
+                    "image": "static/favicon/bikes/A2/ninja400_color_2.png"
+                }
+            ]
+        },
     }
     model = model_details.get(model_slug)
     if not model:

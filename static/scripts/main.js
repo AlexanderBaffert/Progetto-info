@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         race: [],
         a2: [
             { name: "RS457", year: "2024", img: "static/favicon/bikes/A2/457.avif" },
+            { name: "NINJA-400", year: "2023", img: "static/favicon/bikes/A2/ninja400_2.webp" },
         ]
     };
 
