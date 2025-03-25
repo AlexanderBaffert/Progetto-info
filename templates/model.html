@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Model Detail</title>
+    <title>Dream Bikes</title>
     <link rel="stylesheet" type="text/css" href="/static/styles/model.css">
     <!-- Swiper.js CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="overflow-x: hidden;">
     <!-- Updated home button: sits on top of the image, transparent background -->
@@ -41,53 +42,76 @@
         </div>
     </div>
     <!-- New extra content section for additional items -->
-    <div class="extra-content" style="padding:40px; background:#fff; color:#000;">
-        <h2 class="desc-2">{{ model.description_2 }}</h2>
-        {% if model.description_3 %}
-        <p class="desc-3">{{ model.description_3 }}</p>
-        {% endif %}
-        <div class="gallery" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
+    <div class="extra-content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <h2 class="text-center display-4 mb-5">{{ model.description_2 }}</h2>
+                    {% if model.description_3 %}
+                    <p class="lead mb-5">{{ model.description_3 }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="gallery" style="display:flex; gap:20px; justify-content:center;">
             {% if model.image_2 %}
             <div class="image-container">
                 <img src="/{{ model.image_2 }}" style="width: 1500px;">
             </div>
             {% endif %}
-            <p class="desc-4">{{ model.description_4 }}</p>
-            <!-- Move description_5 to its own block -->
-            {% if model.description_5 %}
-            <div class="desc-5-container">
-                <p class="desc-5">{{ model.description_5 }}</p>
-            </div>
-            {% endif %}
-            {% if model.image_3 is defined and model.image_3 %}
-                {% if model.image_3.endswith('.mp4') %}
-                    <video autoplay loop muted style="width:1050px;">
-                        <source src="/{{ model.image_3 }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                {% else %}
-                    <img src="/{{ model.image_3 }}" style="width:2000px;">
-                {% endif %}
-            {% endif %}
-        </div>
-        <!-- New color display section -->
+            <!-- New color display section -->
         {% if model.colors %}
-        <div class="color-display">
-            <h2>Colori Disponibili</h2>
-            <p class="color-instruction">Clicca sul pallino colorato per vedere la moto nel colore selezionato</p>
+        <div class="color-display"> 
+            <h2>Colors Available</h2>
+            <p class="color-instruction">Click on the colored dot to see the bike in the selected color</p>
             <div class="color-options">
                 {% for color in model.colors %}
                 <div class="color-option" data-color-image="{{ color.image }}">
-                    <div class="color-swatch" style="background-color: {{ color.swatch|safe }};"></div>
+                    {% if color.swatch is mapping %}
+                        <!-- Se swatch è un dizionario con color1 e color2 -->
+                        <div class="color-swatch dual-color" 
+                             style="--color1: {{ color.swatch.color1 }}; --color2: {{ color.swatch.color2 }};">
+                        </div>
+                    {% else %}
+                        <!-- Se swatch è un singolo colore -->
+                        <div class="color-swatch" style="background-color: {{ color.swatch }};">
+                        </div>
+                    {% endif %}
                     <p>{{ color.name }}</p>
                 </div>
                 {% endfor %}
             </div>
             <div class="color-preview">
-                <img src="/{{ model.colors[0].image }}" alt="Color Preview" style="width: 1000px;">
+                <img src="/{{ model.colors[0].image }}" alt="Color Preview" style="width: 800px;">
             </div>
         </div>
         {% endif %}
+            <!-- Group descriptions together -->
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    {% if model.description_3_5 %}
+                        <h2 class="text-center display-4 mb-5">{{ model.description_3_5 }}</h2>
+                    {% endif %}
+                    {% if model.description_4 %}
+                        <p class="lead mb-5">{{ model.description_4 }}</p>
+                    {% endif %}
+                    {% if model.description_5 %}
+                        <p class="lead mb-5">{{ model.description_5 }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if model.image_3 is defined and model.image_3 %}
+                {% if model.image_3.endswith('.mp4') %}
+                    <video autoplay loop muted style="width:1050px;">
+                        <source src="/{{ model.image_3 }}" type="video/mp4">
+                    </video>
+                {% else %}
+                    <img src="/{{ model.image_3 }}" style="width:1500px;">
+                {% endif %}
+            {% endif %}
+        </div>
+        
         <!-- Integrated Swiper slider block -->
         <div class="swiper-container">
             <div class="swiper-wrapper">

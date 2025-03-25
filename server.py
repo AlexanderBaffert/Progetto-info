@@ -93,7 +93,30 @@ def model_detail(model_slug):
             "description": "Starting from €21,450. Discover the financial offers dedicated to this model in the BMW Financial Services section.",
             "description_2": "BMW S 1000 RR From 0 to 1000",
             "description_3": "Perfectly performance-oriented: the RR. Winning or losing is sometimes just a matter of millimeters. That's why this Superbike is always innovating: from the new, more aerodynamic skin with winglets to the front fender with M Brake Ducts to performance-oriented details, such as the quick-acting throttle grip, which now makes the throttle travel 14 degrees shorter. With the Pro driving mode, now standard, you have every situation under control. The objective was and remains clear: new pole positions – #NeverStopChallenging.",
-            "description_4": "The most aerodynamic front and side trims will allow you to beat all your records. The new winglets generate up to 50% more downforce on the road: 5.9 kg at 150 km/h, 10.6 kg at 200 km/h, 16.03 kg at 250 km/h and 23.10 kg at 300 km/h. This contrasts with the tendency to surge during acceleration."
+            "description_4": "The most aerodynamic front and side trims will allow you to beat all your records. The new winglets generate up to 50% more downforce on the road: 5.9 kg at 150 km/h, 10.6 kg at 200 km/h, 16.03 kg at 250 km/h and 23.10 kg at 300 km/h. This contrasts with the tendency to surge during acceleration.",
+            "colors": [
+                {
+                    "name": "Black Storm Metallic",
+                    "swatch": "#000000",
+                    "image": "static/favicon/bikes/liter_bikes/s1k_color_2.webp"
+                },
+                {
+                    "name": "Light White/M Motorsport", 
+                    "swatch": {
+                        "color1": "#ffffff",  
+                        "color2": "#003578"   
+                    },
+                    "image": "static/favicon/bikes/liter_bikes/s1k_color.webp"
+                },  
+                {
+                    "name": "Metallic Gray/Black", 
+                    "swatch": {
+                        "color1": "#808080",
+                        "color2": "#000000"
+                    },
+                    "image": "static/favicon/bikes/liter_bikes/s1k_color_3.webp"
+                }
+            ]
         },
         "r1": {
             "name": "R1",
@@ -105,7 +128,19 @@ def model_detail(model_slug):
             "description_2": "1000cc Sports Motorcycle",
             "description_3": "The R1 has consistently pushed the limits of Supersport technology since the original model changed the world of motorcycling over 25 years ago. Crafted without compromise, this exceptional competition machine is the most exciting Supersport of our time.",
             "description_4": "Every advanced technological component of the R1 has been developed based on the knowledge Yamaha has gathered from competing at the highest levels. The stunning 998cc Euro 5 4-cylinder crossplane engine is a direct descendant of the M1, while the aerodynamic bodywork takes inspiration from track designs.",
-            "description_5": "But above all it is the incredible intelligent electronics of the R1 that make this bike so special. Equipped with everything possible, from ride-by-wire throttle to Launch Control System (LCS), Engine Brake Management (EBM), Brake Control (BC) and much more, the R1 is the definitive Yamaha Supersport, built to dominate the road and track. Available in a new generation of Icon Blue and Yamaha Black colors."
+            "description_5": "But above all it is the incredible intelligent electronics of the R1 that make this bike so special. Equipped with everything possible, from ride-by-wire throttle to Launch Control System (LCS), Engine Brake Management (EBM), Brake Control (BC) and much more, the R1 is the definitive Yamaha Supersport, built to dominate the road and track. Available in a new generation of Icon Blue and Yamaha Black colors.",
+            "colors": [  # Changed from "color" to "colors"
+                {
+                    "name": "Icon Blue",
+                    "swatch": "#020aff",
+                    "image": "static/favicon/bikes/liter_bikes/r1_color.jpg"
+                },
+                {
+                    "name": "Midnight Black",
+                    "swatch": "#000000",
+                    "image": "static/favicon/bikes/liter_bikes/r1_color_2.jpg"
+                }
+            ]
         },
         "zx-10r": {
             "name": "ZX-10R",
@@ -116,6 +151,16 @@ def model_detail(model_slug):
             "description_2": "The new Ninja ZX-10R",
             "description_3": "For those like you who accept any challenge, we have developed the bike it deserves a true champion. The new Ninja ZX-10R and Ninja ZX-10RR have what it takes to win: completely new aerodynamic fairing with integrated fins, small and light LED headlights, TFT color instruments and smartphone connectivity, as well as updates derived from experience World Superbike of the Kawasaki Racing Team.",
             "description_4": "Now that you have in hand the new Ninja you can face anyone, Face Yourself!",  
+            "colors": [  # Changed from "color" to "colors"
+                {
+                    "name": "Lime Green / Ebony (KRT Edition)",
+                    "swatch": {
+                        "color1": "#32CD32",
+                        "color2": "#000000"
+                    },
+                    "image": "static/favicon/bikes/liter_bikes/zx_color.png"
+                }
+            ]
         },
 
         "panigale-v4": {
@@ -127,7 +172,14 @@ def model_detail(model_slug):
             "description": "The new Panigale v4, starting from €27.790,00. ",
             "description_2": "Wonder. Engineered. ",
             "description_3": "The new Panigale V4 is the seventh generation in the Ducati supersport saga: a synthesis of design and technology. A motorcycle that is at the heart of Ducati's mission: “to enrich people's lives thanks to a combination of technologically advanced products from a sensual.",
-            "description_5": "The new Panigale V4 is the seventh generation of an incredible saga: that of the Ducati superbikes and sports bikes that have made the history of modern and contemporary high-performance motorcycles."
+            "description_5": "The new Panigale V4 is the seventh generation of an incredible saga: that of the Ducati superbikes and sports bikes that have made the history of modern and contemporary high-performance motorcycles.",
+            "colors": [
+                {
+                    "name": "Ducati Red",
+                    "swatch": "#ff0000",
+                    "image": "static/favicon/bikes/liter_bikes/p_color.png"
+                }
+            ]
         },
 
         "gsx-r1000": {
@@ -138,7 +190,22 @@ def model_detail(model_slug):
             "description": "Starting from €17.990,00.",
             "description_2": "2025 GSX-R1000",
             "description_3": "The 2025 GSX-R1000’s versatile engine provides class-leading power delivered smoothly and controllably across a broad rpm range. Like the original 2001 GSX-R1000, the 2025’s compact chassis delivers nimble handling with excellent suspension feel and braking control, ready to conquer a racetrack or cruise a country road. Advanced electronic rider aids such as traction control and a bi-directional quick shifter enhance the riding experience while the distinctive, aerodynamic GSX-R bodywork slices through the wind.",
-            "description_4": "Equipped with a Showa® Big-piston Fork plus Brembo® T-drive rotors and Monobloc brake calipers the GSX-R1000 is ready for a ride through the twisties, on the street or through chicanes on a track day. And that is the point, as the GSX-R1000 is poised to Own the Racetrack, imagine how it performs on the street."
+            "description_4": "Equipped with a Showa® Big-piston Fork plus Brembo® T-drive rotors and Monobloc brake calipers the GSX-R1000 is ready for a ride through the twisties, on the street or through chicanes on a track day. And that is the point, as the GSX-R1000 is poised to Own the Racetrack, imagine how it performs on the street.",
+            "colors": [
+                {
+                    "name": "Metallic Matte Sword Silver",
+                    "swatch": "#c0c0c0",
+                    "image": "static/favicon/bikes/liter_bikes/gs_color.png"
+                },
+                {
+                    "name": "Candy Daring Red / Glass Sparkle Black",
+                    "swatch": {
+                        "color1": "#ff0000",
+                        "color2": "#000000"
+                    },
+                    "image": "static/favicon/bikes/liter_bikes/gs_color_2.png"
+                }
+            ]
         },
 
         "cbr1000rr-r": {
@@ -162,6 +229,21 @@ def model_detail(model_slug):
             "description_9": "Inertial Power IMU with 6 axes",
             "description_10": "Aluminum swingarm derived from RC213V-S",
             "description_11": "Titanium Exhaust Terminal, Akrapovic",
+            "colors": [
+                {
+                    "name": "Grand Prix Red",
+                    "swatch": "#ff0000",
+                    "image": "static/favicon/bikes/liter_bikes/cb_color.png"
+                },
+                {
+                    "name": "Matte Gunpowder Black Metallic",
+                    "swatch": {
+                        "color1": "#3a3a3a",
+                        "color2": "#000000"
+                    },
+                    "image": "static/favicon/bikes/liter_bikes/cb_color_2.png"
+                }
+            ]
         
         },
 
@@ -173,8 +255,19 @@ def model_detail(model_slug):
             "description": "Starting from €20.999,00.",
             "description_2": "THE ULTIMATE SUPERBIKE",
             "description_3": "RSV4 is much more than two wheels between a powerful engine. It is the culmination of an ambitious project born from the Aprilia Racing Department. It is the result of the best technology available, now with integrated aerodynamic appendages and improved aerodynamic efficiency. It is a masterpiece created to leave you breathless from the first glance and to make your adrenaline rise every time you touch the accelerator.",
-            "description_4": "THE QUEENS WHO DEFY ALL LIMITS",
-            "description_5": "Aprilia RSV4 is updated for 2025 with aerodynamics with MotoGP-derived winglets, new Brembo Hypure front calipers, a brand new predictive electronic control management system and a V4 E5+ engine boosted to 220 HP, which crowns it as the most powerful homologated production superbike in the world. Aprilia RSV4 Factory confirms itself at the absolute top thanks to semi-active Öhlins Smart EC 2.0 suspension with corner by corner function, Track Pack, Comfort Pack and Race Pack as standard."
+            "description_4": "Aprilia RSV4 is updated for 2025 with aerodynamics with MotoGP-derived winglets, new Brembo Hypure front calipers, a brand new predictive electronic control management system and a V4 E5+ engine boosted to 220 HP, which crowns it as the most powerful homologated production superbike in the world. Aprilia RSV4 Factory confirms itself at the absolute top thanks to semi-active Öhlins Smart EC 2.0 suspension with corner by corner function, Track Pack, Comfort Pack and Race Pack as standard.",
+            "colors": [
+                {
+                    "name": "Sachsenring Black",
+                    "swatch": "#000000",
+                    "image": "static/favicon/bikes/liter_bikes/rs_color.webp"
+                },
+                {
+                    "name": "Silverstone Grey",
+                    "swatch": "#808080",
+                    "image": "static/favicon/bikes/liter_bikes/rs_color_2.webp"
+                }
+            ]
         },
 
         # A2 bikes
@@ -187,8 +280,24 @@ def model_detail(model_slug):
             "description": "Starting from €7.199,00.",
             "description_2": "WELCOME TO THE RACING SQUAD ",
             "description_3": "Lightness, ease of riding and technological equipment are the strengths of the Aprilia RS 457, capable of exalting every motorcyclist both on the road and between the curbs of the track. The grit of the RS 457 is in fact that of the legendary RS range: the super sports bikes that made the history of motorcycling.",
-            "description_4": "Such a unique design, it seems designed",
             "description_5": "Revolutionary and sophisticated, the style of the RS 457 communicates elegance and aggression, thanks to unmistakably racing elements, such as the double front fairing and the 2-in-1 exhaust. The distinctive liveries celebrate the bold essence of the Racing Squad, thanks to the combination of bright shades and refined materials, offering an experience that evokes speed and prestige. Are you ready to get into the mood?",
+            "colors": [
+                {
+                    "name": "Racing Stripes",
+                    "swatch": "black",
+                    "image": "static/favicon/bikes/A2/457_color.webp"
+                },
+                {
+                    "name": "Opalescent Light",
+                    "swatch": "white",
+                    "image": "static/favicon/bikes/A2/457_color_2.webp"
+                },
+                {
+                    "name": "Prismatic Dark",
+                    "swatch": "darkgrey",
+                    "image": "static/favicon/bikes/A2/457_color_3.webp"
+                }
+            ]
         },
 
         "ninja-400": {
@@ -202,16 +311,109 @@ def model_detail(model_slug):
             "colors": [
                 {
                     "name": "Lime Green / Ebony (KRT Edition)",
-                    "swatch": "limegreen",
+                    "swatch": {
+                        "color1": "#32CD32",
+                        "color2": "#000000"
+                    },
                     "image": "static/favicon/bikes/A2/ninja400_color.png"
                 },
                 {
                     "name": "Metallic Carbon Gray / Metallic Flat Spark Black",
-                    "swatch": "#404040",
+                    "swatch": {
+                        "color1": "#808080",
+                        "color2": "#000000"
+                    },
                     "image": "static/favicon/bikes/A2/ninja400_color_2.png"
                 }
             ]
         },
+
+        "r3": {
+            "name": "R3",
+            "year": "2024",
+            "image": "static/favicon/bikes/A2/r3.mp4",
+            "description": "Starting from €6.799,00.",
+            "description_2": "320cc Sports Bike",
+            "description_3": "The R-World is calling. And when you see how much the R3 has to offer, you’ll know this is the bike for you. Its high-output 321cc engine delivers outstanding acceleration, and its class-leading build quality, next-generation Icon Blue paint scheme and aggressive styling confirm the R3 as Yamaha’s ultimate lightweight supersport.",
+            "colors": [
+                {
+                    "name": "Icon Blue",
+                    "swatch": "#020aff",
+                    "image": "static/favicon/bikes/A2/r3_color.jpg"
+                },
+                {
+                    "name": "Yamaha Black",
+                    "swatch": "#000000",
+                    "image": "static/favicon/bikes/A2/r3_color_2.jpg"
+                },
+                {
+                    "name": "Midnight Cyan",
+                    "swatch": "#02ffd5",
+                    "image": "static/favicon/bikes/A2/r3_color_3.jpg"
+                }
+            ],
+            "description_5": "The R3's slim, athletic body features a central air intake inspired by Yamaha's iconic MotoGP® racing machine, the M1. Its extreme, sleek appearance, aerodynamic race bodywork and aggressive dual LED headlights underline the pure R-Series DNA, making this the most eye-catching 300 on the road and track.",
+            "description_6": "A high-quality 37mm KYB upside-down front fork provides precise suspension feel and feedback. The combination of a low-slung fuel tank and handlebars allows the R3 to offer an ergonomic riding position with high levels of comfort and precise control. Now you're ready to enter the world of R/World."
+        },
+
+        "cbr500r": {
+            "name": "CBR500R",
+            "year": "2024",
+            "image": "static/favicon/bikes/A2/cbr500.mp4",
+            "image_2": "static/favicon/bikes/A2/cbr500_2.webp",
+            "image_4": "static/favicon/bikes/A2/c5_1.jpg",
+            "image_5": "static/favicon/bikes/A2/c5_2.jpg",
+            "image_6": "static/favicon/bikes/A2/c5_3.jpg",
+            "image_7": "static/favicon/bikes/A2/c5_4.jpg",
+            "image_8": "static/favicon/bikes/A2/c5_5.jpg",
+            "image_9": "static/favicon/bikes/A2/c5_6.jpg",
+            "description": "Starting from €7.299,00.",
+            "description_2": "500cc Sports Bike",
+            "description_3": "The know-how that the HRC Racing Department develops by participating in the most prestigious championships in the world is transferred to production models, just like the CBR500R: the A2 license supersport bike inspired by the Fireblade. Its high-performance twin-cylinder engine is combined with an optimised ECU, which maximises available torque and always delivers blistering acceleration. The 41 mm Showa SFF-BP fork, combined with the ultra-lightweight frame and the double front disc with radial-mount caliper, matches the sharp lines of the fairing that incorporates aerodynamic winglets, giving it a purely sporty nature. The new 5-inch TFT screen with Honda RoadSync connectivity and HSTC traction control complete the CBR500R's premium equipment.",
+            "description_4": "The CBR acronym identifies a long history of victories, as well as a pure racing DNA. Inspired by the Fireblade in design and with new decidedly aggressive colors, the CBR500R shares the same aerodynamic winglets that give it greater aerodynamics and stability when entering corners, especially at high speeds. The redesigned headlights give a sharper look and emit a wide and bright beam that perfectly illuminates the road, while the sculpted fairing and the comfortable but slim seat make the CBR500R a true reference in its category.",
+            "description_6": "Bicylinder for A2 license",
+            "description_7": "New TFT 5-inch display",
+            "description_8": "Traction control HSTC",
+            "description_9": "Supersport suspension and brakes",
+            "description_10": "Honda RoadSync connectivity",
+            "description_11": "Supersport design",
+            "colors": [
+                {
+                    "name": "Grand Prix Red",
+                    "swatch": "#ff0000",
+                    "image": "static/favicon/bikes/A2/cb_color_2.jpg"
+                },
+                {
+                    "name": "Matte Gunpowder Black Metallic",
+                    "swatch": "#3a3a3a",
+                    "image": "static/favicon/bikes/A2/cb_color.png"
+                }
+            ],
+           
+        },
+
+        "z500": {
+            "name": "Z 500",
+            "year": "2025",
+            "image": "static/favicon/bikes/A2/z500.mp4",
+            "image_2": "static/favicon/bikes/A2/z_1.png",
+            "description": "Starting from €5.370,00.",
+            "description_2": "Z500",
+            "description_3": "All eyes will be on you as you ride the all-new Z500 ABS supernaked. With its distinctive bodywork and a powerful 451cc engine, this aggressively styled streetfighter is for those who aren’t afraid to get noticed.",
+            "description_3_5": "Intense Design and Aggressive Look",
+            "description_4": "From whatever angle you look at the Z500, its triple-headlight front end and aggressive lines make it clear that it is a member of the Z family, with an aggressive Supernaked look.",
+            "colors": [
+                {
+                    "name": "Metallic Spark Black / Metallic Matte Graphenesteel Gray",
+                    "swatch": {
+                        "color1": "#000000",
+                        "color2": "#808080"
+                    },
+                    "image": "static/favicon/bikes/A2/z_color.png"
+                },
+            ]
+        },
+
     }
     model = model_details.get(model_slug)
     if not model:

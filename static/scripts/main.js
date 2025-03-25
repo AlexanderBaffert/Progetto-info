@@ -80,6 +80,11 @@ document.addEventListener("DOMContentLoaded", function() {
         a2: [
             { name: "RS457", year: "2024", img: "static/favicon/bikes/A2/457.avif" },
             { name: "NINJA-400", year: "2023", img: "static/favicon/bikes/A2/ninja400_2.webp" },
+            { name: "CBR500R", year: "2023", img: "static/favicon/bikes/A2/cbr500.png" },
+            // { name: "MT-03", year: "2023", img: "static/favicon/bikes/A2/mt03.jpg" },
+            { name: "Z500", year: "2025", img: "static/favicon/bikes/A2/z500.avif" },
+            // { name: "CB500R", year: "2023", img: "static/favicon/bikes/A2/cb500f.jpg" },
+            { name: "R3", year: "2024", img: "static/favicon/bikes/A2/r3.avif" },
         ]
     };
 
