@@ -414,6 +414,30 @@ def model_detail(model_slug):
             ]
         },
 
+        "nk450": {
+            "name": "NK 450",
+            "year": "2023",
+            "image": "static/favicon/bikes/A2/nk.png",
+            "image_4": "static/favicon/bikes/A2/nk_1.png",
+            "image_5": "static/favicon/bikes/A2/nk_2.png",
+            "image_6": "static/favicon/bikes/A2/nk_3.png",
+            "image_7": "static/favicon/bikes/A2/nk_4.png",
+            "image_8": "static/favicon/bikes/A2/nk_5.png",
+            "description": "Starting from €5.490,00.",
+            "description_2": "The bold and characterful Naked",
+            "description_3": "The aesthetics are confirmed, as for the other Naked CFMOTO, elegant, but at the same time aggressive and modern, harmoniously mixing a sinuous shape with sporty details, such as the muscular 14-liter fuel tank and the radiator guards. The FULL LED light cluster, with a distinctive and innovative shape and the brilliant Nebula White color complete the overall layout of the vehicle making the shapes even more streamlined. What makes the 450NK unique is the inclusion of TCS traction control, a feature that is not taken for granted, but increasingly requested and essential to provide maximum safety in the saddle",
+            "description_3_5": "EVERY DETAIL IS AN EMOTION",    
+            "description_4": "This Twin cylinder has a engine capacity of 450cc, with a maximum power of 46.9 Cv with a 10000 rpm. The 450NK is equipped with a 6-speed gearbox and a wet clutch. The frame is a tubular steel trellis, while the suspensions are entrusted to a 41mm upside-down fork and a rear monoshock with adjustable preload. The braking system is entrusted to a 300mm front disc with a four-piston caliper and a 245mm rear disc with a single-piston caliper. The 450NK is equipped with a 17-inch front wheel and a 15-inch rear wheel, both with 120/70 and 160/60 tires respectively.",
+            "colors": [  # Changed from "color" to "colors"
+                {
+                    "name": "Nebula White",
+                    "swatch": "#ffffff",
+                    "image": "static/favicon/bikes/A2/nk_color.png"
+                }
+            ]
+
+        },
+
     }
     model = model_details.get(model_slug)
     if not model:
