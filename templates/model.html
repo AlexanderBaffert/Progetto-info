@@ -117,38 +117,44 @@
             <div class="swiper-wrapper">
                 {% if model.image_4 %}
                     <div class="swiper-slide">
-                        <img src="/{{ model.image_4 }}" alt="Immagine 4" style="width: 500px;">
+                        <img src="/{{ model.image_4 }}" alt="Immagine 4" style="width: 900px;">
                         <p class="slide-text">{{ model.description_6 }}</p>
                     </div>
                 {% endif %}
                 {% if model.image_5 %}
                     <div class="swiper-slide">
-                        <img src="/{{ model.image_5 }}" alt="Immagine 5" style="width: 500px;">
+                        <img src="/{{ model.image_5 }}" alt="Immagine 5" style="width: 900px;">
                         <p class="slide-text">{{ model.description_7 }}</p>
                     </div>
                 {% endif %}
                 {% if model.image_6 %}
                     <div class="swiper-slide">
-                        <img src="/{{ model.image_6 }}" alt="Immagine 6" style="width: 500px;">
+                        <img src="/{{ model.image_6 }}" alt="Immagine 6" style="width: 900px;">
                         <p class="slide-text">{{ model.description_8 }}</p>
                     </div>
                 {% endif %}
                 {% if model.image_7 %}
                     <div class="swiper-slide">
-                        <img src="/{{ model.image_7 }}" alt="Immagine 7" style="width: 500px;">
+                        <img src="/{{ model.image_7 }}" alt="Immagine 7" style="width: 900px;">
                         <p class="slide-text">{{ model.description_9 }}</p>
                     </div>
                 {% endif %}
                 {% if model.image_8 %}
                     <div class="swiper-slide">
-                        <img src="/{{ model.image_8 }}" alt="Immagine 8" style="width: 500px;">
+                        <img src="/{{ model.image_8 }}" alt="Immagine 8" style="width: 900px;">
                         <p class="slide-text">{{ model.description_10 }}</p>
                     </div>
                 {% endif %}
                 {% if model.image_9 %}
                     <div class="swiper-slide">
-                        <img src="/{{ model.image_9 }}" alt="Immagine 9" style="width: 500px;">
+                        <img src="/{{ model.image_9 }}" alt="Immagine 9" style="width: 900px;">
                         <p class="slide-text">{{ model.description_11 }}</p>
+                    </div>
+                {% endif %}
+                {% if model.image_10 %}
+                    <div class="swiper-slide">
+                        <img src="/{{ model.image_10 }}" alt="Immagine 10" style="width: 900px;">
+                        <p class="slide-text">{{ model.description_12 }}</p>
                     </div>
                 {% endif %}
             </div>
@@ -174,6 +180,7 @@
                 clickable: true,
             },
             breakpoints: {
+                
                 1024: { slidesPerView: 3 },
                 768: { slidesPerView: 2 },
                 480: { slidesPerView: 1 }

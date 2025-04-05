@@ -272,10 +272,6 @@ body {
     transition: transform 0.2s ease;
 }
 
-.color-swatch.dual-color {
-    background: linear-gradient(to right, var(--color1) 50%, var(--color2) 50%);
-}
-
 .color-option:hover .color-swatch {
     transform: scale(1.1);
     border-color: #999;

@@ -427,7 +427,8 @@ def model_detail(model_slug):
             "description_2": "The bold and characterful Naked",
             "description_3": "The aesthetics are confirmed, as for the other Naked CFMOTO, elegant, but at the same time aggressive and modern, harmoniously mixing a sinuous shape with sporty details, such as the muscular 14-liter fuel tank and the radiator guards. The FULL LED light cluster, with a distinctive and innovative shape and the brilliant Nebula White color complete the overall layout of the vehicle making the shapes even more streamlined. What makes the 450NK unique is the inclusion of TCS traction control, a feature that is not taken for granted, but increasingly requested and essential to provide maximum safety in the saddle",
             "description_3_5": "EVERY DETAIL IS AN EMOTION",    
-            "description_4": "This Twin cylinder has a engine capacity of 450cc, with a maximum power of 46.9 Cv with a 10000 rpm. The 450NK is equipped with a 6-speed gearbox and a wet clutch. The frame is a tubular steel trellis, while the suspensions are entrusted to a 41mm upside-down fork and a rear monoshock with adjustable preload. The braking system is entrusted to a 300mm front disc with a four-piston caliper and a 245mm rear disc with a single-piston caliper. The 450NK is equipped with a 17-inch front wheel and a 15-inch rear wheel, both with 120/70 and 160/60 tires respectively.",
+            "description_4": "This Twin cylinder has a engine capacity of 450cc, with a maximum power of 46.9 Cv with a 10000 rpm. The 450NK is equipped with a 6-speed gearbox and a wet clutch. The frame is a tubular steel trellis, while the suspensions are entrusted to a 41mm upside-down fork and a rear monoshock with adjustable preload. The braking system is entrusted to a 300mm front disc with a four-piston caliper and a 245mm rear disc with a single-piston caliper. The 450NK is equipped with a 17-inch front wheel and a 15-inch rear wheel, both with 120/70 and 160/60 tires respectively. The 450NK has a 14-liter tank, which guarantees a range of over 400 km. The weight is 168 kg, which makes it very manageable and easy to handle. The seat height is adjustable from 780 to 800 mm, making it suitable for riders of all sizes. ",
+            "description_5": "The 450NK has a 14-liter tank, which guarantees a range of over 400 km. The weight is 168 kg, which makes it very manageable and easy to handle. The seat height is adjustable from 780 to 800 mm, making it suitable for riders of all sizes.",
             "colors": [  # Changed from "color" to "colors"
                 {
                     "name": "Nebula White",
@@ -437,6 +438,68 @@ def model_detail(model_slug):
             ]
 
         },
+
+        "ktm-390": {  # Changed from "ktm_390" to "ktm-390" to match URL format
+            "name": "KTM 390",
+            "year": "2024",
+            "image": "static/favicon/bikes/A2/390_1.jpg",
+            "image_2": "static/favicon/bikes/A2/390.jpg",
+            "image_4": "static/favicon/bikes/A2/ktm_1.png",
+            "image_5": "static/favicon/bikes/A2/ktm_2.png",
+            "image_6": "static/favicon/bikes/A2/ktm_3.png",
+            "image_7": "static/favicon/bikes/A2/ktm_4.png",
+            "image_8": "static/favicon/bikes/A2/ktm_5.png",
+            "image_9": "static/favicon/bikes/A2/ktm_6.png",
+            "image_10": "static/favicon/bikes/A2/ktm_7.png",
+            "description": "Starting from €6.780,00.",
+            "description_2": "THE CORNER ROCKET",
+            "description_3": "With the all-new 2024 KTM 390 DUKE, the world around you becomes your own personal gymkhana. With exceptional agility, lightweight handling and punchy performance, this middleweight bike is ready to take on any corner. Equipped with cutting-edge rider aids, an all-new chassis, adjustable suspension and an aggressive new look, the 2024 KTM 390 DUKE is the king of the road when it comes to extreme lean angles. This bike was designed and developed in Austria and assembled in India.",
+            "description_4": "The 2024 KTM 390 DUKE is equipped with a new TFT display that provides all the information you need at a glance. The display is easy to read and features a new design that enhances the bike's sporty look. The bike also comes with a new LED headlight that provides excellent visibility in all conditions. The headlight is designed to be lightweight and durable, making it perfect for the rigors of everyday riding. Equipped with a one cylinder engine with a displacement of 373.2 cc, the 390 DUKE is capable of delivering a maximum power of 44 hp at 9,000 rpm and a maximum torque of 37 Nm at 7,000 rpm. The bike is equipped with a slipper clutch that allows for smooth gear changes and prevents rear wheel lock-up during downshifts.",
+            "description_6": "Adjustability",
+            "description_7": "TFT Display",
+            "description_8": "Superstructures",
+            "description_9": "Graphics and Chassis",
+            "description_10": "Led Lighting",
+            "description_11": "Swingarm",
+            "description_12": "Forks",
+            "colors": [
+                {
+                    "name": "Orange",
+                    "swatch": "#ff7f00",
+                    "image": "static/favicon/bikes/A2/390_color.png"
+                },
+                {
+                    "name": "Dark blue",
+                    "swatch": "#00008b",
+                    "image": "static/favicon/bikes/A2/390_color_2.png"
+                }
+            ]
+        },
+
+        "mt-03": {  
+            "name": "MT-03",
+            "year": "2025",
+            "image": "static/favicon/bikes/A2/mt03.mp4",
+            "description": "Starting from €6.499,00.",
+            "colors": [
+                {
+                    "name": "Ice Storm",
+                    "swatch": "#c1c1c1",
+                    "image": "static/favicon/bikes/A2/mt_color.jpg"
+                },
+                {
+                    "name": "Icon Blue",
+                    "swatch": "#020aff",
+                    "image": "static/favicon/bikes/A2/mt_color_2.jpg"
+                },
+                {
+                    "name": "Midnight Black",
+                    "swatch": "#000000",
+                    "image": "static/favicon/bikes/A2/mt_color_3.jpg"
+                }
+            ]
+
+        }
 
     }
     model = model_details.get(model_slug)

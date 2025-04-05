@@ -83,8 +83,9 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "CBR500R", year: "2023", img: "static/favicon/bikes/A2/cbr500.png" },
             { name: "NK450", year: "2023", img: "static/favicon/bikes/A2/nk450.jpg" },
             { name: "Z500", year: "2025", img: "static/favicon/bikes/A2/z500.avif" },
-            // { name: "CB500R", year: "2023", img: "static/favicon/bikes/A2/cb500f.jpg" },
+            { name: "KTM_390", year: "2024", img: "static/favicon/bikes/A2/ktm_390.jpg" },
             { name: "R3", year: "2024", img: "static/favicon/bikes/A2/r3.avif" },
+            { name: "MT-03", year: "2025", img: "static/favicon/bikes/A2/mt03.webp" },
         ]
     };
 
@@ -108,8 +109,10 @@ document.addEventListener("DOMContentLoaded", function() {
         modelsData[category].forEach(model => {
             const modelCard = document.createElement("div");
             modelCard.classList.add("model-card");
-            // Create a slug from the model name (lowercase, spaces replaced by hyphen)
-            const slug = model.name.toLowerCase().replace(/\s+/g, '-');
+            // Create a slug from the model name (lowercase, spaces replaced by hyphen, handle special characters)
+            const slug = model.name.toLowerCase()
+                            .replace(/\s+/g, '-')     // Replace spaces with hyphens
+                            .replace(/_/g, '-');       // Replace underscores with hyphens
             modelCard.innerHTML = `
                 <a href="/model/${slug}">
                     <img src="${model.img}" alt="${model.name}" style="width:100%; height:150px; object-fit:cover;">
