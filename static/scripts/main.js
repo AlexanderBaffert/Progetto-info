@@ -75,8 +75,19 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "Superleggera V4", year: "2024", img: "static/favicon/bikes/super_sport/superleggera.jpg" },
             { name: "Tricolore", year: "2025", img: "static/favicon/bikes/super_sport/tricolore.avif" },
         ],
-        naked: [],
-        race: [],
+        naked: [
+            { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.avif" },
+            { name: "Streetfighter V4", year: "2025", img: "static/favicon/bikes/naked/streetfighter_v4.jpg" },
+            { name: "KTM 1290 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/ktm_1290_super_duke_r.jpg" },
+            { name: "Z H2", year: "2025", img: "static/favicon/bikes/naked/z_h2.jpg" },
+            { name: "Tuono V4", year: "2025", img: "static/favicon/bikes/naked/tuono_v4.jpg" },
+            { name: "Hornet 1000", year: "2024", img: "static/favicon/bikes/naked/cb1000r.jpg" },
+            { name: "Speed Triple 1200 RS", year: "2025", img: "static/favicon/bikes/naked/speed_triple_1200_rs.jpg" },
+        ],
+        race : [
+            { name: "RC 8C", year: "2024", img: "static/favicon/bikes/race/rc8c.jpg" },
+            { name: "YZF-R6-GYTR", year: "2024", img: "static/favicon/bikes/race/r6.jpg" },
+        ],
         a2: [
             { name: "RS457", year: "2024", img: "static/favicon/bikes/A2/457.avif" },
             { name: "NINJA-400", year: "2023", img: "static/favicon/bikes/A2/ninja400_2.webp" },
@@ -86,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "KTM_390", year: "2024", img: "static/favicon/bikes/A2/ktm_390.jpg" },
             { name: "R3", year: "2024", img: "static/favicon/bikes/A2/r3.avif" },
             { name: "MT-03", year: "2025", img: "static/favicon/bikes/A2/mt03.webp" },
+            { name: "450SR-S", year: "2024", img: "static/favicon/bikes/A2/sr450.jpg" },
         ]
     };
 

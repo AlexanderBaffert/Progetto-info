@@ -157,6 +157,25 @@
                         <p class="slide-text">{{ model.description_12 }}</p>
                     </div>
                 {% endif %}
+                {% if model.image_11 %}
+                    <div class="swiper-slide">
+                        <img src="/{{ model.image_11 }}" alt="Immagine 11" style="width: 900px;">
+                        <p class="slide-text">{{ model.description_13 }}</p>
+                    </div>
+                {% endif %}
+                {% if model.image_12 %}
+                    <div class="swiper-slide">
+                        <img src="/{{ model.image_12 }}" alt="Immagine 12" style="width: 900px;">
+                        <p class="slide-text">{{ model.description_14 }}</p>
+                    </div>
+                {% endif %}
+                {% if model.image_13 %}
+                    <div class="swiper-slide">
+                        <img src="/{{ model.image_13 }}" alt="Immagine 13" style="width: 900px;">
+                        <p class="slide-text">{{ model.description_15 }}</p>
+                    </div>
+                {% endif %}
+
             </div>
             <!-- Paginazione (pallini) -->
             <div class="swiper-pagination"></div>

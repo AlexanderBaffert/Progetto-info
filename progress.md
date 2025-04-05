@@ -13,18 +13,18 @@
 
 ## Bikes page:
 
-#### Main description: 35%
-#### Images: 35%
-#### Price and estimate of fees and costs: 35%
-#### Data container: 35%
+#### Main description: 55%
+#### Images: 55%
+#### Price and estimate of fees and costs: 55%
+#### Data container: 55%
 #### Sport category: 100%
 #### Premium: 80%
-#### Naked: 0%
-#### Race: 0%
-#### A2 Licensed Bikes: 35%
+#### Naked: 60%
+#### Race: 20%
+#### A2 Licensed Bikes: 100%
 #### Configuration: 0%
 #### Request a Quote: 0%
-#### Colors: 35%
+#### Colors: 55%
 
 ## Login/Register page:
 

@@ -429,7 +429,7 @@ def model_detail(model_slug):
             "description_3_5": "EVERY DETAIL IS AN EMOTION",    
             "description_4": "This Twin cylinder has a engine capacity of 450cc, with a maximum power of 46.9 Cv with a 10000 rpm. The 450NK is equipped with a 6-speed gearbox and a wet clutch. The frame is a tubular steel trellis, while the suspensions are entrusted to a 41mm upside-down fork and a rear monoshock with adjustable preload. The braking system is entrusted to a 300mm front disc with a four-piston caliper and a 245mm rear disc with a single-piston caliper. The 450NK is equipped with a 17-inch front wheel and a 15-inch rear wheel, both with 120/70 and 160/60 tires respectively. The 450NK has a 14-liter tank, which guarantees a range of over 400 km. The weight is 168 kg, which makes it very manageable and easy to handle. The seat height is adjustable from 780 to 800 mm, making it suitable for riders of all sizes. ",
             "description_5": "The 450NK has a 14-liter tank, which guarantees a range of over 400 km. The weight is 168 kg, which makes it very manageable and easy to handle. The seat height is adjustable from 780 to 800 mm, making it suitable for riders of all sizes.",
-            "colors": [  # Changed from "color" to "colors"
+            "colors": [  
                 {
                     "name": "Nebula White",
                     "swatch": "#ffffff",
@@ -439,7 +439,7 @@ def model_detail(model_slug):
 
         },
 
-        "ktm-390": {  # Changed from "ktm_390" to "ktm-390" to match URL format
+        "ktm-390": {  
             "name": "KTM 390",
             "year": "2024",
             "image": "static/favicon/bikes/A2/390_1.jpg",
@@ -480,7 +480,32 @@ def model_detail(model_slug):
             "name": "MT-03",
             "year": "2025",
             "image": "static/favicon/bikes/A2/mt03.mp4",
+            "image_2": "static/favicon/bikes/A2/mt03_1.webp",
+            "image_4": "static/favicon/bikes/A2/mt_1.jpg",
+            "image_5": "static/favicon/bikes/A2/mt_2.jpg",
+            "image_6": "static/favicon/bikes/A2/mt_3.jpg",
+            "image_7": "static/favicon/bikes/A2/mt_4.jpg",  
+            "image_8": "static/favicon/bikes/A2/mt_5.jpg",
+            "image_9": "static/favicon/bikes/A2/mt_6.jpg",
+            "image_10": "static/favicon/bikes/A2/mt_7.jpg",
+            "image_11": "static/favicon/bikes/A2/mt_8.jpg",
+            "image_12": "static/favicon/bikes/A2/mt_9.jpg",
+            "image_13": "static/favicon/bikes/A2/mt_10.jpg",
             "description": "Starting from €6.499,00.",
+            "description_2": "Naked Bikes 320cc",
+            "description_3": "Yamaha's Hyper Naked bikes are built to thrill. With their stripped-back styling and adrenaline-pumping performance, the MT models have stolen the hearts of riders across Europe. Now comes the latest MT-03, ready to dominate the city with its dark street presence and agile, precise handling.",
+            "description_3_5": "Elegant in the dark",
+            "description_4": "Inspired by Yamaha's larger hyper naked bikes, the MT-03's aggressive look comes straight from the Dark Side of Japan. The predatory twin-eye face projects an intense stare, while the new upside-down forks and large fuel tank underline the dynamic look of the MT family, making this the perfect 300. But what makes this lightweight Hyper Naked so attractive and desirable is that it's built with pure MT DNA, which means every ride is an emotional and engaging experience. You'll want to ride it every chance you get. Because this bike loves to be ridden.",
+            "description_6": "Torque-rich 320cc two-cylinder EURO5+ engine",
+            "description_7": "Aggressive MT family styling",
+            "description_8": "Dual position lights and LED headlight",
+            "description_9": "Dynamic mass-forward body design",   
+            "description_10": "Lightweight diamond frame",
+            "description_11": "Ergonomic driving position",
+            "description_12": "New LCD display with smartphone connectivity",
+            "description_13": "New 37mm upside-down forks",
+            "description_14": "Swingarm with adjustable preload",
+            "description_15": "High quality MT look and feel",
             "colors": [
                 {
                     "name": "Ice Storm",
@@ -499,6 +524,27 @@ def model_detail(model_slug):
                 }
             ]
 
+        },
+         
+        "450sr-s": {
+            "name": "450SR-S",
+            "year": "2024",
+            "image": "static/favicon/bikes/A2/450.jpg",
+            "image_2": "static/favicon/bikes/A2/450_1.jpg",
+            "description": "Starting from €6.690,00.",
+            "description_2": "ALL THE SPORTINESS YOU HAVE BEEN WAITING FOR",
+            "description_3": "450SR S is the advanced version of the first super sport bike by CFMOTO, with a single-sided swingarm that characterizes this new version. Available at our official dealers, the new Super Sport 450SR S awaits you. Don't miss out, start this season off right!",
+            "description_4": "The 450SR-S is equipped with a range of advanced features, including a digital display, LED lighting and a high-performance braking system. It also comes with a range of customizable options, allowing riders to personalize their bike to suit their individual style and preferences.",
+            "colors": [
+                {
+                    "name": " Zircon Black",
+                    "swatch": {
+                        "color1": "#000000",
+                        "color2": "#3a0c0c"
+                    },
+                    "image": "static/favicon/bikes/A2/450_color.png"
+                }
+            ]
         }
 
     }
