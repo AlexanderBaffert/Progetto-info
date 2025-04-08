@@ -1,20 +1,21 @@
+
+
+
 function toggleUserDropdown() {
     var dropdown = document.getElementById("user-dropdown");
     dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
 }
 
 function toggleFilter() {
-    var panel = document.getElementById("filterPanel");
-    panel.classList.toggle("active");
-
-    // Adjust the display container's margin-top based on panel height
-    var displayContainer = document.querySelector(".display-container");
+    const panel = document.getElementById("filterPanel");
+    const button = document.querySelector(".filter-toggle");
+    
     if (panel.classList.contains("active")) {
-        // Increase margin-top by panel's height plus some extra spacing
-        displayContainer.style.marginTop = (panel.offsetHeight + 20) + "px";
+        panel.classList.remove("active");
+        button.innerHTML = '<span>Models compatible: </span> +';
     } else {
-        // Revert to default margin-top
-        displayContainer.style.marginTop = "20px";
+        panel.classList.add("active");
+        button.innerHTML = '<span>Models compatible: </span> -';
     }
 }
 
@@ -75,19 +76,6 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "Superleggera V4", year: "2024", img: "static/favicon/bikes/super_sport/superleggera.jpg" },
             { name: "Tricolore", year: "2025", img: "static/favicon/bikes/super_sport/tricolore.avif" },
         ],
-        naked: [
-            { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.avif" },
-            { name: "Streetfighter V4", year: "2025", img: "static/favicon/bikes/naked/streetfighter_v4.jpg" },
-            { name: "KTM 1290 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/ktm_1290_super_duke_r.jpg" },
-            { name: "Z H2", year: "2025", img: "static/favicon/bikes/naked/z_h2.jpg" },
-            { name: "Tuono V4", year: "2025", img: "static/favicon/bikes/naked/tuono_v4.jpg" },
-            { name: "Hornet 1000", year: "2024", img: "static/favicon/bikes/naked/cb1000r.jpg" },
-            { name: "Speed Triple 1200 RS", year: "2025", img: "static/favicon/bikes/naked/speed_triple_1200_rs.jpg" },
-        ],
-        race : [
-            { name: "RC 8C", year: "2024", img: "static/favicon/bikes/race/rc8c.jpg" },
-            { name: "YZF-R6-GYTR", year: "2024", img: "static/favicon/bikes/race/r6.jpg" },
-        ],
         a2: [
             { name: "RS457", year: "2024", img: "static/favicon/bikes/A2/457.avif" },
             { name: "NINJA-400", year: "2023", img: "static/favicon/bikes/A2/ninja400_2.webp" },
@@ -101,6 +89,9 @@ document.addEventListener("DOMContentLoaded", function() {
         ]
     };
 
+    console.log("Models data:", modelsData);
+
+    // Gestione click sulle categorie
     document.querySelectorAll(".category").forEach(category => {
         category.addEventListener("click", function(event) {
             event.preventDefault();
@@ -108,7 +99,27 @@ document.addEventListener("DOMContentLoaded", function() {
             displayModels(categoryName);
         });
     });
+            
+    //         // Mostra il pannello dei modelli se non è già visibile
+    //         const modelsPanel = document.getElementById("models-panel");
+    //         if (modelsPanel) {
+    //             modelsPanel.style.display = "block";    
+    //         }
 
+    //         // Nascondi il menu principale se è aperto
+    //         const menuPanel = document.getElementById("menu-panel");
+    //         if (menuPanel) {
+    //             menuPanel.classList.remove("visible");
+    //         }
+
+    //         // Mostra i modelli della categoria selezionata
+    //         if (modelsData[categoryName]) {
+    //             displayModels(categoryName);
+    //         } else {
+    //             console.error("Category not found:", categoryName);
+    //         }
+    //     });
+    // });
     function displayModels(category) {
         const modelsContainer = document.getElementById("models-container");
         modelsContainer.innerHTML = "";
@@ -136,4 +147,87 @@ document.addEventListener("DOMContentLoaded", function() {
             modelsContainer.appendChild(modelCard);
         });
     }
+    // function displayModels(category) {
+    //     const modelsContainer = document.getElementById("models-container");
+    //     if (!modelsContainer) {
+    //         console.error("Models container not found!");
+    //         return;
+    //     }
+
+    //     modelsContainer.innerHTML = "";
+    //     console.log("Displaying models for category:", category);
+
+    //     if (!modelsData[category] || modelsData[category].length === 0) {
+    //         modelsContainer.innerHTML = "<p>No models available for this category.</p>";
+    //         return;
+    //     }
+
+    //     modelsData[category].forEach(model => {
+    //         const modelCard = document.createElement("div");
+    //         modelCard.classList.add("model-card");
+    //         const slug = model.name.toLowerCase()
+    //                         .replace(/\s+/g, '-')
+    //                         .replace(/_/g, '-');
+    //         modelCard.innerHTML = `
+    //             <a href="/model/${slug}">
+    //                 <img src="${model.img}" 
+    //                      alt="${model.name}" 
+    //                      onerror="this.src='static/favicon/bikes/no-image.jpg'" 
+    //                      style="width:100%; height:150px; object-fit:cover;">
+    //                 <p class="model-year">${model.year}</p>
+    //                 <p class="model-name">${model.name}</p>
+    //             </a>
+    //         `;
+    //         modelsContainer.appendChild(modelCard);
+    //     });
+    // }
+
+    // // Funzione per mostrare tutti i modelli nella pagina principale
+    // function displayAllModels() {
+    //     const mainContainer = document.getElementById("main-models-container");
+    //     if (!mainContainer) {
+    //         console.error("Main models container not found!");
+    //         return;
+    //     }
+
+    //     console.log("Displaying all models...");
+
+    //     const allModels = [
+    //         ...modelsData.sport,
+    //         ...modelsData.premium,
+    //         ...modelsData.a2
+    //     ];
+
+    //     if (allModels.length === 0) {
+    //         console.error("No models found!");
+    //         return;
+    //     }
+
+    //     mainContainer.innerHTML = ''; // Pulisce il contenitore prima di aggiungere nuovi modelli
+
+    //     allModels.forEach(model => {
+    //         console.log("Adding model:", model.name);
+    //         const modelCard = document.createElement("div");
+    //         modelCard.classList.add("model-card");
+    //         const slug = model.name.toLowerCase()
+    //                         .replace(/\s+/g, '-')
+    //                         .replace(/_/g, '-');
+    //         modelCard.innerHTML = `
+    //             <a href="/model/${slug}">
+    //                 <img src="${model.img}" 
+    //                      alt="${model.name}" 
+    //                      onerror="this.src='static/favicon/bikes/no-image.jpg'" 
+    //                      style="width:100%; height:150px; object-fit:cover;">
+    //                 <p class="model-year">${model.year}</p>
+    //                 <p class="model-name">${model.name}</p>
+    //             </a>
+    //         `;
+    //         mainContainer.appendChild(modelCard);
+    //     });
+
+    //     console.log("Models displayed successfully.");
+    // }
+
+    // // Rimuovi l'event listener duplicato e chiama la funzione direttamente
+    // displayAllModels();
 });

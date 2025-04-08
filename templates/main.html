@@ -61,7 +61,7 @@
     </div>
     
 
-    <!-- Resto del contenuto -->
+    <!-- Filter Container -->
     <div class="filter-container">
         <div class="filter-toggle" onclick="toggleFilter()">
             <span>Models compatible: </span> +
@@ -69,7 +69,6 @@
 
         <div class="filter-panel" id="filterPanel">
             <h2>Filter according to your needs</h2>
-            
             <div class="filter-section">
                 <!-- Sezione Motore -->
                 <div class="filter-column">
@@ -117,8 +116,12 @@
         </div>
     </div>
 
-    
+    <!-- Contenitore principale per le immagini -->
+    <div id="main-models-container" class="models-container">
+        <!-- I modelli verranno inseriti qui dinamicamente -->
+    </div>
 
-    <script src="static/scripts/main.js"></script>
+    <!-- Assicurati che il file JavaScript sia collegato -->
+    <script src="/static/scripts/main.js"></script>
 </body>
 </html>

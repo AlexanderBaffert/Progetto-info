@@ -553,5 +553,8 @@ def model_detail(model_slug):
         return "Model not found", 404
     return render_template("model.html", model=model)
 
+@app.route("/request-quote")
+def request_quote():
+    return render_template("request_quote.html")
 if __name__ == "__main__":
     app.run(debug=True)
