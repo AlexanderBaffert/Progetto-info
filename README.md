@@ -1,14 +1,69 @@
 # Progetto-info
 
--- Tabelle
+## Analisi
 
-1 User
-2 Admin
-3 Moto
-4 Colore
-5 Immagini
-6 Descrizione
+### Tabelle
 
-### DA FARE
+1. User  
+2. Admin  
+3. Bikes  
+4. Color  
+5. Image  
+6. Description  
 
-Usare il database per i dati delle moto, la moto e' una entita\ con 3 collegamenti: immagini, colore e descrizione, tutte 1-N. Aggiungere il fatto che usi il db per tutto questo al posto del json. 
+### Relazioni presenti
+
+In questo progetto ci sono 6 entità che hanno le seguenti relazioni:  
+- **User** ha una relazione 1-N con **Bikes** perché un utente può acquistare più moto, ma una moto non può essere acquistata da più utenti.  
+- **Bikes** ha relazioni 1-N con **Color**, **Image** e **Description** perché una moto può avere più colori, immagini e descrizioni, ma due moto non condivideranno mai le stesse immagini, descrizioni o colori.  
+
+### ER
+
+```mermaid
+erDiagram
+    User {
+        int id PK
+        string name
+        string email
+        string password
+    }
+    Admin {
+        int id PK
+        int user_id FK
+    }
+    Bikes {
+        int id PK
+        string model
+        float price
+    }
+    Image {
+        int id PK
+        string url
+        int bike_id FK
+    }
+    Description {
+        int id PK
+        string text
+        int bike_id FK
+    }
+    Color {
+        int id PK
+        string name
+        int bike_id FK
+    }
+
+    Admin ||--o{ Bikes: "Stock"
+    Bikes ||--o{ Image : "has"
+    Bikes ||--o{ Description : "has"
+    Bikes ||--o{ Color : "has"
+    User ||--o{ Bikes : "Buys"
+```
+
+### Schema logico
+
+- **User**(id, name, email, password)  
+- **Admin**(id, user_id[FK])  
+- **Bikes**(id, model, price, user_id[FK])  
+- **Color**(id, name, bike_id[FK])  
+- **Image**(id, url, bike_id[FK])  
+- **Description**(id, text, bike_id[FK])  
