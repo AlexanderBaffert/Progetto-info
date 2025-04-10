@@ -67,3 +67,65 @@ erDiagram
 - **Color**(id, name, bike_id[FK])  
 - **Image**(id, url, bike_id[FK])  
 - **Description**(id, text, bike_id[FK])  
+
+## SQL
+
+### Codice SQL
+
+```sql
+-- Creazione della tabella User
+CREATE TABLE User (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Creazione della tabella Admin
+CREATE TABLE Admin (
+    id INT PRIMARY KEY,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+-- Creazione della tabella Bikes
+CREATE TABLE Bikes (
+    id INT PRIMARY KEY,
+    model VARCHAR(255) NOT NULL,
+    price FLOAT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+-- Creazione della tabella Color
+CREATE TABLE Color (
+    id INT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    bike_id INT NOT NULL,
+    FOREIGN KEY (bike_id) REFERENCES Bikes(id)
+);
+
+-- Creazione della tabella Image
+CREATE TABLE Image (
+    id INT PRIMARY KEY,
+    url VARCHAR(255) NOT NULL,
+    bike_id INT NOT NULL,
+    FOREIGN KEY (bike_id) REFERENCES Bikes(id)
+);
+
+-- Creazione della tabella Description
+CREATE TABLE Description (
+    id INT PRIMARY KEY,
+    text TEXT NOT NULL,
+    bike_id INT NOT NULL,
+    FOREIGN KEY (bike_id) REFERENCES Bikes(id)
+);
+```
+
+### Integrazioni
+
+## Progettazione della pagina WEB
+
+### Struttura del progetto
+
+## Codice
