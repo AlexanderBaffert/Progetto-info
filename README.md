@@ -165,7 +165,7 @@ Form submissions per le interazioni utente
 ### Struttura del progetto
 
 ```
-educational-games/
+Dealership/
 ├── app.py             
 ├── project-dealership.session.sql        
 ├── progress.md 
