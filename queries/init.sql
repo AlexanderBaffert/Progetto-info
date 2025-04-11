@@ -1,160 +1,46 @@
-# Progetto-info
-
-## Analisi
-
-### Tabelle
-
-1. User  
-2. Admin  
-3. Bikes  
-4. Color  
-5. Image  
-6. Description  
-
-### Relazioni presenti
-
-In questo progetto ci sono 6 entità che hanno le seguenti relazioni:  
-- **User** ha una relazione 1-N con **Bikes** perché un utente può acquistare più moto, ma una moto non può essere acquistata da più utenti.  
-- **Bikes** ha relazioni 1-N con **Color**, **Image** e **Description** perché una moto può avere più colori, immagini e descrizioni, ma due moto non condivideranno mai le stesse immagini, descrizioni o colori.  
-
-### ER
-
-```mermaid
-erDiagram
-    User {
-        int id PK
-        string name
-        string email
-        string password
-    }
-    Admin {
-        int id PK
-        int user_id FK
-    }
-    Bikes {
-        int id PK
-        string model
-        float price
-    }
-    Image {
-        int id PK
-        string url
-        int bike_id FK
-    }
-    Description {
-        int id PK
-        string text
-        int bike_id FK
-    }
-    Color {
-        int id PK
-        string name
-        int bike_id FK
-    }
-
-    Admin ||--o{ Bikes: "Stock"
-    Bikes ||--o{ Image : "has"
-    Bikes ||--o{ Description : "has"
-    Bikes ||--o{ Color : "has"
-    User ||--o{ Bikes : "Buys"
-```
-
-### Schema logico
-
-- **User**(id, name, email, password)  
-- **Admin**(id, user_id[FK])  
-- **Bikes**(id, model, price, user_id[FK])  
-- **Color**(id, name, bike_id[FK])  
-- **Image**(id, url, bike_id[FK])  
-- **Description**(id, text, bike_id[FK])  
-
-## SQL
-
-### Codice SQL
-
-```sql
--- Creazione della tabella User
-CREATE TABLE User (
-    id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+-- Create tables
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
 );
 
--- Creazione della tabella Admin
-CREATE TABLE Admin (
-    id INT PRIMARY KEY,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(id)
+CREATE TABLE IF NOT EXISTS admin (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
--- Creazione della tabella Bikes
-CREATE TABLE Bikes (
-    id INT PRIMARY KEY,
-    model VARCHAR(255) NOT NULL,
-    price FLOAT NOT NULL,
-    year INT NOT NULL,
-    power FLOAT NOT NULL,
-    seat_height FLOAT NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(id)
+CREATE TABLE IF NOT EXISTS Bikes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    model TEXT NOT NULL,
+    price REAL NOT NULL,
+    year INTEGER NOT NULL
 );
 
--- Creazione della tabella Color
-CREATE TABLE Color (
-    id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    bike_id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS Color (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    swatch TEXT NOT NULL,
+    image TEXT NOT NULL,
+    bike_id INTEGER NOT NULL,
     FOREIGN KEY (bike_id) REFERENCES Bikes(id)
 );
 
--- Creazione della tabella Image
-CREATE TABLE Image (
-    id INT PRIMARY KEY,
-    url VARCHAR(255) NOT NULL,
-    bike_id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS Image (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT NOT NULL,
+    bike_id INTEGER NOT NULL,
     FOREIGN KEY (bike_id) REFERENCES Bikes(id)
 );
 
--- Creazione della tabella Description
-CREATE TABLE Description (
-    id INT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Description (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT NOT NULL,
     text TEXT NOT NULL,
-    bike_id INT NOT NULL,
+    bike_id INTEGER NOT NULL,
     FOREIGN KEY (bike_id) REFERENCES Bikes(id)
 );
-```
-
-### Integrazioni
-
-```sql
--- Inserimento dati nella tabella User
-INSERT INTO User (id, name, email, password) VALUES
-(1, 'Mario Rossi', 'mario.rossi@example.com', 'password123'),
-(2, 'Luigi Bianchi', 'luigi.bianchi@example.com', 'securepass456');
-
--- Inserimento dati nella tabella Admin
-INSERT INTO Admin (id, user_id) VALUES
-(1, 1);
-
--- Inserimento dati nella tabella Bikes
-INSERT INTO Bikes (id, model, price, year, power, seat_height, user_id) VALUES
-(1, 'S 1000 RR', 21450.00, 2025, 210, 832, 1),
-(2, 'R1', 20699.00, 2025, 200, 855, 2),
-(3, 'ZX-10R', 29990.00, 2025, 203, 835, 1),
-(4, 'Panigale V4', 27790.00, 2025, 215, 830, 2),
-(5, 'GSX-R1000', 17990.00, 2025, 199, 825, 1),
-(6, 'CBR1000RR-R', 31490.00, 2025, 217, 831, 2),
-(7, 'RSV4', 20999.00, 2025, 220, 840, 1),
-(23, 'RS 457', 7199.00, 2024, 47, 790, 1),
-(24, 'NINJA-400', 6999.00, 2023, 45, 785, 2),
-(25, 'CBR500R', 7299.00, 2023, 47, 790, 1),
-(26, 'NK450', 5490.00, 2023, 46, 780, 2),
-(27, 'Z500', 5370.00, 2025, 45, 780, 1),
-(28, 'KTM 390', 6780.00, 2024, 44, 830, 2),
-(29, 'R3', 6799.00, 2024, 42, 780, 1),
-(30, 'MT-03', 6499.00, 2025, 42, 780, 2),
-(31, '450SR-S', 6690.00, 2024, 45, 795, 1);
 
 -- Insert default admin user
 INSERT OR IGNORE INTO users (id, email, password) VALUES
@@ -513,50 +399,3 @@ INSERT INTO Description (id, type, text, bike_id) VALUES
     (96, 'description_2', 'ALL THE SPORTINESS YOU HAVE BEEN WAITING FOR', 31),
     (97, 'description_3', '450SR S is the advanced version of the first super sport bike by CFMOTO, with a single-sided swingarm that characterizes this new version. Available at our official dealers, the new Super Sport 450SR S awaits you. Don''t miss out, start this season off right!', 31),
     (98, 'description_4', 'The 450SR-S is equipped with a range of advanced features, including a digital display, LED lighting and a high-performance braking system. It also comes with a range of customizable options, allowing riders to personalize their bike to suit their individual style and preferences.', 31);
-
-```
-
-## Progettazione della pagina WEB
-
-Python con Flask per il backend
-SQLite per il database
-HTML e Bootstrap per il frontend
-Form submissions per le interazioni utente
-
-### Struttura del progetto
-
-```
-Dealership/
-├── app.py             
-├── project-dealership.session.sql        
-├── progress.md 
-├── README.md         
-├── static/           
-│   ├── styles/
-│   │        ├── login.css
-│   │        ├── main.css
-│   │        ├── account.css
-│   │        ├── model.css
-│   │        └── reg.css
-│   ├── scripts/
-│   │        ├── login.js
-│   │        ├── main.js
-│   │        ├── model.js
-│   │        └── script.js
-│   └── images/
-│       ├── A2/
-│       ├── display/
-│       ├── liter_bikes/
-│       ├── super_sport/
-│       └── naked/
-└── templates/       
-  ├── account.html
-  ├── log_page.html
-  ├── main.html
-  ├── model.html
-  ├── reg_page.html
-  └── request_quote.html
-```
-
-## Codice
-

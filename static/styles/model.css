@@ -272,22 +272,6 @@ body {
     transition: transform 0.2s ease;
 }
 
-/* Dual color swatches */
-.color-swatch.dual-color {
-    background: linear-gradient(to right, var(--color1) 50%, var(--color2) 50%) !important;
-    background-clip: padding-box !important; 
-}
-
-/* Override per assicurare che il background-color non sovrascriva il gradiente */
-.color-swatch.dual-color[style*="background-color"] {
-    background-color: transparent !important;
-}
-
-.color-swatch.dual-color {
-    background: linear-gradient(to right, var(--color1) 50%, var(--color2) 50%);
-    background-clip: padding-box; /* Assicura che il gradiente copra tutto il cerchio */
-}
-
 .color-option:hover .color-swatch {
     transform: scale(1.1);
     border-color: #999;

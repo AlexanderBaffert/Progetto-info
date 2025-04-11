@@ -1,16 +1,36 @@
-from flask import Flask, request, render_template, redirect, url_for, flash, session
-import mariadb
+import json
+from flask import Flask, g, jsonify, render_template, request, redirect, url_for, flash, session
+import sqlite3
+import os
+
 
 app = Flask(__name__)
-app.secret_key = "supersecretkey"  # Necessario per usare flash messages
+app.secret_key = "your-secret-key-here"
 
-# Configurazione database
-db_config = {
-    "user": "fade",
-    "password": "fade",
-    "host": "127.0.0.1",
-    "database": "dealership",
-}
+# Build the path to config.json relative to this file
+config_path = os.path.join(os.path.dirname(__file__), "config.json")
+with open(config_path) as config_file:
+    config = json.load(config_file)
+    DATABASE = config["DATABASE"]
+    INITIALIZATION = config["INITIALIZATION"]
+
+
+def get_db():
+    """Connessione al database"""
+    if "db" not in g:
+        g.db = sqlite3.connect(DATABASE)
+        g.db.row_factory = sqlite3.Row
+    return g.db
+
+
+def init_db():
+    """Inizializza il database"""
+    with app.app_context():
+        db = get_db()
+        # Load schema from queries folder
+        with app.open_resource(INITIALIZATION) as f:
+            db.executescript(f.read().decode("utf8"))
+        db.commit()
 
 @app.route("/")
 def index():
@@ -29,10 +49,9 @@ def reg():
         error = "Email and password are required"
         return render_template("reg_page.html", error=error)
 
-    conn = None  
     try:
-        conn = mariadb.connect(**db_config)
-        cursor = conn.cursor()
+        db = get_db()
+        cursor = db.cursor()
         # Check if email already exists
         cursor.execute("SELECT * FROM users WHERE email=?", (email,))
         if cursor.fetchone():
@@ -40,15 +59,12 @@ def reg():
             return render_template("reg_page.html", error=error)
         # Insert new user
         cursor.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
-        conn.commit()
-        flash("Register Complited", "success")
+        db.commit()
+        flash("Register Completed", "success")
         return redirect(url_for("login"))
-    except mariadb.Error as e:
+    except sqlite3.Error as e:
         error = "Error: " + str(e)
         return render_template("reg_page.html", error=error)
-    finally:
-        if conn:
-            conn.close()
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -59,20 +75,22 @@ def log():
     email = request.form["email"]
     password = request.form["password"]
 
-    conn = mariadb.connect(**db_config)
-    cursor = conn.cursor()
-
-    cursor.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
-    user = cursor.fetchone()
-    conn.close()
-
-    if user:
-        session["logged_in"] = True
-        session["user_email"] = email
-        return redirect(url_for("index"))  # Successful login returns to main page
-    else:
-        flash("No account found, try change the email or password", "error")
-        return redirect(url_for("login"))
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+        user = cursor.fetchone()
+        
+        if user:
+            session["logged_in"] = True
+            session["user_email"] = email
+            return redirect(url_for("index"))  # Successful login returns to main page
+        else:
+            flash("No account found, try changing the email or password", "error")
+            return redirect(url_for("login"))
+    except sqlite3.Error as e:
+        error = "Error: " + str(e)
+        return render_template("log_page.html", error=error)
 
 @app.route("/logout", methods=["POST"])
 def logout():
