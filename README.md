@@ -167,8 +167,8 @@ Form submissions per le interazioni utente
 ```
 educational-games/
 ├── app.py             
-├── schema.sql        
-├── requirements.txt  
+├── project-dealership.session.sql        
+├── progress.md 
 ├── README.md         
 ├── static/           
 │   ├── styles/
