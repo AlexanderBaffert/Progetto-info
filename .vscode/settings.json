@@ -1,17 +1,11 @@
 {
     "sqltools.connections": [
         {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
             "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MariaDB",
-            "name": "project-dealership",
-            "database": "dealership",
-            "username": "fade"
+            "driver": "SQLite",
+            "name": "project",
+            "database": "database.db"
         }
-    ]
+    ],
+    "sqltools.useNodeRuntime": true
 }

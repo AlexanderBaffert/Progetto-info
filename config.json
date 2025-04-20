@@ -1,4 +1,4 @@
 {
     "INITIALIZATION": "project-dealership.session.sql",
-    "DATABASE": "data.db"
+    "DATABASE": "database.db"
 }

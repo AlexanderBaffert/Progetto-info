@@ -441,3 +441,67 @@ body {
 input[type="range"] {
     width: 100%;
 }
+
+/* Stili per la pagina dei modelli */
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+.page-title {
+    text-align: center;
+    margin: 80px 0 40px;
+    color: #000;
+    font-size: 2.5rem;
+}
+
+.categories-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.category-tab {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.category-tab:hover {
+    background-color: #e0e0e0;
+}
+
+.category-tab.active {
+    background-color: #000;
+    color: #fff;
+}
+
+.category-container {
+    display: none;
+}
+
+.category-container.active {
+    display: block;
+}
+
+.models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.model-price {
+    font-weight: bold;
+    color: #555;
+    margin-top: 5px;
+}

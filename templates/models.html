@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Bikes - Models</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Menu e navigazione -->
+        <div style="position: absolute; top: 10px; left: 10px;">
+            <a href="/" class="menu-button">Home</a>
+        </div>
+        
+        <h1 class="page-title">Our Motorcycle Models</h1>
+        
+        <!-- Sezione categorie -->
+        <div class="categories-tabs">
+            <button class="category-tab active" data-category="sport">Sport</button>
+            <button class="category-tab" data-category="premium">Premium</button>
+            <button class="category-tab" data-category="naked">Naked</button>
+            <button class="category-tab" data-category="race">Race</button>
+            <button class="category-tab" data-category="a2">A2 License</button>
+        </div>
+        
+        <!-- Contenitore per le moto -->
+        <div id="models-display">
+            <!-- Ogni categoria ha il suo contenitore, inizialmente solo Sport è visibile -->
+            {% for category, bikes in categories.items() %}
+            <div class="category-container {% if category == 'sport' %}active{% endif %}" id="{{ category }}-container">
+                <h2>{{ category|capitalize }} Models</h2>
+                <div class="models-grid">
+                    {% for bike in bikes %}
+                    <div class="model-card">
+                        <a href="/model/{{ bike.slug }}">
+                            <img src="/{{ bike.img }}" alt="{{ bike.name }}" onerror="this.src='/static/favicon/bikes/no-image.jpg'">
+                            <p class="model-year">{{ bike.year }}</p>
+                            <p class="model-name">{{ bike.name }}</p>
+                            <p class="model-price">€{{ bike.price|int }}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript per gestire le tab
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Rimuovi active da tutti
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.category-container').forEach(c => c.classList.remove('active'));
+                
+                // Aggiungi active al tab cliccato e alla sua categoria
+                this.classList.add('active');
+                const category = this.getAttribute('data-category');
+                document.getElementById(`${category}-container`).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

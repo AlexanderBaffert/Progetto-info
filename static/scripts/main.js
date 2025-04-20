@@ -78,11 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
         naked: [
             { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.avif" },
             { name: "Streetfighter V4", year: "2025", img: "static/favicon/bikes/naked/streetfighter_v4.jpg" },
-            { name: "KTM 1290 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/ktm_1290_super_duke_r.jpg" },
+            { name: "KTM 1390 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/ktm_1290_super_duke_r.jpg" },
             { name: "Z H2", year: "2025", img: "static/favicon/bikes/naked/z_h2.jpg" },
-            { name: "Tuono V4", year: "2025", img: "static/favicon/bikes/naked/tuono_v4.jpg" },
-            { name: "Hornet 1000", year: "2024", img: "static/favicon/bikes/naked/cb1000r.jpg" },
-            { name: "Speed Triple 1200 RS", year: "2025", img: "static/favicon/bikes/naked/speed_triple_1200_rs.jpg" },
+            { name: "Tuono V4", year: "2025", img: "static/favicon/bikes/naked/tuono.png" },
+            { name: "Hornet 1000", year: "2024", img: "static/favicon/bikes/naked/hornet_1000.avif" },
+            { name: "Speed Triple 1200 RS", year: "2025", img: "static/favicon/bikes/naked/st_1200.webp" },
         ],
         race : [
             { name: "RC 8C", year: "2024", img: "static/favicon/bikes/race/rc8c.jpg" },
@@ -135,5 +135,51 @@ document.addEventListener("DOMContentLoaded", function() {
 
             modelsContainer.appendChild(modelCard);
         });
+    }
+
+    // Aggiorna displayAllModels per utilizzare il database
+    function displayAllModels() {
+        fetch('/api/models')
+            .then(response => response.json())
+            .then(data => {
+                const mainContainer = document.getElementById("main-models-container");
+                if (!mainContainer) {
+                    console.error("Main models container not found!");
+                    return;
+                }
+
+                console.log("Displaying all models...");
+
+                if (!data || data.length === 0) {
+                    console.error("No models found!");
+                    return;
+                }
+
+                mainContainer.innerHTML = ''; // Pulisce il contenitore prima di aggiungere nuovi modelli
+
+                data.forEach(model => {
+                    console.log("Adding model:", model.name);
+                    const modelCard = document.createElement("div");
+                    modelCard.classList.add("model-card");
+                    
+                    modelCard.innerHTML = `
+                        <a href="/model/${model.slug}">
+                            <img src="${model.img}" 
+                                 alt="${model.name}" 
+                                 onerror="this.src='static/favicon/bikes/no-image.jpg'" 
+                                 style="width:100%; height:150px; object-fit:cover;">
+                            <p class="model-year">${model.year}</p>
+                            <p class="model-name">${model.name}</p>
+                            <p class="model-price">€${Math.floor(model.price)}</p>
+                        </a>
+                    `;
+                    mainContainer.appendChild(modelCard);
+                });
+
+                console.log("Models displayed successfully.");
+            })
+            .catch(error => {
+                console.error("Error fetching models:", error);
+            });
     }
 });
