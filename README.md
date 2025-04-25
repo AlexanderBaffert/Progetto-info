@@ -35,6 +35,8 @@ erDiagram
         int id PK
         string model
         float price
+        int power
+        float seat_height
     }
     Image {
         int id PK
@@ -63,7 +65,7 @@ erDiagram
 
 - **User**(id, name, email, password)  
 - **Admin**(id, user_id[FK])  
-- **Bikes**(id, model, price, user_id[FK])  
+- **Bikes**(id, model, price, power, seat_height, user_id[FK])  
 - **Color**(id, name, bike_id[FK])  
 - **Image**(id, url, bike_id[FK])  
 - **Description**(id, text, bike_id[FK])  
@@ -234,3 +236,56 @@ Dealership/
 ```
 
 ## Codice
+
+# Progetto-info-3
+
+## Setup Instructions
+
+This project requires Python 3.x and should be run in a virtual environment to avoid dependency conflicts with system packages.
+
+### Setting up the environment
+
+1. First, make sure you have the necessary tools:
+   ```bash
+   sudo apt install python3-full python3-venv
+   ```
+
+2. Create a virtual environment in the project directory:
+   ```bash
+   python3 -m venv venv
+   ```
+
+3. Activate the virtual environment:
+   - On Linux/Mac:
+     ```bash
+     source venv/bin/activate
+     ```
+   - On Windows:
+     ```bash
+     .\venv\Scripts\activate
+     ```
+
+4. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Running the application
+
+1. Make sure the virtual environment is activated (you should see `(venv)` in your terminal prompt)
+
+2. Run the application:
+   ```bash
+   python server.py
+   ```
+
+3. Open a web browser and navigate to http://127.0.0.1:5000/
+
+### Database Initialization
+
+To initialize the database, navigate to http://127.0.0.1:5000/init-db after starting the server.
+
+### Troubleshooting
+
+- If you see an "externally-managed-environment" error, make sure you've activated the virtual environment.
+- If the server fails to start, check that all dependencies are installed correctly.
