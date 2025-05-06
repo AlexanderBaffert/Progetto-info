@@ -13,18 +13,21 @@
 <body style="overflow-x: hidden;">
     <!-- Updated home button: sits on top of the image, transparent background -->
     <a href="/" class="home-button" style="position: absolute; top: 10px; left: 10px; padding: 10px 15px; background: rgba(0,0,0,0.3); color: #fff; text-decoration: none; border: none; border-radius: 5px; z-index: 3;">Home</a>
-    <!-- Conditionally display video background -->
-    {% if model.image.endswith('.mp4') %}
-    <video class="bg-video" autoplay loop muted>
+    
+    <!-- Video background: se l'immagine principale è un video, la usiamo come sfondo -->
+    {% if model.image and model.image.endswith('.mp4') %}
+    <video class="bg-video" autoplay loop muted playsinline poster="/static/favicon/bikes/video-poster.jpg">
         <source src="/{{ model.image }}" type="video/mp4">
-        Your browser does not support the video tag.
+        Il tuo browser non supporta i video.
     </video>
     {% else %}
-    <video class="bg-video" autoplay loop muted>
+    <!-- Fallback al video generico di sfondo se non c'è un video specifico -->
+    <video class="bg-video" autoplay loop muted playsinline>
         <source src="/static/videos/background.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     {% endif %}
+    
     <div class="model-container">
         {% if not model.image.endswith('.mp4') %}
         <div class="model-left">

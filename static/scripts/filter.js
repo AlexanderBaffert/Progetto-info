@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on a page with the filter form
     if (!filterForm) return;
     
+    // Carica tutti i modelli all'avvio
+    loadAllModels();
+    
+    // Rende la funzione disponibile globalmente
+    window.loadAllModels = loadAllModels;
+    
     filterForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -28,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (maxSeatHeight) params.append('max_seat_height', maxSeatHeight);
         
         // Show loading state
-        resultsContainer.innerHTML = '<p class="loading">Searching motorcycles...</p>';
+        resultsContainer.innerHTML = '<div class="loading-spinner"><div></div><div></div><div></div></div>';
         
         // Make sure the filter panel stays open to show the results
         const filterPanel = document.getElementById('filterPanel');
@@ -48,7 +54,30 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
     
-    // Display filtered results
+    // Modifichiamo la funzione loadAllModels per fare il debug dei dati ricevuti
+    function loadAllModels() {
+        resultsContainer.innerHTML = '<div class="loading-spinner"><div></div><div></div><div></div></div>';
+        
+        fetch('/api/models')
+            .then(response => response.json())
+            .then(bikes => {
+                // Debug - verifica quali immagini vengono ricevute dall'API
+                console.log("Loaded bikes:", bikes);
+                
+                // Verifica che ci siano immagini per le moto premium (ID 8-13)
+                const premiumBikes = bikes.filter(bike => bike.id >= 8 && bike.id <= 13);
+                console.log("Premium bikes:", premiumBikes);
+                
+                // Mostra tutti i modelli
+                displayResults(bikes);
+            })
+            .catch(error => {
+                console.error('Error fetching models:', error);
+                resultsContainer.innerHTML = '<p class="error">Error loading models. Please try again.</p>';
+            });
+    }
+    
+    // Miglioriamo la gestione delle immagini nella funzione displayResults
     function displayResults(bikes) {
         resultsContainer.innerHTML = '';
         
@@ -78,12 +107,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(`Replaced video with image: ${imgSrc}`);
             }
             
+            // DEBUG per le moto premium
+            if (bike.id >= 8 && bike.id <= 13) {
+                console.log(`Premium bike ${bike.name} (ID: ${bike.id}) has image: ${imgSrc}`);
+            }
+            
             // Correggi path A2 se scritto in minuscolo
             imgSrc = imgSrc.replace('/bikes/a2/', '/bikes/A2/');
             
             // Se l'immagine non ha un percorso completo, aggiungilo
             if (imgSrc && !imgSrc.startsWith('/') && !imgSrc.startsWith('http')) {
                 imgSrc = '/' + imgSrc;
+            }
+            
+            // Aggiunta di gestione specifica per le moto premium
+            if (bike.id >= 8 && bike.id <= 13 && (!imgSrc || imgSrc.includes('no-image'))) {
+                // Assegna manualmente il percorso dell'immagine se mancante
+                imgSrc = `/static/favicon/bikes/super_sport/${getPremiumImageName(bike.name)}`;
+                console.log(`Applied manual premium image path for ${bike.name}: ${imgSrc}`);
             }
             
             // Debug
@@ -130,4 +171,44 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         }
     }
+    
+    // Funzione helper per gestire le moto premium con nomi di file specifici
+    function getPremiumImageName(bikeName) {
+        const nameMap = {
+            "R1-M": "r1m.jpg",
+            "F4 1000": "f4_1000.webp",
+            "M 1000 RR": "m1000rr.jpg",
+            "H2R": "h2r.webp",
+            "Superleggera V4": "superleggera.jpg",
+            "Tricolore": "tricolore.avif"
+        };
+        
+        return nameMap[bikeName] || "premium_default.jpg";
+    }
+    
+    // Aggiunta spinner CSS per caricamento
+    const style = document.createElement('style');
+    style.textContent = `
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .loading-spinner > div {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: #0066cc;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .loading-spinner > div:nth-child(1) { animation-delay: -0.32s; }
+        .loading-spinner > div:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    `;
+    document.head.appendChild(style);
 });

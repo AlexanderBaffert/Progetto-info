@@ -3,21 +3,6 @@ function toggleUserDropdown() {
     dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
 }
 
-function toggleFilter() {
-    var panel = document.getElementById("filterPanel");
-    panel.classList.toggle("active");
-
-    // Adjust the display container's margin-top based on panel height
-    var displayContainer = document.querySelector(".display-container");
-    if (panel.classList.contains("active")) {
-        // Increase margin-top by panel's height plus some extra spacing
-        displayContainer.style.marginTop = (panel.offsetHeight + 20) + "px";
-    } else {
-        // Revert to default margin-top
-        displayContainer.style.marginTop = "20px";
-    }
-}
-
 function logoutUser() {
     fetch("/logout", { method: "POST" })
       .then(response => response.json())

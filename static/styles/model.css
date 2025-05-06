@@ -59,7 +59,7 @@ body {
     font-size: 36px;  /* larger header text */
 }
 
-/* New video background styling */
+/* New video background styling with better mobile compatibility */
 .bg-video {
     position: absolute;
     top: 0;
@@ -68,6 +68,20 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    background-color: rgba(0, 0, 0, 0.3); /* Fallback color */
+}
+
+/* Fallback bg image for mobile devices that might not autoplay video */
+@media (max-width: 768px) {
+    .bg-video {
+        /* Lightened for mobile */
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Enhancement for video poster */
+    video[poster] {
+        object-fit: cover;
+    }
 }
 
 /* Stile per la descrizione principale (titolo) */

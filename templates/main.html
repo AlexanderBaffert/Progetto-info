@@ -36,13 +36,13 @@
         <button id="menu-button" class="menu-button">Menu</button>
     </div>
 
-    <!-- Updated main menu panel without sub-menu -->
+    <!-- Updated main menu panel with proper href links -->
     <div id="menu-panel">
         <nav class="menu-links">
             <a href="/">Home</a>
-            <a href="models" id="models-link">Models</a>
-            <a href="#">Buy</a>
-            <a href="#">Service</a>
+            <a href="/models" id="models-link">Models</a>
+            <a href="/buy">Buy</a>
+            <a href="/service">Service</a>
         </nav>
     </div>
 
@@ -62,32 +62,12 @@
     </div>
     
 
-    <!-- Filter Container -->
+    <!-- Filter Container - VERSIONE RIPRISTINATA -->
     <div class="filter-container">
-        <div class="filter-toggle" onclick="toggleFilter()">
-            <span>Compatible Models: </span> +
-        </div>
-
-        <div class="filter-panel" id="filterPanel">
-            <h2>Filter according to your preferences</h2>
+        <div class="filter-panel active" id="filterPanel">
+            <h2>Compatible Models</h2>
             <form id="filter-form" class="filter-section">
-                <!-- Engine Section -->
-                <div class="filter-column">
-                    <h3>Engine Type</h3>
-                    <div class="checkbox-list">
-                        <label><input type="checkbox"> Single-Cylinder </label>
-                        <label><input type="checkbox"> Parallel-Twin </label>
-                        <label><input type="checkbox"> V-Twin </label>
-                        <label><input type="checkbox"> L-Twin </label>
-                        <label><input type="checkbox"> Inline </label>
-                        <label><input type="checkbox"> V4 (Rarely V5) </label>
-                        <label><input type="checkbox"> Flat-Twin </label>
-                        <label><input type="checkbox"> Rotary </label>
-                        <label><input type="checkbox"> Electric </label>
-                    </div>
-                </div>
-
-                <!-- Power Section -->
+                <!-- Semplificato con solo i filtri numerici, senza Engine Type -->
                 <div class="filter-column">
                     <h3>Power</h3>
                     <div class="slider-container">
@@ -96,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- Seat Height Section -->
                 <div class="filter-column">
                     <h3>Seat Height</h3>
                     <div class="slider-container">
@@ -105,7 +84,6 @@
                     </div>
                 </div>
 
-                <!-- Price Section -->
                 <div class="filter-column">
                     <h3>Price</h3>
                     <div class="slider-container">
@@ -113,14 +91,14 @@
                         <label>Max €: <input type="number" id="max-price" name="max-price" value="200500" min="0" max="200500"></label>
                     </div>
                 </div>
+                
+                <!-- Search Button integrato -->
+                <div class="filter-column search-column">
+                    <button type="submit" form="filter-form" class="search-btn">Search Models</button>
+                </div>
             </form>
             
-            <!-- Search Button moved outside the grid for better placement -->
-            <div class="search-btn-container">
-                <button type="submit" form="filter-form" class="search-btn">Search Models</button>
-            </div>
-            
-            <!-- Filter results are now inside the filter panel for better organization -->
+            <!-- Filter results con visualizzazione migliore -->
             <div id="filter-results" class="container"></div>
         </div>
     </div>

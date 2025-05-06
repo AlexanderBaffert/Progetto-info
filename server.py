@@ -171,8 +171,17 @@ def model_detail(model_slug):
             "seat_height": bike['seat_height']
         }
         
-        # Ottieni le immagini
-        cursor.execute("SELECT url FROM Image WHERE bike_id = ? ORDER BY id", (bike_id,))
+        # Ottieni le immagini - VERSIONE CORRETTA
+        cursor.execute("""
+            SELECT url FROM Image WHERE bike_id = ? 
+            ORDER BY 
+                CASE 
+                    WHEN url LIKE '%.mp4' AND bike_id != 1 THEN 0  -- Priorità ai MP4 eccetto ID=1 (S1000RR)
+                    ELSE 1
+                END, 
+                id
+        """, (bike_id,))
+        
         images = cursor.fetchall()
         
         if images:
@@ -204,7 +213,7 @@ def model_detail(model_slug):
                 try:
                     # Tenta di convertire il JSON se è un oggetto
                     import json
-                    if swatch_value.startswith('{'):
+                    if swatch_value and isinstance(swatch_value, str) and swatch_value.startswith('{'):
                         swatch_value = json.loads(swatch_value)
                 except:
                     # Se fallisce, usa il valore come stringa
@@ -374,7 +383,7 @@ def filter_models():
         if max_seat_height:
             query += " AND b.seat_height <= ?"
             params.append(int(max_seat_height))
-        
+            
         # Execute the query
         cursor.execute(query, params)
         bikes = cursor.fetchall()
@@ -397,7 +406,7 @@ def filter_models():
                 else:
                     # Default to no-image if no alternatives found
                     img_path = "static/favicon/bikes/no-image.jpg"
-            
+                    
             # Ensure the path is standardized (no double slashes)
             img_path = img_path.replace("//", "/")
             if img_path.startswith("static"):
@@ -421,7 +430,7 @@ def filter_models():
                 print(f"Missing image for: {bike['name']} (ID: {bike['id']})")
         
         return jsonify(result)
-    
+        
     except Exception as e:
         print(f"Errore nel filtro dei modelli: {str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -451,9 +460,8 @@ def add_new_records():
         
         # Commit dei cambiamenti
         db.commit()
-        
         return "Nuovi record aggiunti con successo. <a href='/'>Torna alla home</a>"
-    
+        
     except Exception as e:
         print(f"Errore nell'aggiunta dei nuovi record: {str(e)}")
         return f"Errore: {str(e)}", 500
@@ -478,9 +486,8 @@ def add_new_records_fixed():
         
         # Commit dei cambiamenti
         db.commit()
-        
         return "Nuovi campi aggiunti e aggiornati con successo. <a href='/'>Torna alla home</a>"
-    
+        
     except Exception as e:
         print(f"Errore nell'aggiunta dei nuovi campi: {str(e)}")
         return f"Errore: {str(e)}", 500
@@ -505,9 +512,8 @@ def add_missing_images():
         
         # Commit dei cambiamenti
         db.commit()
-        
         return "Immagini mancanti aggiunte con successo. <a href='/models'>Visualizza modelli</a>"
-    
+        
     except Exception as e:
         print(f"Errore nell'aggiunta delle immagini mancanti: {str(e)}")
         return f"Errore: {str(e)}", 500
@@ -543,7 +549,6 @@ def fix_image_paths():
             result += f"<tr><td>{img['id']}</td><td>{img['model']}</td><td>{img['url']}</td></tr>"
         result += "</table>"
         result += "<br><a href='/models'>View Models</a>"
-        
         return result
     
     except Exception as e:
@@ -570,12 +575,195 @@ def update_image_paths():
         
         # Commit dei cambiamenti
         db.commit()
-        
         return "Percorsi delle immagini aggiornati con successo. <a href='/models'>Visualizza modelli</a>"
-    
+        
     except Exception as e:
         print(f"Errore nell'aggiornamento dei percorsi delle immagini: {str(e)}")
         return f"Errore: {str(e)}", 500
+
+
+@app.route("/add-premium-images")
+def add_premium_images():
+    """Route per aggiungere le immagini mancanti delle moto premium"""
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        
+        # Percorso del file SQL per le immagini premium
+        premium_images_path = os.path.join(os.path.dirname(__file__), "queries/add_premium_images.sql")
+        
+        # Leggi ed esegui il file SQL
+        with open(premium_images_path, 'r') as f:
+            sql_script = f.read()
+        
+        # Esegui lo script
+        cursor.executescript(sql_script)
+        
+        # Commit dei cambiamenti
+        db.commit()
+        
+        # Esegui una query per verificare le immagini aggiornate
+        cursor.execute("""
+            SELECT b.id, b.model, i.url
+            FROM Bikes b
+            LEFT JOIN Image i ON b.id = i.bike_id
+            WHERE b.id BETWEEN 8 AND 13
+            ORDER BY b.id, i.id
+        """)
+        
+        images = cursor.fetchall()
+        
+        # Crea una tabella HTML per visualizzare i risultati
+        result = "<h1>Premium Bikes Images Added</h1><table border='1'>"
+        result += "<tr><th>Bike ID</th><th>Model</th><th>Image URL</th></tr>"
+        for img in images:
+            result += f"<tr><td>{img['id']}</td><td>{img['model']}</td><td>{img['url']}</td></tr>"
+        result += "</table>"
+        result += "<br><a href='/models'>View All Models</a>"
+        result += "<br><a href='/'>Return to Home</a>"
+        
+        return result
+    
+    except Exception as e:
+        print(f"Errore nell'aggiunta delle immagini premium: {str(e)}")
+        return f"Errore: {str(e)}", 500
+
+
+@app.route("/update-mp4-priorities")
+def update_mp4_priorities():
+    """Aggiorna le priorità dei file MP4 per mostrarli come prima immagine"""
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        
+        # Percorso del file SQL per aggiornare le priorità MP4
+        update_path = os.path.join(os.path.dirname(__file__), "queries/update_mp4_priorities.sql")
+        
+        # Leggi ed esegui il file SQL
+        with open(update_path, 'r') as f:
+            sql_script = f.read()
+        
+        # Esegui lo script
+        cursor.executescript(sql_script)
+        
+        # Commit dei cambiamenti
+        db.commit()
+        
+        # Visualizza le immagini dopo l'aggiornamento
+        cursor.execute("""
+            SELECT b.id, b.model, i.id AS image_id, i.url, 
+                   CASE WHEN i.url LIKE '%.mp4' THEN 'Video' ELSE 'Image' END AS type
+            FROM Bikes b
+            JOIN Image i ON b.id = i.bike_id
+            ORDER BY b.id, i.id
+        """)
+        
+        results = cursor.fetchall()
+        
+        html = "<h1>MP4 Video Priorities Updated</h1>"
+        html += "<p>I video MP4 sono ora impostati come immagini principali (escluso l'S1000RR)</p>"
+        html += "<table border='1' cellpadding='5'>"
+        html += "<tr><th>Bike ID</th><th>Model</th><th>Image ID</th><th>Type</th><th>URL</th></tr>"
+        
+        for row in results:
+            html += f"<tr>"
+            html += f"<td>{row['id']}</td>"
+            html += f"<td>{row['model']}</td>"
+            html += f"<td>{row['image_id']}</td>"
+            html += f"<td>{row['type']}</td>"
+            html += f"<td>{row['url']}</td>"
+            html += f"</tr>"
+        
+        html += "</table>"
+        html += "<p><a href='/'>Torna alla home</a></p>"
+        
+        return html
+    
+    except Exception as e:
+        print(f"Errore nell'aggiornamento delle priorità MP4: {str(e)}")
+        return f"Errore: {str(e)}", 500
+
+
+@app.route("/force-mp4")
+def force_mp4():
+    """Route per forzare la visibilità dei file MP4"""
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        
+        # Percorso del file SQL
+        force_mp4_path = os.path.join(os.path.dirname(__file__), "queries/force_mp4_visibility.sql")
+        
+        # Leggi ed esegui il file SQL
+        with open(force_mp4_path, 'r') as f:
+            sql_script = f.read()
+            
+        # Esegui lo script
+        cursor.executescript(sql_script)
+        
+        # Commit dei cambiamenti
+        db.commit()
+        
+        # Recupera i risultati per visualizzare
+        cursor.execute("""
+            SELECT b.id, b.model, i.id AS image_id, i.url,
+                   CASE WHEN i.url LIKE '%.mp4' THEN 'Video' ELSE 'Image' END AS type,
+                   ROW_NUMBER() OVER (PARTITION BY b.id ORDER BY i.id) AS position
+            FROM Bikes b
+            JOIN Image i ON b.id = i.bike_id
+            ORDER BY b.id, i.id
+        """)
+        results = cursor.fetchall()
+        
+        # Crea HTML per visualizzare i risultati
+        html = "<h1>MP4 Files Visibility Forced</h1>"
+        html += "<p>MP4 files should now appear as the main image for each bike (except S1000RR)</p>"
+        html += "<table border='1' cellpadding='5'>"
+        html += "<tr><th>Bike ID</th><th>Model</th><th>Image ID</th><th>Type</th><th>Position</th><th>URL</th></tr>"
+        
+        for row in results:
+            html += f"<tr>"
+            html += f"<td>{row['id']}</td>"
+            html += f"<td>{row['model']}</td>"
+            html += f"<td>{row['image_id']}</td>"
+            html += f"<td>{row['type']}</td>"
+            html += f"<td>{row['position']}</td>"
+            html += f"<td>{row['url']}</td>"
+            html += f"</tr>"
+        
+        html += "</table>"
+        html += "<p><a href='/'>Torna alla home</a></p>"
+        html += "<p><a href='/models'>Visualizza tutti i modelli</a></p>"
+        
+        return html
+        
+    except Exception as e:
+        print(f"Errore nel forzare la visibilità degli MP4: {str(e)}")
+        return f"Errore: {str(e)}", 500
+
+
+@app.route("/configure")
+def configure():
+    """Route for the configuration page"""
+    return render_template("configure.html")
+
+
+@app.route("/account")
+def account():
+    """Route for the account page"""
+    return render_template("account.html")
+
+
+@app.route("/buy")
+def buy():
+    """Route for the buy page"""
+    return render_template("buy.html")
+
+
+@app.route("/service")
+def service():
+    """Route for the service page"""
+    return render_template("service.html")
 
 
 if __name__ == "__main__":
