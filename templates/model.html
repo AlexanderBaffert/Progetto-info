@@ -38,8 +38,8 @@
             <div class="model-info">
                 <h1>Model: {{ model.name }}</h1>
                 <p>{{ model.description }}</p>
-                <!-- Updated action buttons -->
-                <button onclick="window.location.href='/request-quote'" class="action-button" style="margin:10px; padding:15px 20px; font-size:20px; width:220px; background:#fff; color:#000; border:none; border-radius:5px; cursor:pointer;">Request a quote</button>
+                <!-- Updated action buttons with bike_id parameter -->
+                <button onclick="window.location.href='/request-quote?bike_id={{ model.id }}'" class="action-button" style="margin:10px; padding:15px 20px; font-size:20px; width:220px; background:#fff; color:#000; border:none; border-radius:5px; cursor:pointer;">Request a quote</button>
                 <button onclick="window.location.href='/configure'" class="action-button" style="margin:10px; padding:15px 20px; font-size:20px; width:220px; background:#fff; color:#000; border:none; border-radius:5px; cursor:pointer;">Configure</button>
             </div>
         </div>

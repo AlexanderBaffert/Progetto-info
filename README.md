@@ -289,3 +289,17 @@ To initialize the database, navigate to http://127.0.0.1:5000/init-db after star
 
 - If you see an "externally-managed-environment" error, make sure you've activated the virtual environment.
 - If the server fails to start, check that all dependencies are installed correctly.
+
+### Email Configuration
+
+To configure email settings, add the following environment variables to your `.env` file:
+
+```
+MAIL_SERVER=smtp.example.com
+MAIL_PORT=587
+MAIL_USE_TLS=1
+MAIL_USERNAME=your-email@example.com
+MAIL_PASSWORD=your-email-password
+```
+
+Make sure to replace the placeholder values with your actual email server details.

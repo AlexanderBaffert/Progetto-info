@@ -69,10 +69,6 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "Hornet 1000", year: "2024", img: "static/favicon/bikes/naked/hornet_1000.avif" },
             { name: "Speed Triple 1200 RS", year: "2025", img: "static/favicon/bikes/naked/st_1200.webp" },
         ],
-        race : [
-            { name: "RC 8C", year: "2024", img: "static/favicon/bikes/race/rc8c.jpg" },
-            { name: "YZF-R6-GYTR", year: "2024", img: "static/favicon/bikes/race/r6.jpg" },
-        ],
         a2: [
             { name: "RS457", year: "2024", img: "static/favicon/bikes/A2/457.avif" },
             { name: "NINJA-400", year: "2023", img: "static/favicon/bikes/A2/ninja400_2.webp" },
