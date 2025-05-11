@@ -62,9 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
         ],
         naked: [
             { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.avif" },
-            { name: "Streetfighter V4", year: "2025", img: "static/favicon/bikes/naked/streetfighter_v4.jpg" },
-            { name: "KTM 1390 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/ktm_1290_super_duke_r.jpg" },
-            { name: "Z H2", year: "2025", img: "static/favicon/bikes/naked/z_h2.jpg" },
+            { name: "Streetfighter V4", year: "2025", img: "static/favicon/bikes/naked/street_v4.avif" },
+            { name: "KTM 1390 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/duke_1390.avif" },
             { name: "Tuono V4", year: "2025", img: "static/favicon/bikes/naked/tuono.png" },
             { name: "Hornet 1000", year: "2024", img: "static/favicon/bikes/naked/hornet_1000.avif" },
             { name: "Speed Triple 1200 RS", year: "2025", img: "static/favicon/bikes/naked/st_1200.webp" },

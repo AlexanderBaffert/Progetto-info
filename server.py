@@ -1,4 +1,3 @@
-
 from flask import Flask, g, jsonify, render_template, request, redirect, url_for, flash, session
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -168,6 +167,7 @@ def model_detail(model_slug):
         
         bike_id = bike['id']
         model_details = {
+            "id": bike_id,  # Add this line to include the ID in the model details
             "name": bike['model'],
             "year": str(bike['year']),
             "price": float(bike['price']),
@@ -514,10 +514,10 @@ def submit_quote():
             pdf_path = generate_quote_pdf(form_data)
             
             # Invia l'email con il PDF allegato
-            send_quote_email(form_data, pdf_path)
+            sent = send_quote_email(form_data, pdf_path)
             
             # Visualizza una pagina di conferma
-            return render_template("quote_confirmation.html", form_data=form_data, email_sent=True)
+            return render_template("quote_confirmation.html", form_data=form_data, email_sent=sent)
         except Exception as e:
             print(f"Errore nell'invio del preventivo: {str(e)}")
             return render_template("quote_confirmation.html", form_data=form_data, email_sent=False, error=str(e))
@@ -526,81 +526,79 @@ def submit_quote():
     return redirect(url_for("request_quote"))
 
 def generate_quote_pdf(form_data):
-    """Genera un PDF con i dati del preventivo"""
+    """Generate a PDF with the quote data"""
     try:
-        # Crea la directory delle quote se non esiste
+        # Create quotes directory if it doesn't exist
         quote_dir = os.path.join(os.path.dirname(__file__), "static/quotes")
         if not os.path.exists(quote_dir):
             os.makedirs(quote_dir)
         
-        # Nome file univoco con timestamp
+        # Create unique filename with timestamp
         timestamp = int(time.time())
         safe_model_name = ''.join(c if c.isalnum() else '_' for c in form_data['bike_model'])
         filename = f"quote_{safe_model_name}_{timestamp}.pdf"
         filepath = os.path.join(quote_dir, filename)
         
-        # Crea il PDF
+        # Create PDF
         pdf = FPDF()
         pdf.add_page()
         
-        # Aggiungi logo se presente, altrimenti salta
+        # Add logo if available
         logo_path = os.path.join(os.path.dirname(__file__), "static/favicon/logo.jpg")
         if os.path.exists(logo_path):
             pdf.image(logo_path, 10, 8, 33)
         
-        # Intestazione
+        # Header
         pdf.set_font('Arial', 'B', 16)
-        pdf.cell(0, 10, 'Preventivo Moto', 0, 1, 'C')
+        pdf.cell(0, 10, 'Motorcycle Quote', 0, 1, 'C')
         
-        # Data
+        # Date
         pdf.set_font('Arial', '', 10)
-        pdf.cell(0, 10, f"Data: {time.strftime('%d/%m/%Y')}", 0, 1, 'R')
+        pdf.cell(0, 10, f"Date: {time.strftime('%m/%d/%Y')}", 0, 1, 'R')
         
-        # Dati della moto
+        # Motorcycle data
         pdf.set_font('Arial', 'B', 14)
-        pdf.cell(0, 10, 'Informazioni Moto', 0, 1, 'L')
+        pdf.cell(0, 10, 'Motorcycle Information', 0, 1, 'L')
         pdf.set_font('Arial', '', 12)
-        pdf.cell(0, 10, f"Modello: {form_data['bike_model']}", 0, 1)
-        pdf.cell(0, 10, f"Anno: {form_data.get('bike_year', 'N/A')}", 0, 1)
-        pdf.cell(0, 10, f"Prezzo base: € {form_data.get('bike_price', 'N/A')}", 0, 1)
+        pdf.cell(0, 10, f"Model: {form_data['bike_model']}", 0, 1)
+        pdf.cell(0, 10, f"Year: {form_data.get('bike_year', 'N/A')}", 0, 1)
+        pdf.cell(0, 10, f"Base Price: € {form_data.get('bike_price', 'N/A')}", 0, 1)
         
-        # Dati del cliente
+        # Customer data
         pdf.set_font('Arial', 'B', 14)
-        pdf.cell(0, 10, 'Informazioni Cliente', 0, 1, 'L')
+        pdf.cell(0, 10, 'Customer Information', 0, 1, 'L')
         pdf.set_font('Arial', '', 12)
-        pdf.cell(0, 10, f"Nome: {form_data['nome']} {form_data['cognome']}", 0, 1)
+        pdf.cell(0, 10, f"Name: {form_data['nome']} {form_data['cognome']}", 0, 1)
         pdf.cell(0, 10, f"Email: {form_data['email']}", 0, 1)
-        pdf.cell(0, 10, f"Telefono: {form_data['telefono']}", 0, 1)
-        pdf.cell(0, 10, f"Indirizzo: {form_data['indirizzo']}, {form_data['numero']}", 0, 1)
-        pdf.cell(0, 10, f"CAP/Città: {form_data['cap']} {form_data['citta']} ({form_data['provincia']})", 0, 1)
+        pdf.cell(0, 10, f"Phone: {form_data['telefono']}", 0, 1)
+        pdf.cell(0, 10, f"Address: {form_data['indirizzo']}, {form_data['numero']}", 0, 1)
+        pdf.cell(0, 10, f"ZIP/City: {form_data['cap']} {form_data['citta']} ({form_data['provincia']})", 0, 1)
         
-        # Dettagli concessionaria
+        # Dealership details
         if form_data['concessionaria'] and form_data['concessionaria'] != '':
             pdf.set_font('Arial', 'B', 14)
-            pdf.cell(0, 10, 'Concessionaria di Riferimento', 0, 1, 'L')
+            pdf.cell(0, 10, 'Preferred Dealership', 0, 1, 'L')
             pdf.set_font('Arial', '', 12)
             pdf.cell(0, 10, f"{form_data['concessionaria']}", 0, 1)
         
-        # Note legali
+        # Legal notes
         pdf.set_y(-40)
         pdf.set_font('Arial', 'I', 8)
-        pdf.cell(0, 10, 'Questo preventivo è valido per 30 giorni dalla data di emissione.', 0, 1, 'C')
-        pdf.cell(0, 10, 'I prezzi possono variare senza preavviso. Contattare la concessionaria per conferma.', 0, 1, 'C')
+        pdf.cell(0, 10, 'This quote is valid for 30 days from the issue date.', 0, 1, 'C')
+        pdf.cell(0, 10, 'Prices are subject to change without notice. Contact the dealership for confirmation.', 0, 1, 'C')
         
-        # Salva il PDF
+        # Save PDF
         pdf.output(filepath, 'F')
         
-        print(f"PDF generato con successo: {filepath}")
+        print(f"PDF generated successfully: {filepath}")
         return filepath
     except Exception as e:
-        print(f"Errore nella generazione del PDF: {str(e)}")
+        print(f"Error generating PDF: {str(e)}")
         return None
-      
+        
 def send_quote_email(form_data, pdf_path):
-    """Invia un'email con il preventivo allegato"""
+    """Send an email with the quote PDF attached"""
     try:
-        
-        
         # Configurazione del server email - utilizza i valori dal file di configurazione
         smtp_server = EMAIL_CONFIG.get("smtp_server", "")
         smtp_port = EMAIL_CONFIG.get("smtp_port", 587)
@@ -620,23 +618,23 @@ def send_quote_email(form_data, pdf_path):
             
             with open(log_file_path, 'w') as log_file:
                 log_file.write(f"To: {form_data['email']}\n")
-                log_file.write(f"Subject: Il tuo preventivo per {form_data['bike_model']}\n")
+                log_file.write(f"Subject: Your Quote for {form_data['bike_model']}\n")
                 log_file.write(f"Attachment: {pdf_path}\n\n")
                 log_file.write("Email Content:\n")
-                log_file.write(f"Gentile {form_data['nome']} {form_data['cognome']},\n")
-                log_file.write(f"Grazie per il tuo interesse nella {form_data['bike_model']}.\n")
-                log_file.write(f"Un nostro consulente ti contatterà presto al numero {form_data['telefono']}.\n")
+                log_file.write(f"Dear {form_data['nome']} {form_data['cognome']},\n")
+                log_file.write(f"Thank you for your interest in the {form_data['bike_model']}.\n")
+                log_file.write(f"One of our consultants will contact you soon at {form_data['telefono']}.\n")
                 
-            print(f"Invio email simulato. Log salvato in: {log_file_path}")
+            print(f"Email simulation. Log saved in: {log_file_path}")
             return True
         
         # Continua con l'invio email reale se la configurazione è disponibile
         msg = MIMEMultipart()
         msg['From'] = f"{sender_name} <{smtp_username}>"
         msg['To'] = form_data['email']
-        msg['Subject'] = f"Il tuo preventivo per {form_data['bike_model']}"
+        msg['Subject'] = f"Your Quote for {form_data['bike_model']}"
         
-        # Corpo dell'email
+        # Email body
         body = f'''
         <html>
         <head>
@@ -649,19 +647,19 @@ def send_quote_email(form_data, pdf_path):
         </head>
         <body>
             <div class="header">
-                <h1>Dream Bikes - Il Tuo Preventivo</h1>
+                <h1>Dream Bikes - Your Quote</h1>
             </div>
             <div class="content">
-                <p>Gentile {form_data['nome']} {form_data['cognome']},</p>
-                <p>Grazie per il tuo interesse nella {form_data['bike_model']}.</p>
-                <p>In allegato trovi il preventivo richiesto per la moto dei tuoi sogni.</p>
-                <p>Un nostro consulente ti contatterà presto al numero {form_data['telefono']} per fornirti maggiori dettagli.</p>
-                <p>Se hai domande immediate, non esitare a contattarci rispondendo a questa email.</p>
-                <p>Cordiali saluti,<br>
-                Il Team di Dream Bikes</p>
+                <p>Dear {form_data['nome']} {form_data['cognome']},</p>
+                <p>Thank you for your interest in the {form_data['bike_model']}.</p>
+                <p>Attached is the requested quote for your dream motorcycle.</p>
+                <p>One of our consultants will contact you soon at {form_data['telefono']} to provide more details.</p>
+                <p>If you have any immediate questions, please don't hesitate to reply to this email.</p>
+                <p>Best regards,<br>
+                The Dream Bikes Team</p>
             </div>
             <div class="footer">
-                <p>Questo messaggio è generato automaticamente.</p>
+                <p>This message is automatically generated.</p>
             </div>
         </body>
         </html>
@@ -674,7 +672,7 @@ def send_quote_email(form_data, pdf_path):
         if pdf_path and os.path.exists(pdf_path):
             with open(pdf_path, 'rb') as file:
                 pdf_attachment = MIMEApplication(file.read(), _subtype="pdf")
-                pdf_attachment.add_header('Content-Disposition', f'attachment; filename=Preventivo_{form_data["bike_model"].replace(" ", "_")}.pdf')
+                pdf_attachment.add_header('Content-Disposition', f'attachment; filename=Quote_{form_data["bike_model"].replace(" ", "_")}.pdf')
                 msg.attach(pdf_attachment)
         
         # Crea un log dell'invio dell'email
@@ -685,9 +683,9 @@ def send_quote_email(form_data, pdf_path):
         log_file_path = os.path.join(log_dir, f"email_log_{int(time.time())}.txt")
         
         with open(log_file_path, 'w') as log_file:
-            log_file.write(f"Tentativo di invio email a: {form_data['email']}\n")
-            log_file.write(f"Subject: Il tuo preventivo per {form_data['bike_model']}\n")
-            log_file.write(f"Allegato: {pdf_path}\n\n")
+            log_file.write(f"Attempting to send email to: {form_data['email']}\n")
+            log_file.write(f"Subject: Your quote for {form_data['bike_model']}\n")
+            log_file.write(f"Attachment: {pdf_path}\n\n")
         
         # Invia l'email
         with smtplib.SMTP(smtp_server, smtp_port) as server:
@@ -697,13 +695,13 @@ def send_quote_email(form_data, pdf_path):
             
             # Aggiorna il log dopo l'invio con successo
             with open(log_file_path, 'a') as log_file:
-                log_file.write("Email inviata con successo!\n")
-                log_file.write(f"Orario invio: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+                log_file.write("Email sent successfully!\n")
+                log_file.write(f"Sent at: {time.strftime('%Y-%m-%d %H:%M:%S')}")
         
-        print(f"Email inviata con successo a {form_data['email']}")
+        print(f"Email sent successfully to {form_data['email']}")
         return True
     except Exception as e:
-        print(f"Errore nell'invio dell'email: {str(e)}")
+        print(f"Error sending email: {str(e)}")
         # Salviamo il log dell'errore
         try:
             log_dir = os.path.join(os.path.dirname(__file__), "logs")
