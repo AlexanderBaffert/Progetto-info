@@ -1,52 +1,31 @@
 
 -- Elimina i dati esistenti per evitare conflitti
-DELETE FROM Description WHERE bike_id = 14;
-DELETE FROM Image WHERE bike_id = 14;
-DELETE FROM Color WHERE bike_id = 14;
-DELETE FROM Bikes WHERE id = 14;
+DELETE FROM Description WHERE bike_id = 10;
+DELETE FROM Image WHERE bike_id = 10;
+DELETE FROM Color WHERE bike_id = 10;
+DELETE FROM Bikes WHERE id = 10;
 
 -- Inserimento della nuova moto
 INSERT INTO Bikes (id, model, price, year, power, seat_height) VALUES
-    (14, 'MT-10', 16299, 2025, 214, 845);
+    (10, 'M 1000 RR', 37450, 2025, 218, 865);
 
 -- Inserimento di colori per la moto
 INSERT INTO Color (name, swatch, image, bike_id) VALUES
-    ('Midnight Cyan', '#a0c3b7' , 'static/favicon/bikes/naked/mt10_color.jpg', 14),
-    ('Icon Blue', '#0038a8' , 'static/favicon/bikes/naked/mt10_color_2.jpg', 14),
-    ('Tech Black', '#000000' , 'static/favicon/bikes/naked/mt10_color_3.jpg', 14);
+    ('Blackstorm Metallic/M Motorsport', '#000000' , 'static/favicon/bikes/super_sport/m1k_color.png', 10),
+    ('Light white/M Motorsport', '#FFFFFF' , 'static/favicon/bikes/super_sport/m1k_color_2.png', 10);
 
 -- Inserimento di immagini per la moto
 INSERT INTO Image (url, bike_id) VALUES
-    ('static/favicon/bikes/naked/mt10.webp', 14),
-    ('static/favicon/bikes/naked/mt_1.jpg', 14),
-    ('static/favicon/bikes/naked/mt_2.jpg', 14),
-    ('static/favicon/bikes/naked/mt_3.jpg', 14),
-    ('static/favicon/bikes/naked/mt_4.jpg', 14),
-    ('static/favicon/bikes/naked/mt_5.jpg', 14),
-    ('static/favicon/bikes/naked/mt_6.jpg', 14),
-    ('static/favicon/bikes/naked/mt_7.jpg', 14),
-    ('static/favicon/bikes/naked/mt_8.jpg', 14),
-    ('static/favicon/bikes/naked/mt_9.jpg', 14),
-    ('static/favicon/bikes/naked/mt_10.jpg', 14),
-    ('static/favicon/bikes/naked/mt_11.jpg', 14),
-    ('static/favicon/bikes/naked/mt_12.jpg', 14);
+    ('static/favicon/bikes/super_sport/m1k.png', 10),
+    ('static/favicon/bikes/super_sport/m1k_1.png', 10),
+    ('static/favicon/bikes/super_sport/m1k.mp4', 10);
 
 -- Inserimento delle descrizioni 
 INSERT INTO Description (type, text, bike_id) VALUES
-    ('main', 'Starting from €16.299,00.', 14),
-    ('description_2', 'The Night Naked ', 14),
-    ('description_3', 'Tuned to produce a sensational feeling of torque for the most thrilling experience, the MT-10 is the most powerful Hyper Naked ever built by Yamaha. Manufactured using cutting-edge engine and chassis technology from the R1, the MT-10 gives you power, agility and adrenaline.', 14),
-    ('description_3_5', 'The Darkest Energy.', 14),
-    ('description_4', 'The King of the MT line-up demands total respect, and the first thing that’s going to grab your attention is the compact headlight assembly and aggressive tank design that highlight the MT-10’s outstanding mechanical beauty. And the moment you hear the 998cc CP4 engine’s deep intake roar coming out of the air intakes, you’ll know that this bike is the one for you. Hidden deep in the lightweight Deltabox chassis is a sophisticated package of electronic rider aids, designed to give you the highest degree of controllability. With adjustable high-tech systems that control traction, slides, wheelies, engine braking and braking, you can make your MT-10 behave exactly the way you desire.', 14),
-    ('description_6', '4.2’’ TFT Meter with Ride Mode selection', 14),
-    ('description_7', 'Brembo Radial master cylinder', 14),
-    ('description_8', 'Cruise Controll', 14), 
-    ('description_9', 'Speed Limiter', 14),
-    ('description_10', '988cc CP4 engine', 14),
-    ('description_11', 'Aggressive MT design', 14),
-    ('description_12', 'APSG Throttle with selectable PWR-modes', 14),
-    ('description_13', 'Titanium Exhaust System', 14),
-    ('description_14', 'Up and Down quickshifter', 14),
-    ('description_15', '6-Axis IMU with full rider aids suite', 14),
-    ('description_16', 'Bridgestones S22 Tyre', 14),
-    ('description_17', '90 Wheel air-valves', 14);
+    ('main', 'Starting from €37.450,00.', 10),
+    ('description_2', 'The BMW M 1000 RR Racing like no other ', 10),
+    ('description_3', 'For all those who make every millisecond count. The superbike that is homologated for racing has been aerodynamically optimized in a wind tunnel and further developed on the circuit. The M RR can attribute its maximum speed of 189 mph to its ShiftCam engine that offers 205 hp and the new trim panel with aerodynamic winglets. This bike stands for performance, motorsport, and exclusivity, right down to the last detail. The same goes for the BMW Motorrad Motorsport Race Support. Typically M – typically #NeverStopChallenging.', 10),
+    ('description_3_5', 'Ride like you’re in a slipstream', 10),
+    ('description_4', 'The redesigned front and side trim panels provide enhanced performance. Additionally, the optimized aerodynamics relieve strain on the rider by reducing the wind pressure they are subjected to: for endurance and fast, focused riding. The revised M Winglets Evolution 3.0, on the other hand, increase the pressure on the front wheel, even when in a lean angle, and generate up to 33% more downforce than the prior model, equating to up to 66 lbs. For even more confidence in low lean angles and high-speed bends.', 10);
+
+DELETE FROM Image WHERE bike_id = 10;
