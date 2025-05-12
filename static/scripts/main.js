@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
             { name: "Tricolore", year: "2025", img: "static/favicon/bikes/super_sport/tricolore.avif" },
         ],
         naked: [
-            { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.avif" },
+            { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.webp" },
             { name: "Streetfighter V4", year: "2025", img: "static/favicon/bikes/naked/street_v4.avif" },
             { name: "KTM 1390 Super Duke R", year: "2025", img: "static/favicon/bikes/naked/duke_1390.avif" },
             { name: "Tuono V4", year: "2025", img: "static/favicon/bikes/naked/tuono.png" },

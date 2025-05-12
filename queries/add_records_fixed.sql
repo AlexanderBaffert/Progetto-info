@@ -1,37 +1,52 @@
 
 -- Elimina i dati esistenti per evitare conflitti
-DELETE FROM Description WHERE bike_id = 15;
-DELETE FROM Image WHERE bike_id = 15;
-DELETE FROM Color WHERE bike_id = 15;
-DELETE FROM Bikes WHERE id = 15;
+DELETE FROM Description WHERE bike_id = 14;
+DELETE FROM Image WHERE bike_id = 14;
+DELETE FROM Color WHERE bike_id = 14;
+DELETE FROM Bikes WHERE id = 14;
 
 -- Inserimento della nuova moto
 INSERT INTO Bikes (id, model, price, year, power, seat_height) VALUES
-    (15, 'Streetfigher V4', 24790.00, 2025, 214, 845);
+    (14, 'MT-10', 16299, 2025, 214, 845);
 
 -- Inserimento di colori per la moto
 INSERT INTO Color (name, swatch, image, bike_id) VALUES
-    ('Ducati Red', '#ff0000' , 'static/favicon/bikes/naked/street_v4_color.webp', 15);
+    ('Midnight Cyan', '#a0c3b7' , 'static/favicon/bikes/naked/mt10_color.jpg', 14),
+    ('Icon Blue', '#0038a8' , 'static/favicon/bikes/naked/mt10_color_2.jpg', 14),
+    ('Tech Black', '#000000' , 'static/favicon/bikes/naked/mt10_color_3.jpg', 14);
 
 -- Inserimento di immagini per la moto
 INSERT INTO Image (url, bike_id) VALUES
-    ('static/favicon/bikes/naked/street_v4.avif', 15),
-    ('static/favicon/bikes/naked/street_v4_1.jpg', 15),
-    ('static/favicon/bikes/naked/street_v4_2.jpg', 15),
-    ('static/favicon/bikes/naked/street_1.jpg', 15),
-    ('static/favicon/bikes/naked/street_2.jpg', 15),
-    ('static/favicon/bikes/naked/street_3.jpg', 15),
-    ('static/favicon/bikes/naked/street_4.jpg', 15);
+    ('static/favicon/bikes/naked/mt10.webp', 14),
+    ('static/favicon/bikes/naked/mt_1.jpg', 14),
+    ('static/favicon/bikes/naked/mt_2.jpg', 14),
+    ('static/favicon/bikes/naked/mt_3.jpg', 14),
+    ('static/favicon/bikes/naked/mt_4.jpg', 14),
+    ('static/favicon/bikes/naked/mt_5.jpg', 14),
+    ('static/favicon/bikes/naked/mt_6.jpg', 14),
+    ('static/favicon/bikes/naked/mt_7.jpg', 14),
+    ('static/favicon/bikes/naked/mt_8.jpg', 14),
+    ('static/favicon/bikes/naked/mt_9.jpg', 14),
+    ('static/favicon/bikes/naked/mt_10.jpg', 14),
+    ('static/favicon/bikes/naked/mt_11.jpg', 14),
+    ('static/favicon/bikes/naked/mt_12.jpg', 14);
+
 -- Inserimento delle descrizioni 
 INSERT INTO Description (type, text, bike_id) VALUES
-    ('main', 'Starting from €24.790,00.', 15),
-    ('description_2', 'The Fight Formula, applied to the Panigale V4.', 15),
-    ('description_3', 'The new Streetfighter V4 is the ultimate expression of the Fight Formula, applied to the best ever Panigale. Like never before, the Streetfighter inherits all the innovation and performance of the Ducati superbike, while retaining its unmistakable character. Powerful and precise on track, exciting and enjoyable on the road, the Streetfighter V4 promises both feeling and control for an unparalleled riding experience.', 15),
-    ('description_3_5', 'The most powerful Streetfighter of the category.', 15),
-    ('description_4', 'As never before, the new Streetfighter V4 is the new Panigale V4 stripped of its fairings, a magical formula that blends new solutions in terms of its design, aerodynamics, ergonomics, chassis and electronics.', 15),
-    ('description_6', 'Design', 15),
-    ('description_7', 'Chassis and Ergonomics', 15),
-    ('description_8', 'Electronics', 15), 
-    ('description_9', 'Engine', 15);
-
-DELETE FROM Bikes WHERE id = 17;
+    ('main', 'Starting from €16.299,00.', 14),
+    ('description_2', 'The Night Naked ', 14),
+    ('description_3', 'Tuned to produce a sensational feeling of torque for the most thrilling experience, the MT-10 is the most powerful Hyper Naked ever built by Yamaha. Manufactured using cutting-edge engine and chassis technology from the R1, the MT-10 gives you power, agility and adrenaline.', 14),
+    ('description_3_5', 'The Darkest Energy.', 14),
+    ('description_4', 'The King of the MT line-up demands total respect, and the first thing that’s going to grab your attention is the compact headlight assembly and aggressive tank design that highlight the MT-10’s outstanding mechanical beauty. And the moment you hear the 998cc CP4 engine’s deep intake roar coming out of the air intakes, you’ll know that this bike is the one for you. Hidden deep in the lightweight Deltabox chassis is a sophisticated package of electronic rider aids, designed to give you the highest degree of controllability. With adjustable high-tech systems that control traction, slides, wheelies, engine braking and braking, you can make your MT-10 behave exactly the way you desire.', 14),
+    ('description_6', '4.2’’ TFT Meter with Ride Mode selection', 14),
+    ('description_7', 'Brembo Radial master cylinder', 14),
+    ('description_8', 'Cruise Controll', 14), 
+    ('description_9', 'Speed Limiter', 14),
+    ('description_10', '988cc CP4 engine', 14),
+    ('description_11', 'Aggressive MT design', 14),
+    ('description_12', 'APSG Throttle with selectable PWR-modes', 14),
+    ('description_13', 'Titanium Exhaust System', 14),
+    ('description_14', 'Up and Down quickshifter', 14),
+    ('description_15', '6-Axis IMU with full rider aids suite', 14),
+    ('description_16', 'Bridgestones S22 Tyre', 14),
+    ('description_17', '90 Wheel air-valves', 14);
