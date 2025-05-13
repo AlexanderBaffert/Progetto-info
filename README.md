@@ -1,6 +1,8 @@
 # Progetto-info
 
-## Analisi
+### Analisi
+
+In questo progetto si presenta una Dealership di Moto incentrata sulla visione di moto e la richiesta di preventivi su di essa. Si individuano delle entita' principali che spiccano, che sono: Moto e User. La Moto e' stata scelta ovviamente perche' essendo una caratteristica principale del progetto va inculsa, lo User invece perche' c'e' una persona dietro alla richieste di preventivi, a cui serve fare un log in. Ci sono anche altre entita' che sono: Admin, Color, Image e Description. Queste sono sotto categorie delle due principali.
 
 ### Tabelle
 
@@ -60,6 +62,19 @@ erDiagram
     Bikes ||--o{ Color : "has"
     User ||--o{ Bikes : "Buys"
 ```
+
+### Commento
+
+La scelta di User e Bikes come entità principali è strategica dato che rappresentano rispettivamente gli acquirenti e i prodotti centrali del business, essendo un progetto focalizzato su questo. Questa distinzione permette una chiara separazione tra dati degli utenti e caratteristiche delle moto. L'Admin è rappresentato come un'entità separata che estende User invece di essere integrato nella stessa tabella. Questo permette una gestione dei permessi più flessibile e mantiene una chiara separazione tra ruoli. Le entità Image, Description e Color sono collegate alla tabella Bikes con relazioni 1-N. Questa scelta consente di:
+
+- Associare multiple immagini a ciascuna moto
+
+- Gestire diverse descrizioni 
+
+- Offrire varianti di colore per lo stesso modello
+
+La separazione delle caratteristiche in entità distinte rispetta i principi di normalizzazione del database, evitando la duplicazione dei dati e facilitando l'aggiornamento delle informazioni specifiche. Questa struttura supporta efficacemente sia le funzionalità di visualizzazione del catalogo che quelle di gestione degli acquisti e dei preventivi, fornendo un'architettura scalabile per future espansioni del sistema.
+
 
 ### Schema logico
 
@@ -127,7 +142,7 @@ CREATE TABLE Description (
 );
 ```
 
-### Integrazioni
+### Integrazioni SQL
 
 ```sql
 -- Inserimento dati nella tabella User
@@ -195,14 +210,15 @@ INSERT INTO Image (id, url, bike_id) VALUES
 
 ## Progettazione della pagina WEB
 
-Python con Flask per il backend
-SQLite per il database
-HTML e Bootstrap per il frontend
-Form submissions per le interazioni utente
+I linguaggi che ho voluto usare sono:
+- Python con Flask per il backend
+- SQLite per il database
+- HTML e Bootstrap per il frontend
+- JS per la gestione dinamica dell'interfaccia utente
 
 ### Struttura del progetto
 
-
+Questa e' la struttura file del progetto:
 ```
 Progetto-info-3/
 ├── database.db
@@ -425,61 +441,3 @@ def model_detail(model_slug):
         print(f"Errore nel caricamento del modello: {str(e)}")
         return "Error loading model details", 500
 ```
-
-# Progetto-info-3
-
-## Setup Instructions
-
-This project requires Python 3.x and should be run in a virtual environment to avoid dependency conflicts with system packages.
-
-### Setting up the environment
-
-1. First, make sure you have the necessary tools:
-   ```bash
-   sudo apt install python3-full python3-venv
-   ```
-
-2. Create a virtual environment in the project directory:
-   ```bash
-   python3 -m venv venv
-   ```
-
-3. Activate the virtual environment:
-   - On Linux/Mac:
-     ```bash
-     source venv/bin/activate
-     ```
-   - On Windows:
-     ```bash
-     .\venv\Scripts\activate
-     ```
-
-4. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Running the application
-
-1. Make sure the virtual environment is activated (you should see `(venv)` in your terminal prompt)
-
-2. Run the application:
-   ```bash
-   python server.py
-   ```
-
-3. Open a web browser and navigate to http://127.0.0.1:5000/
-
-### Database Initialization
-
-To initialize the database, navigate to http://127.0.0.1:5000/init-db after starting the server.
-
-### Troubleshooting
-
-- If you see an "externally-managed-environment" error, make sure you've activated the virtual environment.
-- If the server fails to start, check that all dependencies are installed correctly.
-
-### Email Configuration
-
-There is a problem on the EMAIL so currently you cant recive it, im sorry for the 
-Inconvenient
