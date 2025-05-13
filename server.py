@@ -345,6 +345,7 @@ def filter_models():
         max_power = request.args.get('max_power', '')
         min_seat_height = request.args.get('min_seat_height', '')
         max_seat_height = request.args.get('max_seat_height', '')
+        categories = request.args.get('categories', '')
         
         # Build the query - MODIFIED to avoid MP4 files as primary images
         query = """
@@ -384,6 +385,24 @@ def filter_models():
         if max_seat_height:
             query += " AND b.seat_height <= ?"
             params.append(int(max_seat_height))
+        
+        # Add category filter if present
+        if categories:
+            category_list = categories.split(',')
+            category_conditions = []
+            
+            for category in category_list:
+                if category == 'sport':
+                    category_conditions.append("(b.id <= 7)")
+                elif category == 'premium':
+                    category_conditions.append("(b.id > 7 AND b.id <= 13)")
+                elif category == 'naked':
+                    category_conditions.append("(b.id > 13 AND b.id <= 20)")
+                elif category == 'a2':
+                    category_conditions.append("(b.id > 20)")
+            
+            if category_conditions:
+                query += " AND (" + " OR ".join(category_conditions) + ")"
             
         # Execute the query
         cursor.execute(query, params)

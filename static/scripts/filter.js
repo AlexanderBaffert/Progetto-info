@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const minSeatHeight = document.getElementById('min-seat-height').value;
         const maxSeatHeight = document.getElementById('max-seat-height').value;
         
+        // Get selected categories
+        const selectedCategories = [];
+        document.querySelectorAll('input[name="category"]:checked').forEach(checkbox => {
+            selectedCategories.push(checkbox.value);
+        });
+        
         // Build query parameters
         let params = new URLSearchParams();
         if (brand) params.append('brand', brand);
@@ -32,6 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (maxPower) params.append('max_power', maxPower); 
         if (minSeatHeight) params.append('min_seat_height', minSeatHeight);
         if (maxSeatHeight) params.append('max_seat_height', maxSeatHeight);
+        
+        // Add category parameters if selected
+        if (selectedCategories.length > 0) {
+            params.append('categories', selectedCategories.join(','));
+        }
         
         // Show loading state
         resultsContainer.innerHTML = '<div class="loading-spinner"><div></div><div></div><div></div></div>';
@@ -77,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
-    // Miglioriamo la gestione delle immagini nella funzione displayResults
+    // Updated displayResults function to show categories horizontally
     function displayResults(bikes) {
         resultsContainer.innerHTML = '';
         
@@ -86,90 +97,124 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Group bikes by category
+        const categorized = {
+            sport: [],
+            premium: [],
+            naked: [],
+            a2: []
+        };
+        
+        bikes.forEach(bike => {
+            // Categorize bikes based on ID
+            if (bike.id <= 7) {
+                categorized.sport.push(bike);
+            } else if (bike.id <= 13) {
+                categorized.premium.push(bike);
+            } else if (bike.id <= 20) {
+                categorized.naked.push(bike);
+            } else {
+                categorized.a2.push(bike);
+            }
+        });
+        
         const resultsHeading = document.createElement('h3');
         resultsHeading.textContent = `Found ${bikes.length} matching motorcycles`;
         resultsContainer.appendChild(resultsHeading);
         
-        const resultsGrid = document.createElement('div');
-        resultsGrid.className = 'results-grid';
-        
-        bikes.forEach(bike => {
-            const bikeCard = document.createElement('div');
-            bikeCard.className = 'bike-card';
+        // Create horizontal category sections
+        Object.entries(categorized).forEach(([category, categoryBikes]) => {
+            if (categoryBikes.length === 0) return;
             
-            // Improved image path handling
-            let imgSrc = bike.img || '';
+            const categorySection = document.createElement('div');
+            categorySection.className = 'category-results';
             
-            // Skip video files for thumbnails
-            if (imgSrc.toLowerCase().endsWith('.mp4')) {
-                // Try to find a static image with similar name by replacing extension
-                imgSrc = imgSrc.replace(/\.mp4$/i, '.jpg');
-                console.log(`Replaced video with image: ${imgSrc}`);
-            }
+            const categoryHeader = document.createElement('div');
+            categoryHeader.className = 'category-header';
+            categoryHeader.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+            categorySection.appendChild(categoryHeader);
             
-            // DEBUG per le moto premium
-            if (bike.id >= 8 && bike.id <= 13) {
-                console.log(`Premium bike ${bike.name} (ID: ${bike.id}) has image: ${imgSrc}`);
-            }
+            const categoryModels = document.createElement('div');
+            categoryModels.className = 'category-models-row';
             
-            // Correggi path A2 se scritto in minuscolo
-            imgSrc = imgSrc.replace('/bikes/a2/', '/bikes/A2/');
+            categoryBikes.forEach(bike => {
+                const bikeCard = createBikeCard(bike);
+                categoryModels.appendChild(bikeCard);
+            });
             
-            // Se l'immagine non ha un percorso completo, aggiungilo
-            if (imgSrc && !imgSrc.startsWith('/') && !imgSrc.startsWith('http')) {
-                imgSrc = '/' + imgSrc;
-            }
-            
-            // Aggiunta di gestione specifica per le moto premium
-            if (bike.id >= 8 && bike.id <= 13 && (!imgSrc || imgSrc.includes('no-image'))) {
-                // Assegna manualmente il percorso dell'immagine se mancante
-                imgSrc = `/static/favicon/bikes/super_sport/${getPremiumImageName(bike.name)}`;
-                console.log(`Applied manual premium image path for ${bike.name}: ${imgSrc}`);
-            }
-            
-            // Debug
-            console.log(`Image path for ${bike.name}: ${imgSrc}`);
-            
-            // Aggiungi un timestamp per prevenire il caching
-            const timestamp = new Date().getTime();
-            const imgWithCache = imgSrc.includes('?') ? 
-                `${imgSrc}&_=${timestamp}` : 
-                `${imgSrc}?_=${timestamp}`;
-            
-            bikeCard.innerHTML = `
-                <div class="bike-img-container">
-                    <img src="${imgWithCache}" alt="${bike.name}" class="bike-img"
-                         onerror="this.onerror=null; console.log('Failed to load: ${imgSrc}'); this.src='/static/favicon/bikes/no-image.jpg';">
-                </div>
-                <h4>${bike.name}</h4>
-                <p class="bike-year">${bike.year}</p>
-                <p class="bike-price">€${bike.price.toLocaleString('it-IT')}</p>
-                <p class="bike-specs">
-                    <span class="power">${bike.power} HP</span> | 
-                    <span class="seat-height">${bike.seat_height} mm</span>
-                </p>
-                <a href="/model/${bike.slug}" class="view-details">View Details</a>
-            `;
-            
-            resultsGrid.appendChild(bikeCard);
+            categorySection.appendChild(categoryModels);
+            resultsContainer.appendChild(categorySection);
         });
-        
-        resultsContainer.appendChild(resultsGrid);
         
         // Ensure the results container is visible
         resultsContainer.style.display = 'block';
         
         // Position the results container properly
-        const filterPanel = document.getElementById('filterPanel');
-        if (filterPanel) {
-            // Scroll to the results with a bit of offset
-            setTimeout(() => {
-                resultsContainer.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'nearest'
-                });
-            }, 100);
+        setTimeout(() => {
+            resultsContainer.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }, 100);
+    }
+    
+    // Helper function to create bike cards with consistent styling
+    function createBikeCard(bike) {
+        const bikeCard = document.createElement('div');
+        bikeCard.className = 'bike-card';
+        
+        // Improved image path handling
+        let imgSrc = bike.img || '';
+        
+        // Skip video files for thumbnails
+        if (imgSrc.toLowerCase().endsWith('.mp4')) {
+            // Try to find a static image with similar name by replacing extension
+            imgSrc = imgSrc.replace(/\.mp4$/i, '.jpg');
+            console.log(`Replaced video with image: ${imgSrc}`);
         }
+        
+        // DEBUG per le moto premium
+        if (bike.id >= 8 && bike.id <= 13) {
+            console.log(`Premium bike ${bike.name} (ID: ${bike.id}) has image: ${imgSrc}`);
+        }
+        
+        // Correggi path A2 se scritto in minuscolo
+        imgSrc = imgSrc.replace('/bikes/a2/', '/bikes/A2/');
+        
+        // Se l'immagine non ha un percorso completo, aggiungilo
+        if (imgSrc && !imgSrc.startsWith('/') && !imgSrc.startsWith('http')) {
+            imgSrc = '/' + imgSrc;
+        }
+        
+        // Aggiunta di gestione specifica per le moto premium
+        if (bike.id >= 8 && bike.id <= 13 && (!imgSrc || imgSrc.includes('no-image'))) {
+            // Assegna manualmente il percorso dell'immagine se mancante
+            imgSrc = `/static/favicon/bikes/super_sport/${getPremiumImageName(bike.name)}`;
+            console.log(`Applied manual premium image path for ${bike.name}: ${imgSrc}`);
+        }
+        
+        // Aggiungi un timestamp per prevenire il caching
+        const timestamp = new Date().getTime();
+        const imgWithCache = imgSrc.includes('?') ? 
+            `${imgSrc}&_=${timestamp}` : 
+            `${imgSrc}?_=${timestamp}`;
+        
+        bikeCard.innerHTML = `
+            <div class="bike-img-container">
+                <img src="${imgWithCache}" alt="${bike.name}" class="bike-img"
+                     onerror="this.onerror=null; console.log('Failed to load: ${imgSrc}'); this.src='/static/favicon/bikes/no-image.jpg';">
+            </div>
+            <h4>${bike.name}</h4>
+            <p class="bike-year">${bike.year}</p>
+            <p class="bike-price">€${bike.price.toLocaleString('it-IT')}</p>
+            <p class="bike-specs">
+                <span class="power">${bike.power} HP</span> | 
+                <span class="seat-height">${bike.seat_height} mm</span>
+            </p>
+            <a href="/model/${bike.slug}" class="view-details">View Details</a>
+        `;
+        
+        return bikeCard;
     }
     
     // Funzione helper per gestire le moto premium con nomi di file specifici

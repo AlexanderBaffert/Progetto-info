@@ -136,7 +136,6 @@ body {
     text-decoration: underline;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .bike-image-container {
         max-height: 300px;

@@ -10,7 +10,6 @@
     font-size: 22px;
 }
 
-/* Change the results grid to wrap properly */
 .results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -18,7 +17,6 @@
     padding: 10px 0;
 }
 
-/* Improve image container to handle broken images better */
 .bike-img-container {
     height: 180px;
     overflow: hidden;
@@ -49,7 +47,6 @@
     transform: scale(1.05);
 }
 
-/* Adjust the bike-card size and layout */
 .bike-card {
     background-color: white;
     border-radius: 10px;
@@ -145,7 +142,6 @@
     color: #2c3e50;
 }
 
-/* Search button styling */
 .search-btn-container {
     grid-column: span 4;
     display: flex;
@@ -180,7 +176,6 @@
     background-color: #1a252f;
 }
 
-/* Make the filter form more responsive */
 .filter-section {
     display: flex;
     flex-wrap: wrap;
@@ -233,7 +228,6 @@
     border-radius: 4px;
 }
 
-/* Make the cards responsive */
 @media (max-width: 992px) {
     .bike-card {
         max-width: calc(50% - 1rem);
@@ -246,9 +240,6 @@
     }
 }
 
-/* Versione ripristinata e migliorata della barra dei filtri */
-
-/* Pannello filtri sempre aperto */
 .filter-panel {
     display: block !important;
     background-color: #fff;
@@ -268,7 +259,72 @@
     margin-bottom: 20px;
 }
 
-/* Responsive adjustments */
+.category-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.category-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    user-select: none;
+    cursor: pointer;
+    color: #000;
+    font-weight: 500;
+}
+
+.category-checkboxes input[type="checkbox"] {
+    margin: 0;
+}
+
+.category-results {
+    margin-bottom: 30px;
+}
+
+.category-header {
+    border-bottom: 2px solid #0066cc;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.category-models-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 15px;
+    scrollbar-width: thin;
+}
+
+.category-models-row::-webkit-scrollbar {
+    height: 6px;
+}
+
+.category-models-row::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.category-models-row::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.category-models-row .bike-card {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.category-models-row .bike-img-container {
+    height: 180px;
+    min-height: 180px;
+}
+
 @media (max-width: 768px) {
     .filter-section {
         flex-direction: column;

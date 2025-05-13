@@ -202,40 +202,234 @@ Form submissions per le interazioni utente
 
 ### Struttura del progetto
 
+
 ```
-Dealership/
-├── app.py             
-├── project-dealership.session.sql        
-├── progress.md 
-├── README.md         
-├── static/           
+Progetto-info-3/
+├── database.db
+├── email_config.json
+├── email_config.json.example
+├── progetto.md
+├── progress.md
+├── project-dealership-session.sql
+├── project-session.sql
+├── project-dealership-session.sql
+├── README.md
+├── requirements.txt
+├── server.py
+├── setup.sh
+├── venv/
+│   ├── bin/
+│   ├── include/
+│   └── lib/
+├── static/
 │   ├── styles/
-│   │        ├── login.css
-│   │        ├── main.css
-│   │        ├── account.css
-│   │        ├── model.css
-│   │        └── reg.css
+│   │   ├── login.css
+│   │   ├── main.css
+│   │   ├── model.css
+│   │   ├── quote.css
+│   │   └── reg.css
 │   ├── scripts/
-│   │        ├── login.js
-│   │        ├── main.js
-│   │        ├── model.js
-│   │        └── script.js
-│   └── images/
-│       ├── A2/
-│       ├── display/
-│       ├── liter_bikes/
-│       ├── super_sport/
-│       └── naked/
-└── templates/       
-  ├── account.html
-  ├── log_page.html
-  ├── main.html
-  ├── model.html
-  ├── reg_page.html
-  └── request_quote.html
+│   │   ├── filter.js
+│   │   ├── loading-state.js
+│   │   ├── login.js
+│   │   ├── main.js
+│   │   ├── models.js
+│   │   └── script.js
+│   └── favicon/
+│       ├── bikes/
+│       │   ├── A2/
+│       │   ├── display/
+│       │   ├── liter_bikes/
+│       │   ├── naked/
+│       │   └── super_sport/
+│       ├── log_background.jpg
+│       └── log_in.jpg
+├── templates/
+│   ├── account.html
+│   ├── buy.html
+│   ├── configure.html
+│   ├── log_page.html
+│   ├── main.html
+│   ├── model.html
+│   ├── models.html
+│   ├── quote_confirmation.html
+│   ├── reg_page.html
+│   ├── request_quote.html
+│   └── service.html
+└── python/
+    ├── add_records.py
+    ├── debug_db.py
+    └── init_db.py
+├── queries/
+    ├── add_image_categories.sql
+    ├── add_missing_images.sql
+    ├── add_premium_images.sql
+    ├── add_records_fixed.sql
+    ├── add_records.sql
+    ├── create_no_video_view.sql
+    ├── fix_image_paths.sql
+    ├── force_mp4_visibility.sql
+    ├── init.sql
+    ├── remove_race_category.sql
+    ├── restore_mp4_videos.sql
+    ├── update_image_paths.sql
+    ├── update_mp4_priorities.sql
+    └── update_premium_bike_images.sql
 ```
 
 ## Codice
+```
+@app.route("/reg", methods=["POST"])
+def reg():
+    email = request.form["email"]
+    password = request.form["password"]
+
+    if (not email or not password):
+        error = "Email and password are required"
+        return render_template("reg_page.html", error=error)
+
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        # Check if email already exists
+        cursor.execute("SELECT * FROM users WHERE email=?", (email,))
+        if (cursor.fetchone()):
+            error = "Email already registered. Please log in."
+            return render_template("reg_page.html", error=error)
+        # Insert new user
+        cursor.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
+        db.commit()
+        flash("Register Completed", "success")
+        return redirect(url_for("login"))
+    except sqlite3.Error as e:
+        error = "Error: " + str(e)
+        return render_template("reg_page.html", error=error)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    # Gestisce il parametro 'next' per il redirect dopo il login
+    next_page = request.args.get('next', '')
+    return render_template("log_page.html", next=next_page)
+
+@app.route("/log", methods=["POST"])
+def log():
+    email = request.form["email"]
+    password = request.form["password"]
+    next_page = request.form.get("next", "/")  # Pagina di ritorno dopo il login
+
+    try:
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM users WHERE email = ? AND password = ?", (email, password))
+        user = cursor.fetchone()
+        
+        if user:
+            session["logged_in"] = True
+            session["user_email"] = email
+            # Redirect alla pagina richiesta (o home se non specificata)
+            return redirect(next_page)
+        else:
+            flash("No account found, try changing the email or password", "error")
+            return redirect(url_for("login", next=next_page))
+    except sqlite3.Error as e:
+        error = "Error: " + str(e)
+        return render_template("log_page.html", error=error, next=next_page)
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.pop("logged_in", None)
+    session.pop("user_email", None)
+    return {"status": "ok"}
+
+@app.route("/model/<model_slug>")
+def model_detail(model_slug):
+    try:
+        # Connessione al database
+        db = get_db()
+        cursor = db.cursor()
+        
+        # Trova la moto in base allo slug
+        cursor.execute("""
+            SELECT id, model, year, price, power, seat_height 
+            FROM Bikes 
+            WHERE LOWER(REPLACE(REPLACE(model, ' ', '-'), '_', '-')) = ?
+        """, (model_slug,))
+        
+        bike = cursor.fetchone()
+        
+        if (not bike):
+            return "Model not found", 404
+        
+        bike_id = bike['id']
+        model_details = {
+            "id": bike_id,  # Add this line to include the ID in the model details
+            "name": bike['model'],
+            "year": str(bike['year']),
+            "price": float(bike['price']),
+            "power": bike['power'],
+            "seat_height": bike['seat_height']
+        }
+        
+        # Ottieni le immagini - VERSIONE CORRETTA
+        cursor.execute("""
+            SELECT url FROM Image WHERE bike_id = ? 
+            ORDER BY 
+                CASE 
+                    WHEN url LIKE '%.mp4' AND bike_id != 1 THEN 0  -- Priorità ai MP4 eccetto ID=1 (S1000RR)
+                    ELSE 1
+                END, 
+                id
+        """, (bike_id,))
+        
+        images = cursor.fetchall()
+        
+        if images:
+            model_details["image"] = images[0]['url']
+            
+            # Aggiungi le immagini aggiuntive se disponibili
+            for i, img in enumerate(images[1:], 2):
+                model_details[f"image_{i}"] = img['url']
+        
+        # Ottieni le descrizioni
+        cursor.execute("SELECT type, text FROM Description WHERE bike_id = ? ORDER BY id", (bike_id,))
+        descriptions = cursor.fetchall()
+        
+        for desc in descriptions:
+            if (desc['type'] == 'main'):
+                model_details["description"] = desc['text']
+            else:
+                model_details[desc['type']] = desc['text']
+        
+        # Ottieni i colori
+        cursor.execute("SELECT name, swatch, image FROM Color WHERE bike_id = ? ORDER BY id", (bike_id,))
+        colors = cursor.fetchall()
+        
+        if colors:
+            model_details["colors"] = []
+            for color in colors:
+                # Gestisci la conversione dei colori JSON
+                swatch_value = color['swatch']
+                try:
+                    # Tenta di convertire il JSON se è un oggetto
+                    import json
+                    if (swatch_value and isinstance(swatch_value, str) and swatch_value.startswith('{')):
+                        swatch_value = json.loads(swatch_value)
+                except:
+                    # Se fallisce, usa il valore come stringa
+                    pass
+                    
+                model_details["colors"].append({
+                    "name": color['name'],
+                    "swatch": swatch_value,
+                    "image": color['image']
+                })
+        
+        return render_template("model.html", model=model_details)
+    
+    except Exception as e:
+        print(f"Errore nel caricamento del modello: {str(e)}")
+        return "Error loading model details", 500
+```
 
 # Progetto-info-3
 

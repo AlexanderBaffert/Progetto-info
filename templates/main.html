@@ -62,12 +62,22 @@
     </div>
     
 
-    <!-- Filter Container - VERSIONE RIPRISTINATA -->
+    <!-- Filter Container - UPDATED WITH HORIZONTAL CATEGORIES -->
     <div class="filter-container">
         <div class="filter-panel active" id="filterPanel">
             <h2>Compatible Models</h2>
             <form id="filter-form" class="filter-section">
-                <!-- Semplificato con solo i filtri numerici, senza Engine Type -->
+                <!-- Add Category Filters Horizontally -->
+                <div class="filter-column category-column">
+                    <h3>Categories</h3>
+                    <div class="category-checkboxes">
+                        <label><input type="checkbox" name="category" value="sport" checked> Sport</label>
+                        <label><input type="checkbox" name="category" value="premium" checked> Premium</label>
+                        <label><input type="checkbox" name="category" value="naked" checked> Naked</label>
+                        <label><input type="checkbox" name="category" value="a2" checked> A2 License</label>
+                    </div>
+                </div>
+
                 <div class="filter-column">
                     <h3>Power</h3>
                     <div class="slider-container">

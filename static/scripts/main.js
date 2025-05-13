@@ -54,11 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
         ],
         premium: [
             { name: "R1-M", year: "2025", img: "static/favicon/bikes/super_sport/r1m.jpg" },
-            { name: "F4 1000", year: "2005", img: "static/favicon/bikes/super_sport/f4_1000.webp" },
             { name: "M 1000 RR", year: "2025", img: "static/favicon/bikes/super_sport/m1000rr.jpg" },
             { name: "H2R", year: "2025", img: "static/favicon/bikes/super_sport/h2r.webp" },
-            { name: "Superleggera V4", year: "2024", img: "static/favicon/bikes/super_sport/superleggera.jpg" },
-            { name: "Tricolore", year: "2025", img: "static/favicon/bikes/super_sport/tricolore.avif" },
+            { name: "Superleggera V4", year: "2020", img: "static/favicon/bikes/super_sport/superleggera.jpg" },
         ],
         naked: [
             { name: "MT-10", year: "2025", img: "static/favicon/bikes/naked/mt10.webp" },

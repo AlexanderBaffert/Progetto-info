@@ -1,4 +1,3 @@
-/* Importa un font elegante */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
@@ -9,35 +8,31 @@ body {
     height: 100vh;
 }
 
-/* Contenitore principale che divide la pagina */
 .container {
     display: flex;
     width: 100%;
     height: 100%;
 }
 
-/* Sezione sinistra con il form */
 .login-container {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(200, 220, 240, 0.5); /* Colore più freddo */
+    background: rgba(200, 220, 240, 0.5);
 }
 
-/* Box di login con sfondo più chiaro */
 .login-box {
     width: 80%;
     max-width: 400px;
     padding: 20px;
-    background: rgba(240, 248, 255, 0.7); /* Un azzurro chiaro (AliceBlue) per un effetto freddo */
+    background: rgba(240, 248, 255, 0.7);
     backdrop-filter: blur(10px);
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 50, 0.2); /* Ombra leggermente più fredda */
+    box-shadow: 0 0 15px rgba(0, 0, 50, 0.2);
     color: black;
 }
-
 
 h2 {
     margin-bottom: 20px;
@@ -61,7 +56,6 @@ h2 {
     font-size: 16px;
 }
 
-/* Opzioni di login */
 .options {
     display: flex;
     justify-content: space-between;
@@ -79,7 +73,6 @@ h2 {
     font-size: 14px;
 }
 
-/* Pulsante login */
 .login-button {
     width: 100%;
     padding: 10px;
@@ -106,7 +99,6 @@ h2 {
     text-decoration: none;
 }
 
-/* Sezione destra con immagine */
 .image-container {
     width: 50%;
     background: url("../favicon/log_background.jpg") no-repeat center center;
