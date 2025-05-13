@@ -278,7 +278,10 @@ Progetto-info-3/
 ```
 
 ## Codice
-```
+```python
+
+#......
+
 @app.route("/reg", methods=["POST"])
 def reg():
     email = request.form["email"]
@@ -305,11 +308,7 @@ def reg():
         error = "Error: " + str(e)
         return render_template("reg_page.html", error=error)
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    # Gestisce il parametro 'next' per il redirect dopo il login
-    next_page = request.args.get('next', '')
-    return render_template("log_page.html", next=next_page)
+#......
 
 @app.route("/log", methods=["POST"])
 def log():
@@ -335,11 +334,7 @@ def log():
         error = "Error: " + str(e)
         return render_template("log_page.html", error=error, next=next_page)
 
-@app.route("/logout", methods=["POST"])
-def logout():
-    session.pop("logged_in", None)
-    session.pop("user_email", None)
-    return {"status": "ok"}
+#......        
 
 @app.route("/model/<model_slug>")
 def model_detail(model_slug):
@@ -486,14 +481,5 @@ To initialize the database, navigate to http://127.0.0.1:5000/init-db after star
 
 ### Email Configuration
 
-To configure email settings, add the following environment variables to your `.env` file:
-
-```
-MAIL_SERVER=smtp.example.com
-MAIL_PORT=587
-MAIL_USE_TLS=1
-MAIL_USERNAME=your-email@example.com
-MAIL_PASSWORD=your-email-password
-```
-
-Make sure to replace the placeholder values with your actual email server details.
+There is a problem on the EMAIL so currently you cant recive it, im sorry for the 
+Inconvenient
